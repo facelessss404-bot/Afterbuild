@@ -1,11 +1,12 @@
 [build]
   base = "studio-website"
-  command = "npm install --legacy-peer-deps && npx next build --no-turbopack"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
+  NEXT_TURBOPACK = "0"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
