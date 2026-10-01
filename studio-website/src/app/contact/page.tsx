@@ -64,7 +64,8 @@ export default function ContactPage() {
       formData.append("category", form.category);
       formData.append("details", form.details);
 
-      const res = await fetch("/", {
+      // Must target the static skeleton in public/ — "/" is handled by the Next.js server
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString(),
@@ -359,7 +360,6 @@ export default function ContactPage() {
                 <form
                   name="contact"
                   method="POST"
-                  data-netlify="true"
                   onSubmit={handleSubmit}
                   noValidate
                   style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 3vw, 32px)" }}
