@@ -47,14 +47,11 @@ export default function ServicesSection() {
       <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
         {/* Section header — 12-col grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
+        <div className="svc-12-grid" style={{
           marginBottom: "clamp(48px, 7vw, 96px)",
           alignItems: "end",
         }}>
-          <div style={{ gridColumn: "1 / 7" }}>
+          <div className="svc-header-title">
             <div style={{
               display: "flex",
               alignItems: "center",
@@ -83,7 +80,7 @@ export default function ServicesSection() {
             </h2>
           </div>
 
-          <div style={{ gridColumn: "8 / 13", alignSelf: "end" }}>
+          <div className="svc-header-desc" style={{ alignSelf: "end" }}>
             <p style={{
               fontSize: "var(--text-sm)",
               color: "var(--muted)",
@@ -97,20 +94,11 @@ export default function ServicesSection() {
         </div>
 
         {/* Two-column layout: image left + service list right */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          alignItems: "start",
-        }}>
+        <div className="svc-12-grid" style={{ alignItems: "start" }}>
 
           {/* LEFT: Active service image — cols 1-5 */}
-          <div style={{
-            gridColumn: "1 / 6",
-            position: "sticky",
-            top: "100px",
-          }}
-          className="svc-img-wrap"
+          <div
+          className="svc-img-col-home svc-img-wrap"
           >
             <div style={{
               position: "relative",
@@ -164,7 +152,7 @@ export default function ServicesSection() {
           </div>
 
           {/* RIGHT: Expanding service rows — cols 6-12 */}
-          <div style={{ gridColumn: "6 / 13" }}>
+          <div className="svc-list-col">
             {services.map((service, i) => {
               const isActive = i === activeIndex;
               return (
@@ -240,11 +228,7 @@ export default function ServicesSection() {
                     maxHeight: isActive ? "600px" : "0",
                     transition: "max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                   }}>
-                    <div style={{
-                      paddingLeft: "clamp(44px, 5.5vw, 76px)",
-                      paddingRight: "clamp(16px, 2vw, 24px)",
-                      paddingBottom: "clamp(24px, 3vw, 36px)",
-                    }}>
+                    <div className="accordion-body">
                       {/* Description */}
                       <p style={{
                         fontSize: "var(--text-sm)",
@@ -282,10 +266,7 @@ export default function ServicesSection() {
 
                       {/* Key features */}
                       {service.features && (
-                        <div style={{
-                          display: "grid",
-                          gridTemplateColumns: "1fr 1fr",
-                          gap: "8px 24px",
+                        <div className="deliverables-grid" style={{
                           marginBottom: "28px",
                         }}>
                           {service.features.slice(0, 4).map((feat) => (
@@ -382,25 +363,7 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .svc-img-wrap { display: none !important; }
-          .svc-mobile-img { display: block !important; }
-          #section-services [style*="1 / 6"] { display: none !important; }
-          #section-services [style*="6 / 13"] {
-            grid-column: 1 / -1 !important;
-          }
-          #section-services [style*="repeat(12, minmax"] {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-          #section-services [style*="1 / 7"] {
-            grid-column: 1 / -1 !important;
-          }
-          #section-services [style*="8 / 13"] {
-            grid-column: 1 / -1 !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

@@ -49,15 +49,10 @@ export default function CredentialsSection() {
       }}
     >
       <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          alignItems: "center",
-        }}>
+        <div className="cred-12-grid">
 
           {/* LEFT: text — cols 1-6 */}
-          <div style={{ gridColumn: "1 / 7" }}>
+          <div className="cred-col-left">
             <div className="cred-reveal" style={{
               display: "flex",
               alignItems: "center",
@@ -157,8 +152,7 @@ export default function CredentialsSection() {
           </div>
 
           {/* RIGHT: editorial image composition — cols 7-12 */}
-          <div style={{
-            gridColumn: "7 / 13",
+          <div className="cred-col-right" style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gridTemplateRows: "auto auto",
@@ -223,15 +217,7 @@ export default function CredentialsSection() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          #section-credentials [style*="1 / 7"] { grid-column: 1 / -1 !important; }
-          #section-credentials [style*="7 / 13"] { grid-column: 1 / -1 !important; }
-          #section-credentials [style*="repeat(12"] {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

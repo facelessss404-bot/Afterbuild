@@ -48,15 +48,10 @@ export default function ContactCTA() {
       }}
     >
       <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          alignItems: "center",
-        }}>
+        <div className="cta-12-grid">
 
           {/* LEFT: Text — cols 1-7 */}
-          <div style={{ gridColumn: "1 / 8" }}>
+          <div className="cta-col-text">
             <div className="cta-reveal" style={{
               display: "flex", alignItems: "center", gap: "12px",
               marginBottom: "clamp(24px, 3.5vw, 44px)",
@@ -161,9 +156,7 @@ export default function ContactCTA() {
           </div>
 
           {/* RIGHT: Image — cols 9-12 */}
-          <div style={{
-            gridColumn: "9 / 13",
-          }}>
+          <div className="cta-col-img">
             <div
               className="cta-img"
               style={{

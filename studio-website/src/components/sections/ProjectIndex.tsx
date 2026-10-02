@@ -191,7 +191,7 @@ export default function ProjectIndex() {
             <Link
               key={project.id}
               href={`/work/${project.slug}`}
-              className="pi-row"
+              className="pi-row pi-grid-row"
               data-cursor="VIEW"
               onMouseEnter={(e) => {
                 setPreviewSrc(project.thumbnailImage);
@@ -203,15 +203,9 @@ export default function ProjectIndex() {
                 (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
               style={{
-                display: "grid",
-                gridTemplateColumns: "52px 1fr 160px 64px",
-                gap: "clamp(12px, 2vw, 32px)",
-                alignItems: "center",
-                padding: "clamp(18px, 2.5vw, 26px) 0",
+                padding: "clamp(18px, 2.5vw, 26px) clamp(8px, 1vw, 16px)",
                 borderBottom: "1px solid rgba(10,10,9,0.08)",
                 transition: "background 0.3s ease",
-                paddingInline: "clamp(8px, 1vw, 16px)",
-                marginInline: "clamp(-8px, -1vw, -16px)",
               }}
             >
               {/* Number */}
@@ -224,41 +218,66 @@ export default function ProjectIndex() {
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              {/* Title */}
-              <span style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.1rem, 2.2vw, 1.8rem)",
-                fontWeight: 400,
-                color: "#0a0a09",
-                lineHeight: 1.2,
-                transition: "color 0.3s ease",
-              }}>
-                {project.title}
-              </span>
+              {/* Title + mobile category */}
+              <div>
+                <span style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.1rem, 2.2vw, 1.8rem)",
+                  fontWeight: 400,
+                  color: "#0a0a09",
+                  lineHeight: 1.2,
+                  display: "block",
+                  transition: "color 0.3s ease",
+                }}>
+                  {project.title}
+                </span>
+                <span style={{
+                  fontSize: "9px",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "rgba(10,10,9,0.4)",
+                  marginTop: "4px",
+                  display: "none",
+                }}
+                className="pi-mobile-cat"
+                >
+                  {project.category} · {project.year}
+                </span>
+              </div>
 
-              {/* Category */}
+              {/* Category (desktop) */}
               <span style={{
                 fontSize: "10px",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 color: "rgba(10,10,9,0.45)",
               }}
-              className="hidden-mobile"
+              className="pi-col-category hidden-mobile"
               >
                 {project.category}
               </span>
 
-              {/* Year */}
-              <span style={{
-                fontSize: "11px",
-                letterSpacing: "0.12em",
-                color: "rgba(10,10,9,0.35)",
-                textAlign: "right",
-              }}
-              className="hidden-mobile"
-              >
-                {project.year}
-              </span>
+              {/* Year / Arrow */}
+              <div style={{ textAlign: "right" }}>
+                <span style={{
+                  fontSize: "11px",
+                  letterSpacing: "0.12em",
+                  color: "rgba(10,10,9,0.35)",
+                }}
+                className="hidden-mobile"
+                >
+                  {project.year}
+                </span>
+                <span style={{
+                  fontSize: "13px",
+                  color: "rgba(10,10,9,0.4)",
+                  display: "none",
+                }}
+                className="pi-mobile-arrow"
+                >
+                  →
+                </span>
+              </div>
             </Link>
           ))}
 
@@ -299,11 +318,9 @@ export default function ProjectIndex() {
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          .hidden-mobile { display: none !important; }
-          #section-project-index [style*="52px 1fr 160px 64px"] {
-            grid-template-columns: 36px 1fr !important;
-          }
+        @media (max-width: 768px) {
+          .pi-mobile-cat { display: block !important; }
+          .pi-mobile-arrow { display: inline-block !important; }
         }
       `}</style>
     </section>

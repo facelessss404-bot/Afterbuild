@@ -53,14 +53,10 @@ export default function PhilosophySection() {
       <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
         {/* Header */}
-        <div className="philo-text" style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
+        <div className="philo-text philo-12-grid philo-header-grid" style={{
           marginBottom: "clamp(40px, 7vw, 96px)",
-          alignItems: "end",
         }}>
-          <div style={{ gridColumn: "1 / 7" }}>
+          <div className="philo-header-title">
             <div style={{
               display: "flex", alignItems: "center", gap: "12px",
               marginBottom: "clamp(12px, 2vw, 20px)",
@@ -81,9 +77,7 @@ export default function PhilosophySection() {
               Our Philosophy
             </h2>
           </div>
-          <blockquote className="philo-text" style={{
-            gridColumn: "8 / 13",
-            alignSelf: "end",
+          <blockquote className="philo-text philo-header-quote" style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(1rem, 1.5vw, 1.3rem)",
             fontStyle: "italic",
@@ -98,21 +92,10 @@ export default function PhilosophySection() {
         </div>
 
         {/* 3 pillars — staggered image heights, no cards */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          alignItems: "end",
-        }}>
+        <div className="philo-12-grid" style={{ alignItems: "end" }}>
           {philosophyPillars.map((pillar, i) => {
-            const colMap = ["1 / 5", "5 / 9", "9 / 13"];
-            const offsetMap = ["0px", "clamp(40px, 6vw, 96px)", "clamp(20px, 3vw, 48px)"];
-
             return (
-              <div key={pillar.id} style={{
-                gridColumn: colMap[i],
-                paddingTop: offsetMap[i],
-              }}>
+              <div key={pillar.id} className={`philo-pillar-${i}`}>
                 {/* Image — different heights for editorial rhythm */}
                 <div className="philo-img img-hover" style={{
                   position: "relative",
@@ -165,26 +148,7 @@ export default function PhilosophySection() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          #section-philosophy [style*="1 / 5"],
-          #section-philosophy [style*="5 / 9"],
-          #section-philosophy [style*="9 / 13"],
-          #section-philosophy [style*="1 / 7"],
-          #section-philosophy [style*="8 / 13"] {
-            grid-column: 1 / -1 !important;
-            padding-top: 0 !important;
-          }
-          #section-philosophy [style*="repeat(12"] {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          }
-        }
-        @media (max-width: 600px) {
-          #section-philosophy [style*="repeat(2"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

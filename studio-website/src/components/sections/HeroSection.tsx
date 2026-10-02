@@ -127,13 +127,7 @@ export default function HeroSection() {
           </h1>
 
           {/* Bottom row */}
-          <div className="hero-bottom" style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            gap: "24px",
-            flexWrap: "wrap",
-          }}>
+          <div className="hero-bottom hero-bottom-row">
             <p className="hero-sub" style={{
               fontSize: "clamp(13px, 1.1vw, 16px)",
               color: "rgba(243,240,234,0.58)",
@@ -175,7 +169,9 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" style={{
+            <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer"
+              className="hero-instagram-link"
+              style={{
               fontSize: "9px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",

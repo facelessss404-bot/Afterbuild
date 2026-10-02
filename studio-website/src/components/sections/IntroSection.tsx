@@ -100,17 +100,10 @@ export default function IntroSection() {
       <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
         {/* 12-column editorial grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          alignItems: "start",
-        }}>
+        <div className="intro-12-grid">
 
           {/* LEFT: Section label + large statement — cols 1-7 */}
-          <div style={{
-            gridColumn: "1 / 8",
-          }}>
+          <div className="intro-col-left">
             {/* Section label */}
             <div style={{
               display: "flex",
@@ -226,12 +219,10 @@ export default function IntroSection() {
           </div>
 
           {/* RIGHT: Image + counters — cols 9-12 */}
-          <div style={{
-            gridColumn: "9 / 13",
+          <div className="intro-col-right" style={{
             display: "flex",
             flexDirection: "column",
             gap: "var(--space-xs)",
-            paddingTop: "clamp(48px, 8vw, 120px)",
           }}>
             {/* Tall portrait image */}
             <div
@@ -303,21 +294,7 @@ export default function IntroSection() {
         </div>
       </div>
 
-      {/* Mobile layout override */}
-      <style>{`
-        @media (max-width: 900px) {
-          #section-studio-intro [style*="grid-column: 1 / 8"] {
-            grid-column: 1 / -1 !important;
-          }
-          #section-studio-intro [style*="grid-column: 9 / 13"] {
-            grid-column: 1 / -1 !important;
-            padding-top: 0 !important;
-          }
-          #section-studio-intro [style*="grid-template-columns: repeat(12"] {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-        }
-      `}</style>
+
     </section>
   );
 }

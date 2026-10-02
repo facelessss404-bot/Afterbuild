@@ -76,10 +76,7 @@ export default function StatsSection() {
         marginInline: "auto",
         paddingInline: "var(--gutter)",
       }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }}>
+        <div className="stats-grid">
           {stats.map((stat, i) => (
             <div
               key={i}

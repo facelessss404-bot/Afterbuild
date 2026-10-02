@@ -45,15 +45,10 @@ export default function TestimonialsSection() {
       }}
     >
       <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          alignItems: "start",
-        }}>
+        <div className="test-12-grid">
 
           {/* Label — col 1-2 */}
-          <div className="test-reveal" style={{ gridColumn: "1 / 3" }}>
+          <div className="test-reveal test-label-col">
             <div style={{
               display: "flex", alignItems: "center", gap: "12px",
               marginBottom: "12px",
@@ -81,7 +76,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Quote area — cols 3-12 */}
-          <div style={{ gridColumn: "3 / 13" }}>
+          <div className="test-quote-col">
 
             {/* Decorative open quote */}
             <div className="test-reveal" style={{

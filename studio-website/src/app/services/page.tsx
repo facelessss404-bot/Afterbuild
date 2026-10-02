@@ -89,13 +89,8 @@ export default function ServicesPage() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "end",
-          }}>
-            <div style={{ gridColumn: "1 / 9" }}>
+        <div className="svcp-12-grid" style={{ alignItems: "end" }}>
+            <div className="svcp-hero-title">
               <div style={{
                 display: "flex", alignItems: "center", gap: "12px",
                 marginBottom: "clamp(20px, 3vw, 36px)",
@@ -120,7 +115,7 @@ export default function ServicesPage() {
               </h1>
             </div>
 
-            <div style={{ gridColumn: "9 / 13", alignSelf: "end" }}>
+            <div className="svcp-hero-desc" style={{ alignSelf: "end" }}>
               <p style={{
                 fontSize: "var(--text-sm)",
                 color: "var(--muted)",
@@ -161,19 +156,10 @@ export default function ServicesPage() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "start",
-          }}>
+          <div className="svcp-12-grid" style={{ alignItems: "start" }}>
             {/* Left: Sticky image */}
-            <div style={{
-              gridColumn: "1 / 6",
-              position: "sticky",
-              top: "100px",
-            }}
-            className="svc-img-col"
+            <div
+            className="svcp-img-col"
             >
               <div style={{
                 position: "relative",
@@ -221,7 +207,7 @@ export default function ServicesPage() {
             </div>
 
             {/* Right: Accordion */}
-            <div style={{ gridColumn: "6 / 13" }}>
+            <div className="svcp-list-col">
               {services.map((service, idx) => {
                 const isActive = activeIdx === idx;
                 const relatedProject = projects.find((p) =>
@@ -294,11 +280,7 @@ export default function ServicesPage() {
                       maxHeight: isActive ? "800px" : "0",
                       transition: "max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}>
-                      <div style={{
-                        paddingLeft: "clamp(44px, 5.5vw, 76px)",
-                        paddingRight: "clamp(16px, 2vw, 24px)",
-                        paddingBottom: "clamp(24px, 3vw, 40px)",
-                      }}>
+                      <div className="accordion-body">
                         {/* Mobile image */}
                         <div style={{
                           position: "relative",
@@ -362,11 +344,7 @@ export default function ServicesPage() {
                           }}>
                             Key Deliverables
                           </p>
-                          <div style={{
-                            display: "grid",
-                            gridTemplateColumns: "1fr 1fr",
-                            gap: "8px 24px",
-                          }}>
+                          <div className="deliverables-grid">
                             {service.features.map((feat) => (
                               <div key={feat} style={{
                                 display: "flex",
@@ -575,14 +553,9 @@ export default function ServicesPage() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "start",
-          }}>
+          <div className="svcp-12-grid" style={{ alignItems: "start" }}>
             {/* Label — cols 1-3 */}
-            <div style={{ gridColumn: "1 / 4" }}>
+            <div className="svcp-faq-label">
               <div style={{
                 display: "flex", alignItems: "center", gap: "12px",
                 marginBottom: "16px",
@@ -607,7 +580,7 @@ export default function ServicesPage() {
             </div>
 
             {/* FAQ list — cols 4-12 */}
-            <div style={{ gridColumn: "4 / 13" }}>
+            <div className="svcp-faq-list">
               {faqs.map((faq, fIdx) => {
                 const isOpen = openFaq === fIdx;
                 return (
@@ -685,13 +658,8 @@ export default function ServicesPage() {
         background: "var(--bg)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "center",
-          }}>
-            <div style={{ gridColumn: "1 / 8" }}>
+          <div className="svcp-12-grid" style={{ alignItems: "center" }}>
+            <div className="svcp-cta-text">
               <h2 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(3rem, 7vw, 7rem)",
@@ -754,7 +722,7 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            <div style={{ gridColumn: "9 / 13" }}>
+            <div className="svcp-cta-image">
               <div style={{
                 position: "relative",
                 aspectRatio: "3/4",
@@ -774,26 +742,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 900px) {
-          .svc-img-col { display: none !important; }
-          .svc-mobile-img { display: block !important; }
-          .workflow-grid { grid-template-columns: 1fr 1fr !important; }
-          .workflow-grid > div { border-right: none !important; border-bottom: 1px solid var(--border); }
-          [style*="gridColumn: '1 / 4'"],
-          [style*="gridColumn: '4 / 13'"],
-          [style*="gridColumn: '1 / 9'"],
-          [style*="gridColumn: '9 / 13'"],
-          [style*="gridColumn: '1 / 6'"],
-          [style*="gridColumn: '6 / 13'"],
-          [style*="gridColumn: '1 / 8'"] {
-            grid-column: 1 / -1 !important;
-          }
-        }
-        @media (max-width: 600px) {
-          .workflow-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+
     </div>
   );
 }

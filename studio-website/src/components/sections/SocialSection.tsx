@@ -119,22 +119,16 @@ export default function SocialSection() {
         </div>
 
         {/* Image grid — asymmetric editorial */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-        }}>
+        <div className="social-12-grid">
           {/* Large left image — col 1-5, 2 rows tall */}
           {feedImages[0] && (
             <a
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-img img-hover"
+              className="social-img img-hover social-img-large"
               data-cursor="VIEW"
               style={{
-                gridColumn: "1 / 6",
-                gridRow: "1 / 3",
                 position: "relative",
                 aspectRatio: "3/4",
                 overflow: "hidden",
@@ -160,10 +154,9 @@ export default function SocialSection() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-img img-hover"
+              className={`social-img img-hover social-img-sq-${i}`}
               data-cursor="VIEW"
               style={{
-                gridColumn: i % 2 === 0 ? "6 / 9" : "9 / 13",
                 position: "relative",
                 aspectRatio: "1/1",
                 overflow: "hidden",
@@ -180,10 +173,9 @@ export default function SocialSection() {
               href={siteConfig.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-img img-hover"
+              className="social-img img-hover social-img-wide"
               data-cursor="VIEW"
               style={{
-                gridColumn: "6 / 13",
                 position: "relative",
                 aspectRatio: "21/9",
                 overflow: "hidden",
