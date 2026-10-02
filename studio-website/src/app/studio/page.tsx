@@ -47,11 +47,11 @@ export default function StudioPage() {
       });
 
       // Timeline items
-      page.querySelectorAll(".st-timeline-item").forEach((el, i) => {
+      page.querySelectorAll(".st-timeline-item").forEach((el) => {
         gsap.fromTo(el,
-          { opacity: 0, x: i % 2 === 0 ? -24 : 24 },
+          { opacity: 0, y: 24 },
           {
-            opacity: 1, x: 0, duration: 0.8, ease: "power4.out",
+            opacity: 1, y: 0, duration: 0.8, ease: "power4.out",
             scrollTrigger: { trigger: el, start: "top 85%" },
           }
         );
@@ -74,14 +74,9 @@ export default function StudioPage() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "center",
-          }}>
+          <div className="editorial-grid st-hero-grid" style={{ alignItems: "center" }}>
             {/* Text — left 6 cols */}
-            <div style={{ gridColumn: "1 / 7" }}>
+            <div className="st-hero-left">
               <div style={{
                 display: "flex", alignItems: "center", gap: "12px",
                 marginBottom: "clamp(24px, 4vw, 48px)",
@@ -174,7 +169,7 @@ export default function StudioPage() {
             </div>
 
             {/* Founder Image — right 5 cols */}
-            <div style={{ gridColumn: "8 / 13" }}>
+            <div className="st-hero-right">
               <div className="st-img-reveal" style={{
                 position: "relative",
                 aspectRatio: "4/5",
@@ -230,12 +225,8 @@ export default function StudioPage() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-          }}>
-            <div style={{ gridColumn: "1 / 3" }}>
+          <div className="editorial-grid st-philo-grid">
+            <div className="st-philo-label">
               <span className="st-text-reveal" style={{
                 fontSize: "10px", letterSpacing: "0.28em",
                 textTransform: "uppercase", color: "var(--bronze)",
@@ -244,7 +235,7 @@ export default function StudioPage() {
                 Philosophy
               </span>
             </div>
-            <div style={{ gridColumn: "3 / 13" }}>
+            <div className="st-philo-quote">
               <blockquote className="st-text-reveal" style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.4rem, 3vw, 2.8rem)",
@@ -309,15 +300,9 @@ export default function StudioPage() {
           </div>
 
           {/* 3 pillars */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-          }}>
-            {philosophyPillars.map((pillar, i) => (
-              <div key={pillar.id} style={{
-                gridColumn: i === 0 ? "1 / 5" : i === 1 ? "5 / 9" : "9 / 13",
-              }}>
+          <div className="st-pillars-grid">
+            {philosophyPillars.map((pillar) => (
+              <div key={pillar.id} className="st-pillar-card">
                 <div className="st-img-reveal" style={{
                   position: "relative",
                   aspectRatio: "3/4",
@@ -373,10 +358,7 @@ export default function StudioPage() {
           marginInline: "auto",
           paddingInline: "var(--gutter)",
         }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}>
+          <div className="st-metrics-grid">
             {stats.map((stat, i) => (
               <div key={i} className="st-text-reveal" style={{
                 padding: "clamp(32px, 5vw, 72px) clamp(20px, 3vw, 40px)",
@@ -420,14 +402,9 @@ export default function StudioPage() {
           borderBottom: "1px solid var(--border)",
         }}>
           <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-              gap: "var(--grid-gap)",
-              alignItems: "start",
-            }}>
+            <div className="editorial-grid st-founder-grid" style={{ alignItems: "start" }}>
               {/* Image — left 5 cols */}
-              <div style={{ gridColumn: "1 / 6" }}>
+              <div className="st-founder-img">
                 <div className="st-img-reveal" style={{
                   position: "relative",
                   aspectRatio: "3/4",
@@ -445,7 +422,7 @@ export default function StudioPage() {
               </div>
 
               {/* Content — right 7 cols */}
-              <div style={{ gridColumn: "6 / 13", paddingLeft: "clamp(0px, 3vw, 40px)" }}>
+              <div className="st-founder-content">
                 <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "clamp(20px, 3vw, 36px)" }}>
                   <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
                   <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
@@ -592,7 +569,7 @@ export default function StudioPage() {
                     alignItems: "center",
                   }}>
                     {/* Year */}
-                    <div style={{
+                    <div className="st-timeline-year" style={{
                       gridColumn: isEven ? "1 / 3" : "11 / 13",
                       textAlign: isEven ? "left" : "right",
                       order: isEven ? 0 : 2,
@@ -609,7 +586,7 @@ export default function StudioPage() {
                     </div>
 
                     {/* Center dot */}
-                    <div style={{
+                    <div className="st-timeline-dot" style={{
                       gridColumn: isEven ? "3 / 5" : "9 / 11",
                       display: "flex",
                       alignItems: "center",
@@ -626,7 +603,7 @@ export default function StudioPage() {
                     </div>
 
                     {/* Content */}
-                    <div style={{
+                    <div className="st-timeline-card" style={{
                       gridColumn: isEven ? "5 / 13" : "1 / 9",
                       order: isEven ? 2 : 0,
                     }}>
@@ -669,13 +646,9 @@ export default function StudioPage() {
         borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-          }}>
+          <div className="editorial-grid st-mission-grid">
             {/* Mission */}
-            <div style={{ gridColumn: "1 / 7" }}>
+            <div className="st-mission-col">
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
                 <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
                 <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
@@ -697,7 +670,7 @@ export default function StudioPage() {
             </div>
 
             {/* Vision */}
-            <div style={{ gridColumn: "7 / 13", paddingLeft: "clamp(0px, 3vw, 40px)", borderLeft: "1px solid var(--border)" }}>
+            <div className="st-vision-col">
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "24px" }}>
                 <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
                 <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
@@ -796,39 +769,103 @@ export default function StudioPage() {
       </section>
 
       <style>{`
+        /* Studio Desktop Grid Placement */
+        .st-hero-left { grid-column: 1 / 8; }
+        .st-hero-right { grid-column: 8 / 13; }
+
+        .st-philo-label { grid-column: 1 / 3; }
+        .st-philo-quote { grid-column: 3 / 13; }
+
+        .st-pillars-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: var(--grid-gap);
+        }
+
+        .st-metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .st-founder-img { grid-column: 1 / 6; }
+        .st-founder-content { grid-column: 6 / 13; padding-left: clamp(0px, 3vw, 40px); }
+
+        .st-mission-col { grid-column: 1 / 7; }
+        .st-vision-col { grid-column: 7 / 13; padding-left: clamp(0px, 3vw, 40px); border-left: 1px solid var(--border); }
+
+        .st-timeline-spine { display: block !important; }
+
         @media (max-width: 900px) {
-          [style*="1 / 7"],
-          [style*="8 / 13"],
-          [style*="1 / 3"],
-          [style*="3 / 13"],
-          [style*="1 / 5"],
-          [style*="1 / 6"],
-          [style*="6 / 13"],
-          [style*="5 / 9"],
-          [style*="9 / 13"],
-          [style*="1 / 7"],
-          [style*="7 / 13"] {
+          .st-hero-left, .st-hero-right,
+          .st-philo-label, .st-philo-quote,
+          .st-founder-img, .st-founder-content,
+          .st-mission-col, .st-vision-col {
             grid-column: 1 / -1 !important;
           }
-          [style*="repeat(4, 1fr)"] {
+          .st-founder-content, .st-vision-col {
+            padding-left: 0 !important;
+            border-left: none !important;
+          }
+          .st-hero-right {
+            margin-top: 32px;
+          }
+          .st-founder-content {
+            margin-top: 24px;
+          }
+          .st-vision-col {
+            margin-top: 32px;
+          }
+          .st-pillars-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .st-metrics-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
-          [style*="borderLeft: \"1px solid var(--border)\""] {
-            border-left: none !important;
-            padding-left: 0 !important;
+          .st-metrics-grid > div:nth-child(2) {
+            border-right: none !important;
+          }
+          .st-metrics-grid > div:nth-child(1),
+          .st-metrics-grid > div:nth-child(2) {
+            border-bottom: 1px solid var(--border) !important;
           }
         }
-        @media (min-width: 768px) {
-          .st-timeline-spine { display: block !important; }
+
+        @media (max-width: 600px) {
+          .st-metrics-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .st-metrics-grid > div {
+            border-right: none !important;
+            border-bottom: 1px solid var(--border) !important;
+          }
+          .st-metrics-grid > div:last-child {
+            border-bottom: none !important;
+          }
         }
+
+        /* Timeline mobile & tablet (Requirement 17, 49) — Keep Year visible */
         @media (max-width: 767px) {
-          .st-timeline-item > div:nth-child(1),
-          .st-timeline-item > div:nth-child(2) {
+          .st-timeline-spine { display: none !important; }
+          .st-timeline-item {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+            width: 100% !important;
+          }
+          .st-timeline-year {
+            display: block !important;
+            order: 0 !important;
+            text-align: left !important;
+            width: 100% !important;
+          }
+          .st-timeline-dot {
             display: none !important;
           }
-          .st-timeline-item > div:nth-child(3) {
-            grid-column: 1 / -1 !important;
-            order: 0 !important;
+          .st-timeline-card {
+            order: 1 !important;
+            width: 100% !important;
           }
         }
       `}</style>

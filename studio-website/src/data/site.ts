@@ -1,30 +1,43 @@
 // ============================================================
 // SITE CONFIGURATION — AfterBuild Studio
+// Single Source of Truth for Client Data & Studio Identity
 // ============================================================
+
+export const getDirectionsUrl = (address: string) =>
+  `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 
 export const siteConfig = {
   name: "AfterBuild Studio",
+  entityName: "AfterBuild Studio LLP",
   tagline: "Interior Design & Architecture",
   description:
     "Transforming spaces with innovative, high-quality, and budget-friendly interior design and architectural solutions across Bangalore and beyond.",
-  email: "info@afterbuilds.com",
-  phone: "+91 99999 XXXXX", // update with actual number
-  whatsapp: "91XXXXXXXXXX", // update with actual digits
+  email: "afterbuildstudio@gmail.com",
+  phone: "+91 98869 59731",
+  secondaryPhone: "+91 88848 07955",
+  whatsapp: "919886959731",
   location: "Bangalore, India",
-  address: {
-    line1: "AfterBuild Studio",
-    line2: "Indiranagar",
-    line3: "",
-    city: "Bangalore",
-    state: "Karnataka",
-    pin: "560038",
-    mapUrl: "https://maps.google.com",
-    directionsUrl: "https://www.google.com/maps/dir/",
+  contact: {
+    address:
+      "No. 2282/G, HAL 2nd Stage, 18th 'A' Main, Behind Leela Palace Rd, Indiranagar, Bengaluru, Karnataka 560008",
   },
-  hours: "Monday to Saturday: 10:00 AM – 7:00 PM",
-  hoursNote: "Sundays & National Holidays: Closed",
+  address: {
+    line1: "No. 2282/G, HAL 2nd Stage",
+    line2: "18th 'A' Main, Behind Leela Palace Rd",
+    line3: "Indiranagar",
+    city: "Bengaluru",
+    state: "Karnataka",
+    pin: "560008",
+    full: "No. 2282/G, HAL 2nd Stage, 18th 'A' Main, Behind Leela Palace Rd, Indiranagar, Bengaluru, Karnataka 560008",
+    mapUrl:
+      "https://maps.google.com/?q=No.+2282/G,+HAL+2nd+Stage,+18th+'A'+Main,+Behind+Leela+Palace+Rd,+Indiranagar,+Bengaluru,+Karnataka+560008",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=No.%202282%2FG%2C%20HAL%202nd%20Stage%2C%2018th%20'A'%20Main%2C%20Behind%20Leela%20Palace%20Rd%2C%20Indiranagar%2C%20Bengaluru%2C%20Karnataka%20560008",
+  },
+  hours: "Monday to Saturday: 9:00 AM – 6:00 PM",
+  hoursNote: "Sundays: Closed",
   website: "https://afterbuilds.com",
-  instagram: "https://instagram.com/afterbuild_studio",
+  instagram: "https://instagram.com/interiors_banglore_decor",
   linkedin: "https://linkedin.com/company/afterbuildstudio",
   founded: "2023",
   foundedNote: "Began as Ocean Decor in May 2023",
@@ -32,7 +45,7 @@ export const siteConfig = {
     active: true,
     description:
       "We are always looking for passionate designers, architects, and craftsmen. Send your portfolio and resume to:",
-    email: "careers@afterbuilds.com",
+    email: "afterbuildstudio@gmail.com",
   },
   founder: {
     name: "Mohammed Farmaan Azam K",

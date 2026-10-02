@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { siteConfig } from "@/data/site";
+import { siteConfig, getDirectionsUrl } from "@/data/site";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -64,7 +64,6 @@ export default function ContactPage() {
       formData.append("category", form.category);
       formData.append("details", form.details);
 
-      // Must target the static skeleton in public/ — "/" is handled by the Next.js server
       const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -81,13 +80,19 @@ export default function ContactPage() {
     }
   };
 
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
+    siteConfig.contact.address
+  )}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+
+  const directionsLink = getDirectionsUrl(siteConfig.contact.address);
+
   return (
     <div style={{ background: "var(--bg)", color: "var(--text)", minHeight: "100vh" }}>
 
       {/* ── 01. HERO ─────────────────────────────────────────── */}
       <section style={{
         paddingTop: "clamp(100px, 14vh, 160px)",
-        paddingBottom: "clamp(56px, 8vw, 100px)",
+        paddingBottom: "clamp(48px, 7vw, 96px)",
         paddingInline: "var(--gutter)",
         borderBottom: "1px solid var(--border)",
       }}>
@@ -101,18 +106,13 @@ export default function ContactPage() {
             </span>
           </div>
 
-          {/* 12-col hero grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0,1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "end",
-          }}>
+          {/* 12-col hero grid with responsive classes */}
+          <div className="contact-hero-grid">
             {/* Left: headline */}
-            <div style={{ gridColumn: "1 / 7" }}>
+            <div className="contact-hero-left">
               <h1 style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(3.5rem, 8vw, 7rem)",
+                fontSize: "var(--text-4xl)",
                 fontWeight: 400,
                 lineHeight: 0.92,
                 letterSpacing: "-0.02em",
@@ -136,14 +136,14 @@ export default function ContactPage() {
             </div>
 
             {/* Right: portrait image */}
-            <div style={{ gridColumn: "8 / 13", position: "relative", aspectRatio: "3/4", overflow: "hidden" }}>
+            <div className="contact-hero-img">
               <Image
                 src="/images/projects/sbr-horizon/hero.jpg"
-                alt="Studio design"
+                alt="AfterBuild Studio Interior Design"
                 fill
                 priority
                 style={{ objectFit: "cover" }}
-                sizes="40vw"
+                sizes="(max-width: 900px) 100vw, 42vw"
               />
               <div style={{
                 position: "absolute", inset: 0,
@@ -152,120 +152,128 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 900px) {
-            #contact-hero-left { grid-column: 1 / -1 !important; }
-            #contact-hero-img { grid-column: 1 / -1 !important; aspect-ratio: 16/9 !important; margin-top: 32px; }
-          }
-        `}</style>
       </section>
 
-      {/* ── 02. STUDIO INFO + FORM ───────────────────────────── */}
+      {/* ── 02. MAIN CONTENT (STUDIO INFO + MAP + FORM) ────── */}
       <section style={{
         paddingBlock: "var(--space-md)",
         paddingInline: "var(--gutter)",
-        borderBottom: "1px solid var(--border)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0,1fr))",
-            gap: "var(--grid-gap)",
-            alignItems: "start",
-          }}>
+          <div className="contact-layout-grid">
 
-            {/* ── Left: Studio information ── */}
-            <div style={{ gridColumn: "1 / 5" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "clamp(28px, 4vw, 48px)" }}>
+            {/* ── Block A: Studio information ── */}
+            <div className="contact-info-block">
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "clamp(24px, 3vw, 40px)" }}>
                 <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
                 <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase" as const, color: "var(--bronze)" }}>
-                  Studio Details
+                  Studio Information
                 </span>
               </div>
 
-              {/* Address block */}
-              <div style={{ marginBottom: "clamp(32px, 4vw, 52px)", paddingBottom: "clamp(32px, 4vw, 52px)", borderBottom: "1px solid var(--border)" }}>
+              {/* Exact Address block */}
+              <div style={{ marginBottom: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(24px, 3vw, 36px)", borderBottom: "1px solid var(--border)" }}>
                 <span style={{ fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: "var(--muted-dark)", display: "block", marginBottom: "10px" }}>
-                  Studio Address
+                  Location & Address
                 </span>
-                <h3 style={{
+                <h2 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
+                  fontSize: "clamp(1.3rem, 2vw, 1.8rem)",
                   fontWeight: 400,
                   color: "var(--text)",
-                  marginBottom: "14px",
+                  marginBottom: "12px",
                   lineHeight: 1.2,
                 }}>
-                  {siteConfig.location}<br />Headquarters
-                </h3>
+                  {siteConfig.name}
+                </h2>
                 <address style={{
                   fontStyle: "normal",
                   fontSize: "var(--text-sm)",
                   color: "var(--muted)",
-                  lineHeight: 1.8,
+                  lineHeight: 1.85,
                   marginBottom: "16px",
+                  maxWidth: "420px",
                 }}>
                   {siteConfig.address.line1}<br />
                   {siteConfig.address.line2}<br />
-                  {siteConfig.address.city}, {siteConfig.address.state}
+                  {siteConfig.address.line3}<br />
+                  {siteConfig.address.city}, {siteConfig.address.state} — {siteConfig.address.pin}
                 </address>
                 <a
-                  href={siteConfig.address.mapUrl}
+                  href={directionsLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
                     fontSize: "10px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     color: "var(--bronze)",
-                    borderBottom: "1px solid rgba(177,166,150,0.3)",
+                    borderBottom: "1px solid rgba(177,166,150,0.35)",
                     paddingBottom: "2px",
                     transition: "border-color 0.3s ease",
                   }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(177,166,150,0.35)")}
                 >
-                  Open in Google Maps ↗
+                  Get Directions ↗
                 </a>
               </div>
 
               {/* Contact info block */}
-              <div style={{ marginBottom: "clamp(32px, 4vw, 52px)", paddingBottom: "clamp(32px, 4vw, 52px)", borderBottom: "1px solid var(--border)" }}>
+              <div style={{ marginBottom: "clamp(28px, 3.5vw, 44px)", paddingBottom: "clamp(24px, 3vw, 36px)", borderBottom: "1px solid var(--border)" }}>
                 <span style={{ fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: "var(--muted-dark)", display: "block", marginBottom: "10px" }}>
-                  Contact Info
+                  Direct Inquiries
                 </span>
-                <h3 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
-                  fontWeight: 400,
-                  color: "var(--text)",
-                  marginBottom: "14px",
-                  lineHeight: 1.2,
-                }}>Direct Inquiries</h3>
                 <div style={{ marginBottom: "16px" }}>
                   <a href={`mailto:${siteConfig.email}`} style={{
                     fontSize: "var(--text-sm)",
                     color: "var(--text)",
                     display: "block",
-                    marginBottom: "6px",
+                    marginBottom: "8px",
                     transition: "color 0.3s ease",
                   }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "var(--bronze)"}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "var(--text)"}
-                  >{siteConfig.email}</a>
-                  <a href={`tel:${siteConfig.phone}`} style={{
+                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--bronze)")}
+                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
+                  >
+                    {siteConfig.email}
+                  </a>
+                  <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`} style={{
                     fontSize: "var(--text-sm)",
-                    color: "var(--muted)",
+                    color: "var(--text-secondary)",
+                    display: "block",
+                    marginBottom: "4px",
                     transition: "color 0.3s ease",
                   }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "var(--text)"}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "var(--muted)"}
-                  >{siteConfig.phone}</a>
+                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
+                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--text-secondary)")}
+                  >
+                    {siteConfig.phone}
+                  </a>
+                  {siteConfig.secondaryPhone && (
+                    <a href={`tel:${siteConfig.secondaryPhone.replace(/\s+/g, '')}`} style={{
+                      fontSize: "var(--text-sm)",
+                      color: "var(--muted)",
+                      display: "block",
+                      transition: "color 0.3s ease",
+                    }}
+                      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
+                      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--muted)")}
+                    >
+                      {siteConfig.secondaryPhone}
+                    </a>
+                  )}
                 </div>
                 <a
-                  href={`https://wa.me/${siteConfig.whatsapp}?text=Hi%20${siteConfig.name}%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
+                  href={`https://wa.me/${siteConfig.whatsapp}?text=Hi%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
                     fontSize: "10px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
@@ -278,19 +286,11 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Hours block */}
+              {/* Operating Hours */}
               <div>
                 <span style={{ fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: "var(--muted-dark)", display: "block", marginBottom: "10px" }}>
                   Studio Hours
                 </span>
-                <h3 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
-                  fontWeight: 400,
-                  color: "var(--text)",
-                  marginBottom: "14px",
-                  lineHeight: 1.2,
-                }}>Operating Timings</h3>
                 <p style={{ fontSize: "var(--text-sm)", color: "var(--muted)", lineHeight: 1.8 }}>
                   {siteConfig.hours}<br />
                   <span style={{ color: "var(--muted-dark)" }}>{siteConfig.hoursNote}</span>
@@ -298,14 +298,86 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* ── Right: Form ────────────────────────────────── */}
-            <div style={{
-              gridColumn: "6 / 13",
-              paddingLeft: "clamp(24px, 4vw, 56px)",
-              borderLeft: "1px solid var(--border)",
-            }}>
-              <div style={{ marginBottom: "clamp(32px, 4vw, 48px)" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "clamp(16px, 2.5vw, 24px)" }}>
+            {/* ── Block B: Interactive Google Map ── */}
+            <div className="contact-map-block">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: "16px",
+                flexWrap: "wrap",
+                gap: "12px",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span style={{ width: "16px", height: "1px", background: "var(--bronze)" }} />
+                  <span style={{ fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--bronze)" }}>
+                    Interactive Studio Map
+                  </span>
+                </div>
+                <a
+                  href={directionsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "var(--text)",
+                    border: "1px solid var(--border)",
+                    padding: "8px 16px",
+                    transition: "border-color 0.3s ease, background 0.3s ease",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
+                    (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                    (e.currentTarget as HTMLElement).style.color = "var(--text)";
+                  }}
+                >
+                  Get Directions ↗
+                </a>
+              </div>
+
+              {/* Map Container: 100% width, responsive height, no half-box crop */}
+              <div className="map-frame-container">
+                <iframe
+                  title="AfterBuild Studio Location"
+                  src={mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{
+                    border: 0,
+                    width: "100%",
+                    height: "100%",
+                    filter: "invert(92%) hue-rotate(180deg) contrast(90%) grayscale(25%)",
+                    display: "block",
+                  }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              <div style={{ marginTop: "10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ fontSize: "10px", color: "var(--muted-dark)", letterSpacing: "0.1em" }}>
+                  Indiranagar, Bengaluru · Behind Leela Palace Rd
+                </span>
+                <a
+                  href={directionsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: "10px", color: "var(--bronze)", letterSpacing: "0.15em", textTransform: "uppercase" }}
+                >
+                  Directions →
+                </a>
+              </div>
+            </div>
+
+            {/* ── Block C: Form ──────────────────────────────── */}
+            <div className="contact-form-block">
+              <div style={{ marginBottom: "clamp(28px, 4vw, 44px)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "clamp(12px, 2vw, 20px)" }}>
                   <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
                   <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase" as const, color: "var(--bronze)" }}>
                     Project Enquiry
@@ -334,13 +406,13 @@ export default function ContactPage() {
                     margin: "0 auto 24px",
                     fontSize: "24px", color: "var(--bronze)",
                   }}>✓</div>
-                  <h4 style={{
+                  <h3 style={{
                     fontFamily: "var(--font-display)",
                     fontSize: "clamp(1.4rem, 2vw, 1.8rem)",
                     fontWeight: 400,
                     color: "var(--text)",
                     marginBottom: "12px",
-                  }}>Inquiry Received</h4>
+                  }}>Inquiry Received</h3>
                   <p style={{ fontSize: "var(--text-sm)", color: "var(--muted)", lineHeight: 1.7, maxWidth: "400px", margin: "0 auto 28px" }}>
                     Thank you for reaching out. Our design principal will review your submission and contact you within 24 hours.
                   </p>
@@ -364,7 +436,6 @@ export default function ContactPage() {
                   noValidate
                   style={{ display: "flex", flexDirection: "column", gap: "clamp(20px, 3vw, 32px)" }}
                 >
-                  {/* Netlify hidden field */}
                   <input type="hidden" name="form-name" value="contact" />
 
                   {/* Full Name */}
@@ -383,8 +454,8 @@ export default function ContactPage() {
                     {errors.name && <p style={{ fontSize: "10px", color: "rgba(239,68,68,0.8)", marginTop: "6px", letterSpacing: "0.05em" }}>{errors.name}</p>}
                   </div>
 
-                  {/* Email + Phone */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(16px, 3vw, 32px)" }}>
+                  {/* Email + Phone — single column on mobile */}
+                  <div className="contact-two-col">
                     <div>
                       <label style={labelStyle} htmlFor="contact-email">Email Address *</label>
                       <input
@@ -489,7 +560,7 @@ export default function ContactPage() {
                     </button>
 
                     <a
-                      href={`https://wa.me/${siteConfig.whatsapp}?text=Hi%20${siteConfig.name}%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
+                      href={`https://wa.me/${siteConfig.whatsapp}?text=Hi%20${encodeURIComponent(siteConfig.name)}%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -516,143 +587,79 @@ export default function ContactPage() {
                 </form>
               )}
             </div>
+
           </div>
         </div>
 
         <style>{`
-          @media (max-width: 900px) {
-            #contact-info-col { grid-column: 1 / -1 !important; border-right: none !important; }
-            #contact-form-col { grid-column: 1 / -1 !important; border-left: none !important; padding-left: 0 !important; border-top: 1px solid var(--border); padding-top: clamp(32px, 6vw, 56px); margin-top: 0; }
+          .contact-layout-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: var(--grid-gap);
+            align-items: start;
           }
-        `}</style>
-      </section>
+          .contact-info-block {
+            grid-column: 1 / 6;
+            grid-row: 1;
+          }
+          .contact-form-block {
+            grid-column: 6 / 13;
+            grid-row: 1;
+            padding-left: clamp(24px, 4vw, 56px);
+            border-left: 1px solid var(--border);
+          }
+          .contact-map-block {
+            grid-column: 1 / 13;
+            grid-row: 2;
+            margin-top: clamp(40px, 6vw, 80px);
+            padding-top: clamp(32px, 5vw, 64px);
+            border-top: 1px solid var(--border);
+          }
+          .map-frame-container {
+            width: 100%;
+            height: clamp(300px, 40vh, 460px);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+            background: #111110;
+          }
+          .contact-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(16px, 3vw, 32px);
+          }
 
-      {/* ── 03. MAP / LOCATION STRIP ─────────────────────────── */}
-      <section style={{
-        paddingBlock: "var(--space-md)",
-        paddingInline: "var(--gutter)",
-      }}>
-        <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-
-          {/* Section header */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "clamp(24px, 4vw, 48px)",
-            flexWrap: "wrap",
-            gap: "16px",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
-              <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase" as const, color: "var(--bronze)" }}>
-                Our Location
-              </span>
-            </div>
-            <a
-              href={siteConfig.address.directionsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase",
-                color: "var(--muted)", border: "1px solid var(--border)", padding: "10px 20px",
-                transition: "color 0.3s ease, border-color 0.3s ease",
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--border-light)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "var(--muted)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
-            >
-              Get Directions ↗
-            </a>
-          </div>
-
-          {/* Architectural blueprint map placeholder */}
-          <div style={{
-            position: "relative",
-            aspectRatio: "21/8",
-            minHeight: "280px",
-            overflow: "hidden",
-            background: "rgba(243,240,234,0.02)",
-            border: "1px solid var(--border)",
-          }}>
-            {/* Grid background */}
-            <div style={{
-              position: "absolute", inset: 0,
-              backgroundImage: "linear-gradient(rgba(243,240,234,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(243,240,234,0.04) 1px, transparent 1px)",
-              backgroundSize: "36px 36px",
-            }} />
-
-            {/* SVG architecture contour lines */}
-            <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.25 }} viewBox="0 0 1200 400" fill="none">
-              <path d="M 0,200 Q 200,80 400,220 T 800,160 T 1200,200" stroke="rgba(177,166,150,0.6)" strokeWidth="1" />
-              <path d="M 0,300 Q 300,120 600,260 T 1200,140" stroke="rgba(243,240,234,0.15)" strokeWidth="1" strokeDasharray="6 6" />
-              <path d="M 100,50 Q 400,380 700,120 T 1200,300" stroke="rgba(243,240,234,0.1)" strokeWidth="1" />
-              <circle cx="600" cy="200" r="40" stroke="var(--bronze)" strokeWidth="0.8" opacity="0.5" />
-              <circle cx="600" cy="200" r="60" stroke="var(--bronze)" strokeWidth="0.5" opacity="0.25" />
-              <line x1="560" y1="200" x2="640" y2="200" stroke="rgba(177,166,150,0.4)" strokeWidth="0.6" />
-              <line x1="600" y1="160" x2="600" y2="240" stroke="rgba(177,166,150,0.4)" strokeWidth="0.6" />
-            </svg>
-
-            {/* Pin marker */}
-            <div style={{
-              position: "absolute",
-              top: "50%", left: "50%",
-              transform: "translate(-50%, -50%)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "12px",
-              zIndex: 10,
-            }}>
-              <div style={{ position: "relative" }}>
-                <span style={{
-                  position: "absolute", top: "50%", left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: "28px", height: "28px",
-                  borderRadius: "50%",
-                  background: "rgba(177,166,150,0.15)",
-                  animation: "ping 2s cubic-bezier(0,0,0.2,1) infinite",
-                }} />
-                <span style={{
-                  width: "12px", height: "12px",
-                  borderRadius: "50%",
-                  background: "var(--bronze)",
-                  border: "2px solid var(--bg)",
-                  display: "block",
-                  position: "relative",
-                  zIndex: 1,
-                }} />
-              </div>
-
-              <div style={{
-                background: "rgba(10,10,9,0.85)",
-                border: "1px solid var(--border)",
-                padding: "8px 20px",
-                backdropFilter: "blur(8px)",
-              }}>
-                <span style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(0.8rem, 1.2vw, 0.95rem)",
-                  color: "var(--text)",
-                }}>
-                  {siteConfig.name} Studio
-                </span>
-              </div>
-              <span style={{
-                fontSize: "9px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--muted-dark)",
-              }}>
-                12.9716° N, 77.5946° E · {siteConfig.location}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <style>{`
-          @keyframes ping {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            75%, 100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+          @media (max-width: 900px) {
+            .contact-layout-grid {
+              display: flex !important;
+              flex-direction: column !important;
+              gap: 36px !important;
+            }
+            .contact-info-block {
+              order: 1 !important;
+              width: 100% !important;
+            }
+            .contact-map-block {
+              order: 2 !important;
+              width: 100% !important;
+              margin-top: 0 !important;
+              padding-top: 24px !important;
+            }
+            .map-frame-container {
+              height: clamp(260px, 45vw, 340px) !important;
+            }
+            .contact-form-block {
+              order: 3 !important;
+              width: 100% !important;
+              padding-left: 0 !important;
+              border-left: none !important;
+              border-top: 1px solid var(--border) !important;
+              padding-top: 36px !important;
+            }
+            .contact-two-col {
+              grid-template-columns: 1fr !important;
+              gap: 20px !important;
+            }
           }
         `}</style>
       </section>

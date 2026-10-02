@@ -72,7 +72,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
       if (mod === 0 && imgs[i]) {
         // Full bleed
         elements.push(
-          <div key={`full-${i}`} className="pd-img-reveal" style={{
+          <div key={`full-${i}`} className="pd-img-reveal pd-img-full" style={{
             position: "relative",
             width: "100%",
             aspectRatio: "21/9",
@@ -86,11 +86,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
       } else if (mod === 1 && imgs[i] && imgs[i + 1]) {
         // 50/50 pair
         elements.push(
-          <div key={`pair-${i}`} style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "var(--grid-gap)",
-          }}>
+          <div key={`pair-${i}`} className="pd-img-pair-grid">
             {[imgs[i], imgs[i + 1]].map((src, j) => (
               <div key={j} className="pd-img-reveal" style={{
                 position: "relative", aspectRatio: "4/3", overflow: "hidden",
@@ -105,17 +101,8 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
       } else if (mod === 2 && imgs[i]) {
         // Left-offset 75% wide
         elements.push(
-          <div key={`left-${i}`} style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-          }}>
-            <div className="pd-img-reveal" style={{
-              gridColumn: "1 / 10",
-              position: "relative",
-              aspectRatio: "16/10",
-              overflow: "hidden",
-            }}>
+          <div key={`left-${i}`} className="editorial-grid pd-img-offset-grid">
+            <div className="pd-img-reveal pd-img-offset-left">
               <Image src={imgs[i]} alt={`${project.title} — view ${i + 1}`}
                 fill style={{ objectFit: "cover" }} loading="lazy" sizes="75vw" />
             </div>
@@ -125,17 +112,8 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
       } else if (mod === 3 && imgs[i]) {
         // Right-offset 75% wide
         elements.push(
-          <div key={`right-${i}`} style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
-          }}>
-            <div className="pd-img-reveal" style={{
-              gridColumn: "4 / 13",
-              position: "relative",
-              aspectRatio: "16/10",
-              overflow: "hidden",
-            }}>
+          <div key={`right-${i}`} className="editorial-grid pd-img-offset-grid">
+            <div className="pd-img-reveal pd-img-offset-right">
               <Image src={imgs[i]} alt={`${project.title} — view ${i + 1}`}
                 fill style={{ objectFit: "cover" }} loading="lazy" sizes="75vw" />
             </div>
@@ -145,12 +123,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
       } else if (mod === 4 && imgs[i] && imgs[i + 1]) {
         // 40/60 asymmetric pair
         elements.push(
-          <div key={`asym-${i}`} style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 3fr",
-            gap: "var(--grid-gap)",
-            alignItems: "end",
-          }}>
+          <div key={`asym-${i}`} className="pd-img-asym-grid">
             <div className="pd-img-reveal" style={{
               position: "relative", aspectRatio: "3/4", overflow: "hidden",
             }}>
@@ -268,15 +241,12 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
         paddingInline: "var(--gutter)",
         borderBottom: "1px solid var(--border)",
       }}>
-        <div style={{
+        <div className="editorial-grid pd-info-grid" style={{
           maxWidth: "var(--max-w)",
           marginInline: "auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
         }}>
           {/* Description — left 7 cols */}
-          <div className="pd-text-reveal" style={{ gridColumn: "1 / 8" }}>
+          <div className="pd-text-reveal pd-info-desc">
             <p style={{
               fontSize: "9px",
               letterSpacing: "0.25em",
@@ -311,7 +281,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
           </div>
 
           {/* Facts — right 4 cols */}
-          <div className="pd-text-reveal" style={{ gridColumn: "9 / 13" }}>
+          <div className="pd-text-reveal pd-info-facts">
             <div style={{
               display: "flex",
               flexDirection: "column",
@@ -473,21 +443,53 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
       </Link>
 
       <style>{`
+        .pd-info-desc { grid-column: 1 / 8; }
+        .pd-info-facts { grid-column: 9 / 13; }
+
+        .pd-img-pair-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--grid-gap);
+        }
+
+        .pd-img-offset-left {
+          grid-column: 1 / 10;
+          position: relative;
+          aspect-ratio: 16/10;
+          overflow: hidden;
+        }
+
+        .pd-img-offset-right {
+          grid-column: 4 / 13;
+          position: relative;
+          aspect-ratio: 16/10;
+          overflow: hidden;
+        }
+
+        .pd-img-asym-grid {
+          display: grid;
+          grid-template-columns: 2fr 3fr;
+          gap: var(--grid-gap);
+          align-items: end;
+        }
+
         @media (max-width: 900px) {
-          article [style*="1 / 8"],
-          article [style*="1 / 10"],
-          article [style*="4 / 13"],
-          article [style*="9 / 13"] {
+          .pd-info-desc, .pd-info-facts {
             grid-column: 1 / -1 !important;
           }
-          article [style*="repeat(12"] {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+          .pd-info-facts {
+            margin-top: 32px;
           }
-          article [style*="1fr 1fr"],
-          article [style*="2fr 3fr"] {
+          .pd-img-pair-grid,
+          .pd-img-asym-grid {
             grid-template-columns: 1fr !important;
+            gap: var(--grid-gap);
           }
-          article [style*="21/9"] {
+          .pd-img-offset-left,
+          .pd-img-offset-right {
+            grid-column: 1 / -1 !important;
+          }
+          .pd-img-full {
             aspect-ratio: 16/9 !important;
           }
         }

@@ -20,3 +20,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Temporary and raw asset folders
+brain/
+drive-download*/

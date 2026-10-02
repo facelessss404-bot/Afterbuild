@@ -66,7 +66,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body style={{ background: "var(--bg)", color: "var(--text)", overscrollBehavior: "none" }}>
+      <body suppressHydrationWarning style={{ overscrollBehavior: "none" }}>
         <Preloader />
         <PageTransition />
         <SmoothScrollProvider />

@@ -99,24 +99,25 @@ export default function RecognitionPage() {
           </div>
 
           {/* Headline grid: big left / descriptor right */}
-          <div style={{ ...S.grid12, alignItems: "flex-end" }}>
-            <div style={{ gridColumn: "1 / 8" }}>
+          <div className="recog-hero-grid" style={{ ...S.grid12, alignItems: "flex-end" }}>
+            <div className="recog-hero-left">
               <h1 className="reveal-fade" style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(3.5rem, 8vw, 7rem)",
+                fontSize: "clamp(2.4rem, 6.5vw, 6.5rem)",
                 fontWeight: 400,
                 lineHeight: 0.92,
                 letterSpacing: "-0.02em",
                 color: "var(--text)",
                 textTransform: "uppercase",
+                wordBreak: "break-word",
+                overflowWrap: "anywhere",
               }}>
                 Recognition<br />
                 <em style={{ color: "rgba(243,240,234,0.35)", fontStyle: "italic" }}>& Honors</em>
               </h1>
             </div>
 
-            <div className="reveal-fade" style={{
-              gridColumn: "9 / 13",
+            <div className="reveal-fade recog-hero-right" style={{
               paddingBottom: "8px",
             }}>
               <p style={{
@@ -184,12 +185,11 @@ export default function RecognitionPage() {
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
           {/* Section header */}
-          <div className="reveal-fade" style={{
-            ...S.grid12,
+          <div className="reveal-fade editorial-grid recog-awards-header" style={{
             alignItems: "end",
             marginBottom: "clamp(40px, 6vw, 80px)",
           }}>
-            <div style={{ gridColumn: "1 / 7" }}>
+            <div className="recog-awards-title">
               <div style={S.label}>
                 <span style={S.labelLine} />
                 <span style={S.labelText}>Selected Awards</span>
@@ -203,8 +203,7 @@ export default function RecognitionPage() {
                 color: "var(--text)",
               }}>Industry Recognition</h2>
             </div>
-            <p style={{
-              gridColumn: "8 / 13",
+            <p className="recog-awards-desc" style={{
               fontSize: "var(--text-sm)",
               color: "var(--muted)",
               lineHeight: 1.7,
@@ -219,7 +218,7 @@ export default function RecognitionPage() {
             {awards.map((award, i) => (
               <div
                 key={award.id}
-                className="reveal-fade"
+                className="reveal-fade award-row"
                 onMouseEnter={() => setActiveAward(award.id)}
                 onMouseLeave={() => setActiveAward(null)}
                 style={{
@@ -284,15 +283,18 @@ export default function RecognitionPage() {
 
                 {/* Award image — hover reveals */}
                 {award.image && (
-                  <div style={{
-                    width: "clamp(80px, 10vw, 140px)",
-                    aspectRatio: "3/4",
-                    position: "relative",
-                    overflow: "hidden",
-                    flexShrink: 0,
-                    opacity: activeAward === award.id ? 1 : 0.4,
-                    transition: "opacity 0.4s ease",
-                  }}>
+                  <div
+                    className="award-img"
+                    style={{
+                      width: "clamp(80px, 10vw, 140px)",
+                      aspectRatio: "3/4",
+                      position: "relative",
+                      overflow: "hidden",
+                      flexShrink: 0,
+                      opacity: activeAward === award.id ? 1 : 0.4,
+                      transition: "opacity 0.4s ease",
+                    }}
+                  >
                     <Image
                       src={award.image}
                       alt={award.title}
@@ -320,12 +322,15 @@ export default function RecognitionPage() {
         paddingBlock: "clamp(16px, 2vw, 24px)",
         borderBottom: "1px solid var(--border)",
         overflow: "hidden",
+        width: "100%",
+        maxWidth: "100%",
         background: "rgba(243,240,234,0.02)",
       }}>
         <div style={{
           display: "flex",
-          whiteSpace: "nowrap",
-          animation: "marqueeScroll 36s linear infinite",
+          width: "max-content",
+          willChange: "transform",
+          animation: "marquee 36s linear infinite",
         }}>
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={i} style={{
@@ -356,12 +361,11 @@ export default function RecognitionPage() {
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
           {/* Header */}
-          <div className="reveal-fade" style={{
-            ...S.grid12,
+          <div className="reveal-fade editorial-grid recog-press-header" style={{
             alignItems: "end",
             marginBottom: "clamp(40px, 6vw, 80px)",
           }}>
-            <div style={{ gridColumn: "1 / 7" }}>
+            <div className="recog-press-title">
               <div style={S.label}>
                 <span style={S.labelLine} />
                 <span style={S.labelText}>Editorials</span>
@@ -375,8 +379,7 @@ export default function RecognitionPage() {
                 color: "var(--text)",
               }}>Press & Publications</h2>
             </div>
-            <p style={{
-              gridColumn: "8 / 13",
+            <p className="recog-press-desc" style={{
               fontSize: "var(--text-sm)",
               color: "var(--muted)",
               lineHeight: 1.7,
@@ -387,19 +390,15 @@ export default function RecognitionPage() {
           </div>
 
           {/* 2-column asymmetric press grid */}
-          <div style={{ ...S.grid12 }}>
+          <div className="recog-press-grid">
             {pressItems.map((item, i) => {
-              const isLarge = i === 0;
-              const col = isLarge ? "1 / 7" : i === 1 ? "7 / 13" : i === 2 ? "1 / 5" : "5 / 9";
               return (
                 <div
                   key={item.id}
-                  className="reveal-img"
+                  className={`reveal-img press-item press-item-${i}`}
                   style={{
-                    gridColumn: col,
                     position: "relative",
                     overflow: "hidden",
-                    aspectRatio: isLarge ? "3/4" : "4/5",
                     cursor: "pointer",
                   }}
                   onMouseEnter={e => (e.currentTarget.querySelector(".press-overlay") as HTMLElement)!.style.opacity = "1"}
@@ -503,14 +502,13 @@ export default function RecognitionPage() {
         paddingInline: "var(--gutter)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
-          <div className="reveal-fade" style={{
-            ...S.grid12,
+          <div className="reveal-fade editorial-grid recog-cta-grid" style={{
             alignItems: "center",
             paddingBlock: "clamp(48px, 8vw, 96px)",
             borderTop: "1px solid var(--border)",
             borderBottom: "1px solid var(--border)",
           }}>
-            <div style={{ gridColumn: "1 / 8" }}>
+            <div className="recog-cta-left">
               <div style={S.label}>
                 <span style={S.labelLine} />
                 <span style={S.labelText}>Collaborate With Excellence</span>
@@ -573,8 +571,7 @@ export default function RecognitionPage() {
             </div>
 
             {/* Right: large project image */}
-            <div style={{
-              gridColumn: "8 / 13",
+            <div className="recog-cta-right" style={{
               position: "relative",
               aspectRatio: "4/5",
               overflow: "hidden",
@@ -592,16 +589,56 @@ export default function RecognitionPage() {
       </section>
 
       <style>{`
-        @keyframes marqueeScroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-33.333%); }
+        /* Recognition Desktop Grid */
+        .recog-hero-left { grid-column: 1 / 8; }
+        .recog-hero-right { grid-column: 9 / 13; }
+        .recog-awards-title { grid-column: 1 / 7; }
+        .recog-awards-desc { grid-column: 8 / 13; }
+        .recog-press-title { grid-column: 1 / 7; }
+        .recog-press-desc { grid-column: 8 / 13; }
+        .recog-cta-left { grid-column: 1 / 8; }
+        .recog-cta-right { grid-column: 8 / 13; }
+
+        .recog-press-grid {
+          display: grid;
+          grid-template-columns: repeat(12, minmax(0, 1fr));
+          gap: var(--grid-gap);
         }
+        .press-item-0 { grid-column: 1 / 7; aspect-ratio: 3/4; }
+        .press-item-1 { grid-column: 7 / 13; aspect-ratio: 4/5; }
+        .press-item-2 { grid-column: 1 / 7; aspect-ratio: 4/5; }
+        .press-item-3 { grid-column: 7 / 13; aspect-ratio: 4/5; }
+
         @media (max-width: 900px) {
-          .reveal-fade[style*="1 / 7"],
-          .reveal-fade[style*="1 / 8"] { grid-column: 1 / -1 !important; }
-          .reveal-fade[style*="8 / 13"],
-          .reveal-fade[style*="9 / 13"] { grid-column: 1 / -1 !important; }
-          .reveal-img { grid-column: 1 / -1 !important; }
+          .recog-hero-left, .recog-hero-right,
+          .recog-awards-title, .recog-awards-desc,
+          .recog-press-title, .recog-press-desc,
+          .recog-cta-left, .recog-cta-right {
+            grid-column: 1 / -1 !important;
+          }
+          .recog-hero-right { margin-top: 24px; }
+          .recog-awards-desc, .recog-press-desc { margin-top: 16px; }
+          .recog-cta-right {
+            margin-top: 32px;
+            aspect-ratio: 16/10 !important;
+          }
+          .recog-press-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .press-item {
+            grid-column: 1 / -1 !important;
+            aspect-ratio: 16/10 !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .award-row {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+          .award-img {
+            display: none !important;
+          }
         }
       `}</style>
     </div>

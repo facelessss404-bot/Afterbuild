@@ -40,18 +40,20 @@ export default function HeroSection() {
       id="section-hero"
       style={{
         position: "relative",
-        height: "100dvh",
-        minHeight: "600px",
+        height: "100svh",
+        minHeight: "560px",
         overflow: "hidden",
+        contain: "paint",
         background: "#0a0a09",
       }}
       aria-label="Hero"
     >
       {/* Full-bleed hero image */}
-      <div
-        className="hero-img"
-        style={{ position: "absolute", inset: 0, zIndex: 2 }}
-      >
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 2 }}>
+        <div
+          className="hero-img"
+          style={{ position: "absolute", inset: 0 }}
+        >
         <Image
           src="/images/projects/sbr-horizon/hero.jpg"
           alt="AfterBuild Studio — Interior Design & Architecture, Bangalore"
@@ -67,6 +69,7 @@ export default function HeroSection() {
           inset: 0,
           background: "linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0.78) 100%)",
         }} />
+        </div>
       </div>
 
       {/* Foreground content */}
@@ -188,16 +191,19 @@ export default function HeroSection() {
         </div>
 
         {/* Scroll indicator */}
-        <div style={{
-          position: "absolute",
-          bottom: "clamp(24px, 4vh, 44px)",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "8px",
-        }}>
+        <div
+          className="hero-scroll-indicator"
+          style={{
+            position: "absolute",
+            bottom: "clamp(24px, 4vh, 44px)",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8px",
+          }}
+        >
           <span style={{
             fontSize: "9px",
             letterSpacing: "0.3em",

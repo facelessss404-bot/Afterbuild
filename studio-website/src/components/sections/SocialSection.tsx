@@ -77,14 +77,19 @@ export default function SocialSection() {
                 Follow the Journey
               </span>
             </div>
-            <h2 style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "var(--text-3xl)",
-              fontWeight: 400,
-              lineHeight: 1.05,
-              letterSpacing: "-0.01em",
-              color: "var(--text)",
-            }}>
+            <h2
+              className="word-break-safe"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.4rem, 3.5vw, 3rem)",
+                fontWeight: 400,
+                lineHeight: 1.15,
+                letterSpacing: "-0.01em",
+                color: "var(--text)",
+                wordBreak: "break-word",
+                overflowWrap: "anywhere",
+              }}
+            >
               @{handle}
             </h2>
           </div>
@@ -188,24 +193,6 @@ export default function SocialSection() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          #section-social .social-img[style*="1 / 6"] {
-            grid-column: 1 / -1 !important;
-            grid-row: auto !important;
-          }
-          #section-social .social-img[style*="6 / 9"],
-          #section-social .social-img[style*="9 / 13"] {
-            grid-column: span 2 !important;
-          }
-          #section-social .social-img[style*="6 / 13"] {
-            grid-column: 1 / -1 !important;
-          }
-          #section-social [style*="repeat(12"] {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

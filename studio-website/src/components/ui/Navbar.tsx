@@ -93,7 +93,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          aria-label="IDEASETERNAL Home"
+          aria-label={`${siteConfig.name} Home`}
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "13px",

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { siteConfig } from "@/data/site";
+import { siteConfig, getDirectionsUrl } from "@/data/site";
 
 const navLinks = [
   { label: "Work", href: "/work" },
@@ -13,6 +13,7 @@ const navLinks = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const directionsLink = getDirectionsUrl(siteConfig.contact.address);
 
   return (
     <footer
@@ -31,16 +32,10 @@ export default function Footer() {
         paddingInline: "var(--gutter)",
         paddingTop: "var(--space-md)",
       }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-          gap: "var(--grid-gap)",
-          paddingBottom: "clamp(40px, 6vw, 80px)",
-          borderBottom: "1px solid var(--border)",
-        }}>
+        <div className="footer-main-grid">
 
-          {/* Studio identity — cols 1-5 */}
-          <div style={{ gridColumn: "1 / 6" }}>
+          {/* Studio identity — cols 1-5 desktop, col 1 tablet */}
+          <div className="footer-brand">
             <Link href="/" style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(1rem, 1.5vw, 1.3rem)",
@@ -96,8 +91,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation — cols 6-8 */}
-          <div style={{ gridColumn: "6 / 9" }}>
+          {/* Navigation — cols 6-8 desktop, col 2 tablet */}
+          <div className="footer-nav">
             <h4 style={{
               fontSize: "9px",
               letterSpacing: "0.28em",
@@ -125,8 +120,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Address — cols 9-10 */}
-          <div style={{ gridColumn: "9 / 11" }}>
+          {/* Address — cols 9-10 desktop, col 1 tablet */}
+          <div className="footer-address">
             <h4 style={{
               fontSize: "9px",
               letterSpacing: "0.28em",
@@ -148,7 +143,7 @@ export default function Footer() {
               {siteConfig.address.pin}
             </address>
             <a
-              href={siteConfig.address.mapUrl}
+              href={directionsLink}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -167,8 +162,8 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Contact — cols 11-12 */}
-          <div style={{ gridColumn: "11 / 13" }}>
+          {/* Contact — cols 11-12 desktop, col 2 tablet */}
+          <div className="footer-contact">
             <h4 style={{
               fontSize: "9px",
               letterSpacing: "0.28em",
@@ -212,7 +207,7 @@ export default function Footer() {
                 }}>
                   Phone
                 </span>
-                <a href={`tel:${siteConfig.phone}`} style={{
+                <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`} style={{
                   fontSize: "13px",
                   color: "var(--muted)",
                   transition: "color 0.3s ease",
@@ -246,13 +241,15 @@ export default function Footer() {
         <div style={{
           position: "relative",
           overflow: "hidden",
+          width: "100%",
+          maxWidth: "100%",
           paddingBlock: "clamp(20px, 4vw, 40px)",
         }}>
           <h2
             aria-hidden="true"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(5rem, 14vw, 13rem)",
+              fontSize: "clamp(4rem, 12vw, 13rem)",
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "-0.04em",
@@ -293,25 +290,6 @@ export default function Footer() {
           </span>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 900px) {
-          #site-footer [style*="1 / 6"],
-          #site-footer [style*="6 / 9"],
-          #site-footer [style*="9 / 11"],
-          #site-footer [style*="11 / 13"] {
-            grid-column: 1 / -1 !important;
-          }
-          #site-footer [style*="repeat(12"] {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          }
-        }
-        @media (max-width: 480px) {
-          #site-footer [style*="repeat(2"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </footer>
   );
 }

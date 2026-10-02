@@ -58,11 +58,24 @@ export default function FeaturedProjects() {
       });
     };
 
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        slides.forEach((slide, i) => {
+          slide.style.opacity = i === activeIndex ? "1" : "0";
+          slide.style.transform = i === activeIndex ? "scale(1)" : i < activeIndex ? "scale(0.97)" : "scale(1.03)";
+        });
+      } else {
+        handleScroll();
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [activeIndex]);
 
   // Mobile touch swipe handling
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -337,56 +350,52 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
               </div>
-
-              {/* Top Hint */}
-              <div style={{
-                position: "absolute",
-                top: "clamp(80px, 12vh, 120px)",
-                right: "var(--gutter)",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-              }}>
-                <span className="fp-desktop-hint" style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.25em",
-                  textTransform: "uppercase",
-                  color: "rgba(243,240,234,0.35)",
-                }}>
-                  Scroll or click arrows to explore
-                </span>
-                <span className="fp-mobile-hint" style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.25em",
-                  textTransform: "uppercase",
-                  color: "rgba(243,240,234,0.35)",
-                }}>
-                  Swipe or tap arrows
-                </span>
-              </div>
             </div>
           ))}
         </div>
 
-        {/* Section label — top left */}
+        {/* Section label & hints header row */}
         <div style={{
           position: "absolute",
-          top: "clamp(80px, 12vh, 120px)",
+          top: "clamp(72px, 10vh, 110px)",
           left: "var(--gutter)",
+          right: "var(--gutter)",
           display: "flex",
           alignItems: "center",
-          gap: "12px",
+          justifyContent: "space-between",
           zIndex: 10,
+          pointerEvents: "none",
         }}>
-          <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
-          <span style={{
-            fontSize: "10px",
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: "var(--bronze)",
-          }}>
-            03 / Featured Work
-          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
+            <span style={{
+              fontSize: "10px",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              color: "var(--bronze)",
+            }}>
+              03 / Featured Work
+            </span>
+          </div>
+
+          <div>
+            <span className="fp-desktop-hint" style={{
+              fontSize: "9px",
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              color: "rgba(243,240,234,0.35)",
+            }}>
+              Scroll or click arrows to explore
+            </span>
+            <span className="fp-mobile-hint" style={{
+              fontSize: "9px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "rgba(243,240,234,0.35)",
+            }}>
+              Swipe
+            </span>
+          </div>
         </div>
       </div>
 

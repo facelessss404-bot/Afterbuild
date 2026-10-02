@@ -223,29 +223,40 @@ export default function IntroSection() {
             display: "flex",
             flexDirection: "column",
             gap: "var(--space-xs)",
+            overflow: "hidden",
           }}>
             {/* Tall portrait image */}
             <div
-              className="intro-image"
+              className="intro-image-wrap"
               style={{
                 position: "relative",
                 aspectRatio: "3/4",
                 overflow: "hidden",
                 background: "var(--surface)",
+                width: "100%",
               }}
             >
-              <img
-                src="/images/projects/gk-gateway/05.jpg"
-                alt="Studio work"
+              <div
+                className="intro-image"
                 style={{
                   position: "absolute",
                   inset: 0,
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover",
                 }}
-                loading="lazy"
-              />
+              >
+                <img
+                  src="/images/projects/gk-gateway/05.jpg"
+                  alt="Studio work"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                  loading="lazy"
+                />
+              </div>
             </div>
 
             {/* Two counters below image */}

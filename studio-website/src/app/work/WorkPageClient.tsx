@@ -37,14 +37,11 @@ export default function WorkPageClient() {
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
           {/* 12-col grid: heading left, desc right */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
-            gap: "var(--grid-gap)",
+          <div className="work-hero-grid" style={{
             alignItems: "end",
             marginBottom: "clamp(32px, 5vw, 64px)",
           }}>
-            <div style={{ gridColumn: "1 / 8" }}>
+            <div className="work-hero-title">
               <div style={{
                 display: "flex", alignItems: "center", gap: "12px",
                 marginBottom: "clamp(12px, 2vw, 24px)",
@@ -71,7 +68,7 @@ export default function WorkPageClient() {
               </h1>
             </div>
 
-            <div style={{ gridColumn: "9 / 13", alignSelf: "end" }}>
+            <div className="work-hero-desc" style={{ alignSelf: "end" }}>
               <p style={{
                 fontSize: "var(--text-sm)",
                 color: "var(--muted)",
@@ -286,14 +283,8 @@ export default function WorkPageClient() {
 
       {/* Mobile: single column override */}
       <style>{`
-        @media (max-width: 800px) {
-          .wk-item {
-            grid-column: 1 / -1 !important;
-          }
-        }
         @media (max-width: 900px) {
-          [style*="gridColumn: \"9 / 13\""],
-          [style*="gridColumn: \"1 / 8\""] {
+          .wk-item {
             grid-column: 1 / -1 !important;
           }
         }
