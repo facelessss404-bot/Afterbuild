@@ -1,5 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import IntroSection from "@/components/sections/IntroSection";
+import VideoWalkthroughSection from "@/components/sections/VideoWalkthroughSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import StatsSection from "@/components/sections/StatsSection";
 import CredentialsSection from "@/components/sections/CredentialsSection";
@@ -13,13 +14,16 @@ import ContactCTA from "@/components/sections/ContactCTA";
 export default function HomePage() {
   return (
     <>
-      {/* 01. Hero — Full-screen cinematic with 3D shader + atmospheric bg */}
+      {/* 01. Hero — Full-screen cinematic with showstopping luxury interior */}
       <HeroSection />
 
       {/* 02. Studio Introduction — Centered scroll-reveal text */}
       <IntroSection />
 
-      {/* 03. Services — Two-column with image + accordion */}
+      {/* 03. Cinematic Walkthroughs — 4 Highlighted Completed Projects in Motion */}
+      <VideoWalkthroughSection />
+
+      {/* 04. Services — Two-column with image + accordion */}
       <ServicesSection />
 
       {/* 04. Stats — Animated counter numbers */}

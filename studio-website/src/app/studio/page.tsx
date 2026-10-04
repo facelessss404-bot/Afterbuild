@@ -273,7 +273,7 @@ export default function StudioPage() {
         </div>
       </section>
 
-      {/* ── 03. THREE PILLARS / WHY US ── */}
+      {/* ── 03. FOUR PILLARS / DESIGN ETHOS ── */}
       <section style={{
         paddingBlock: "var(--space-md)",
         paddingInline: "var(--gutter)",
@@ -284,7 +284,7 @@ export default function StudioPage() {
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
               <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
               <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
-                Why Choose Us
+                Our Design Pillars
               </span>
             </div>
             <h2 style={{
@@ -295,11 +295,11 @@ export default function StudioPage() {
               letterSpacing: "-0.01em",
               color: "var(--text)",
             }}>
-              Our Core Commitments
+              Four Principles That Guide Every Space
             </h2>
           </div>
 
-          {/* 3 pillars */}
+          {/* 4 pillars */}
           <div className="st-pillars-grid">
             {philosophyPillars.map((pillar) => (
               <div key={pillar.id} className="st-pillar-card">
@@ -311,7 +311,7 @@ export default function StudioPage() {
                 }}>
                   <Image src={pillar.image} alt={pillar.title}
                     fill style={{ objectFit: "cover" }} loading="lazy"
-                    sizes="(max-width: 900px) 100vw, 33vw"
+                    sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div style={{
                     position: "absolute",
@@ -319,21 +319,34 @@ export default function StudioPage() {
                     left: "16px",
                     fontSize: "10px",
                     letterSpacing: "0.18em",
-                    color: "rgba(243,240,234,0.5)",
+                    color: "rgba(243,240,234,0.75)",
+                    background: "rgba(10,10,10,0.6)",
+                    padding: "3px 8px",
+                    backdropFilter: "blur(4px)",
                   }}>
                     {pillar.number}
                   </div>
                 </div>
 
+                <div style={{
+                  fontSize: "9px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "var(--bronze)",
+                  marginBottom: "6px",
+                }} className="st-text-reveal">
+                  {pillar.subtitle}
+                </div>
+
                 <h3 className="st-text-reveal" style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)",
+                  fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
                   fontWeight: 400,
                   color: "var(--text)",
                   marginBottom: "10px",
                   letterSpacing: "-0.005em",
                 }}>
-                  {pillar.title.replace("\n", " ")}
+                  {pillar.title}
                 </h3>
                 <p className="st-text-reveal" style={{
                   fontSize: "13px",
@@ -419,6 +432,16 @@ export default function StudioPage() {
                     sizes="(max-width: 900px) 100vw, 42vw"
                   />
                 </div>
+
+                {/* Subtle caption beneath */}
+                <div style={{ marginTop: "16px", borderLeft: "2px solid var(--bronze)", paddingLeft: "12px" }}>
+                  <p style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--bronze)" }}>
+                    Business-Led Spatial Design
+                  </p>
+                  <p style={{ fontSize: "12px", color: "var(--muted-dark)", marginTop: "2px" }}>
+                    Engineering Graduate &bull; Dr. Ambedkar Institute of Technology
+                  </p>
+                </div>
               </div>
 
               {/* Content — right 7 cols */}
@@ -448,7 +471,18 @@ export default function StudioPage() {
                   color: "var(--bronze)",
                   marginBottom: "clamp(20px, 3vw, 32px)",
                 }}>
-                  {founder.role}
+                  Founder & Director &mdash; AfterBuild Studio
+                </p>
+
+                <p className="st-text-reveal" style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
+                  fontStyle: "italic",
+                  color: "var(--text)",
+                  lineHeight: 1.5,
+                  marginBottom: "24px",
+                }}>
+                  &ldquo;Designing spaces with purpose. Building experiences with intention.&rdquo;
                 </p>
 
                 <p className="st-text-reveal" style={{
@@ -457,20 +491,65 @@ export default function StudioPage() {
                   lineHeight: 1.85,
                   marginBottom: "clamp(16px, 2.5vw, 24px)",
                 }}>
-                  {founder.bio}
+                  With over a decade of experience across business development, strategic sales, client relationships and entrepreneurship, Mohammed Farmaan Azam K brings a distinctive business-led perspective to the world of interiors and spatial design.
+                </p>
+
+                <p className="st-text-reveal" style={{
+                  fontSize: "var(--text-base)",
+                  color: "var(--muted)",
+                  lineHeight: 1.85,
+                  marginBottom: "clamp(16px, 2.5vw, 24px)",
+                }}>
+                  An Engineering graduate from Dr. Ambedkar Institute of Technology, Farmaan began his professional journey in business development and leadership roles, working with organisations including BYJU&apos;S, Lomos Archilabs and TautMore.
                 </p>
 
                 <p className="st-text-reveal" style={{
                   fontSize: "var(--text-sm)",
                   color: "var(--muted)",
                   lineHeight: 1.85,
-                  marginBottom: "clamp(24px, 4vw, 48px)",
+                  marginBottom: "clamp(24px, 4vw, 40px)",
                 }}>
                   These experiences shaped a fundamental belief that continues to guide his work today:{" "}
                   <em style={{ color: "var(--text)", fontStyle: "italic" }}>
-                    Great spaces begin with understanding people.
+                    &ldquo;Great spaces begin with understanding people.&rdquo;
                   </em>
                 </p>
+
+                <p className="st-text-reveal" style={{
+                  fontSize: "var(--text-base)",
+                  color: "var(--muted)",
+                  lineHeight: 1.85,
+                  marginBottom: "clamp(24px, 4vw, 36px)",
+                }}>
+                  Today, as the Founder & Director of AfterBuild Studio, Farmaan brings together his engineering background, business experience and passion for design to create spaces that are purposeful, refined and built around the way people actually live and work.
+                </p>
+
+                {/* Beyond Interiors callout */}
+                <div className="st-text-reveal" style={{
+                  padding: "clamp(20px, 3vw, 28px)",
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
+                  marginBottom: "clamp(24px, 4vw, 40px)",
+                }}>
+                  <span style={{
+                    fontSize: "9px",
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "var(--bronze)",
+                    display: "block",
+                    marginBottom: "8px",
+                  }}>
+                    Beyond Interiors
+                  </span>
+                  <p style={{
+                    fontSize: "13px",
+                    color: "var(--text)",
+                    lineHeight: 1.75,
+                    margin: 0,
+                  }}>
+                    Under his leadership, AfterBuild Studio operates at the intersection of architecture, interior styling and execution management &mdash; ensuring that every project moves seamlessly from conceptual sketch to tangible, beautifully finished reality.
+                  </p>
+                </div>
 
                 {/* Founder note */}
                 <div className="st-text-reveal" style={{
@@ -479,8 +558,17 @@ export default function StudioPage() {
                   marginBottom: "clamp(24px, 4vw, 40px)",
                 }}>
                   <p style={{
+                    fontSize: "9px",
+                    letterSpacing: "0.25em",
+                    textTransform: "uppercase",
+                    color: "var(--bronze)",
+                    marginBottom: "8px",
+                  }}>
+                    A Note From the Founder
+                  </p>
+                  <p style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "clamp(1rem, 1.6vw, 1.25rem)",
+                    fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
                     fontWeight: 400,
                     fontStyle: "italic",
                     color: "var(--text)",
@@ -490,14 +578,28 @@ export default function StudioPage() {
                     &ldquo;A well-designed space should feel effortless.&rdquo;
                   </p>
                   <p style={{
-                    fontSize: "12px",
+                    fontSize: "13px",
                     color: "var(--muted)",
-                    lineHeight: 1.7,
+                    lineHeight: 1.8,
+                    marginBottom: "12px",
                   }}>
-                    Your home is one of the most personal spaces you will ever create.
-                    It should reflect your lifestyle, your personality and the way you want
-                    to experience everyday life. Our approach is rooted in thoughtful space
-                    planning, practical design and attention to detail.
+                    We believe interior design begins long before choosing colours, finishes or furniture. It begins with understanding how a space should function, flow and feel. Your home is one of the most personal spaces you will ever create. It should reflect your lifestyle, your personality and the way you want to experience everyday life.
+                  </p>
+                  <p style={{
+                    fontSize: "13px",
+                    color: "var(--muted)",
+                    lineHeight: 1.8,
+                    marginBottom: "12px",
+                  }}>
+                    Whether designing a contemporary home, a warm family sanctuary or an elevated commercial space, our approach is rooted in thoughtful space planning, practical design and uncompromising attention to detail.
+                  </p>
+                  <p style={{
+                    fontSize: "13px",
+                    color: "var(--text)",
+                    fontWeight: 500,
+                    lineHeight: 1.8,
+                  }}>
+                    Great design isn&apos;t about excess &mdash; it is about balance, harmony and intention.
                   </p>
                 </div>
 
@@ -513,7 +615,7 @@ export default function StudioPage() {
                     textTransform: "uppercase",
                     color: "var(--muted-dark)",
                   }}>
-                    {siteConfig.name}
+                    Mohammed Farmaan Azam K &bull; AfterBuild Studio
                   </span>
                 </div>
               </div>
@@ -521,6 +623,88 @@ export default function StudioPage() {
           </div>
         </section>
       )}
+
+      {/* ── 05B. THE AFTERBUILD ATELIER EMBLEM & IDENTITY ── */}
+      <section style={{
+        paddingBlock: "var(--space-md)",
+        paddingInline: "var(--gutter)",
+        background: "var(--surface)",
+        borderBottom: "1px solid var(--border)",
+      }}>
+        <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
+          <div className="editorial-grid" style={{ alignItems: "center" }}>
+            {/* Logo Card Presentation — left 5 cols */}
+            <div style={{ gridColumn: "1 / 6" }}>
+              <div className="st-img-reveal" style={{
+                position: "relative",
+                borderRadius: "4px",
+                overflow: "hidden",
+                border: "1px solid var(--border)",
+                boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
+                background: "#ffffff",
+                padding: "20px",
+              }}>
+                <Image
+                  src="/images/logo-card.png"
+                  alt="Official AfterBuild Studio Brand Mark & Geometry"
+                  width={640}
+                  height={480}
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+              </div>
+            </div>
+
+            {/* Emblem Meaning — right 7 cols */}
+            <div style={{ gridColumn: "6 / 13", paddingLeft: "clamp(0px, 3vw, 40px)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
+                <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
+                  The Visual Identity
+                </span>
+              </div>
+              <h2 className="st-text-reveal" style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "var(--text-2xl)",
+                fontWeight: 400,
+                color: "var(--text)",
+                marginBottom: "20px",
+                lineHeight: 1.2,
+              }}>
+                Geometry, Precision & Architectural Discipline
+              </h2>
+              <p className="st-text-reveal" style={{
+                fontSize: "var(--text-sm)",
+                color: "var(--muted)",
+                lineHeight: 1.8,
+                marginBottom: "16px",
+              }}>
+                The official AfterBuild Studio mark unites the precision of the architect&apos;s set-square triangle ruler with sculpted classical serif geometry. The angular apex of the letter &lsquo;A&rsquo; represents structural integrity and spatial planning, while the fluid curve of the letter &lsquo;B&rsquo; embodies bespoke elegance and interior comfort.
+              </p>
+              <div className="st-text-reveal" style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "16px",
+                marginTop: "24px",
+                borderTop: "1px solid var(--border)",
+                paddingTop: "20px",
+              }}>
+                <div>
+                  <span style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--bronze)", display: "block" }}>Design</span>
+                  <span style={{ fontSize: "12px", color: "var(--muted)" }}>Bespoke spatial narratives</span>
+                </div>
+                <div>
+                  <span style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--bronze)", display: "block" }}>Interiors</span>
+                  <span style={{ fontSize: "12px", color: "var(--muted)" }}>Tactile material harmony</span>
+                </div>
+                <div>
+                  <span style={{ fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--bronze)", display: "block" }}>Architect</span>
+                  <span style={{ fontSize: "12px", color: "var(--muted)" }}>Turnkey execution rigor</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── 06. TIMELINE / JOURNEY ── */}
       <section style={{
@@ -778,7 +962,7 @@ export default function StudioPage() {
 
         .st-pillars-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(4, minmax(0, 1fr));
           gap: var(--grid-gap);
         }
 
@@ -794,6 +978,13 @@ export default function StudioPage() {
         .st-vision-col { grid-column: 7 / 13; padding-left: clamp(0px, 3vw, 40px); border-left: 1px solid var(--border); }
 
         .st-timeline-spine { display: block !important; }
+
+        @media (max-width: 1024px) {
+          .st-pillars-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 28px !important;
+          }
+        }
 
         @media (max-width: 900px) {
           .st-hero-left, .st-hero-right,
@@ -815,10 +1006,6 @@ export default function StudioPage() {
           .st-vision-col {
             margin-top: 32px;
           }
-          .st-pillars-grid {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
           .st-metrics-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
@@ -832,6 +1019,10 @@ export default function StudioPage() {
         }
 
         @media (max-width: 600px) {
+          .st-pillars-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
           .st-metrics-grid {
             grid-template-columns: 1fr !important;
           }

@@ -55,19 +55,19 @@ export default function HeroSection() {
           style={{ position: "absolute", inset: 0 }}
         >
         <Image
-          src="/images/projects/sbr-horizon/hero.jpg"
-          alt="AfterBuild Studio — Interior Design & Architecture, Bangalore"
+          src="/images/hero-luxury.jpg"
+          alt="AfterBuild Studio — Ultra-Luxury Architectural Interior Design, Bangalore"
           fill
           priority
           style={{ objectFit: "cover", objectPosition: "center" }}
-          quality={90}
+          quality={95}
           sizes="100vw"
         />
-        {/* Gradient overlay */}
+        {/* Cinematic gradient overlay */}
         <div style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.04) 38%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0.78) 100%)",
+          background: "linear-gradient(to bottom, rgba(10,10,9,0.55) 0%, rgba(10,10,9,0.12) 35%, rgba(10,10,9,0.3) 65%, rgba(10,10,9,0.92) 100%)",
         }} />
         </div>
       </div>
@@ -81,23 +81,29 @@ export default function HeroSection() {
         flexDirection: "column",
         justifyContent: "flex-end",
         paddingInline: "var(--gutter)",
-        paddingBottom: "clamp(40px, 6vh, 72px)",
+        paddingBottom: "clamp(36px, 6vh, 64px)",
       }}>
         <div style={{ maxWidth: "var(--max-w)", width: "100%", marginInline: "auto" }}>
 
-          {/* Eyebrow */}
+          {/* Eyebrow with Brand Mark */}
           <div className="hero-eyebrow" style={{
-            display: "flex", alignItems: "center", gap: "12px",
-            marginBottom: "clamp(16px, 2vw, 28px)",
+            display: "flex", alignItems: "center", gap: "14px",
+            marginBottom: "clamp(16px, 2vw, 24px)",
           }}>
             <span style={{ width: "32px", height: "1px", background: "var(--bronze)", display: "block" }} />
-            <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
-              Architecture & Interior Design
+            <span style={{
+              fontSize: "10px",
+              fontWeight: 500,
+              letterSpacing: "0.26em",
+              textTransform: "uppercase",
+              color: "var(--bronze)",
+            }}>
+              AfterBuild Studio &bull; Indiranagar, Bangalore &bull; Est. 2023
             </span>
           </div>
 
           {/* Large editorial heading */}
-          <h1 style={{ overflow: "hidden", marginBottom: "clamp(20px, 3vw, 40px)" }}>
+          <h1 style={{ overflow: "hidden", marginBottom: "clamp(20px, 2.5vw, 36px)" }}>
             <span style={{ display: "block", overflow: "hidden" }}>
               <span className="hero-title-line" style={{
                 display: "block",
@@ -109,7 +115,7 @@ export default function HeroSection() {
                 color: "var(--text)",
                 textTransform: "uppercase",
               }}>
-                Spaces
+                Spaces With Purpose.
               </span>
             </span>
             <span style={{ display: "block", overflow: "hidden" }}>
@@ -120,70 +126,139 @@ export default function HeroSection() {
                 fontWeight: 400,
                 lineHeight: 0.9,
                 letterSpacing: "-0.03em",
-                color: "rgba(243,240,234,0.45)",
+                color: "rgba(228, 213, 190, 0.7)",
                 fontStyle: "italic",
                 textTransform: "uppercase",
               }}>
-                That Endure.
+                Experiences In Motion.
               </span>
             </span>
           </h1>
 
           {/* Bottom row */}
-          <div className="hero-bottom hero-bottom-row">
-            <p className="hero-sub" style={{
-              fontSize: "clamp(13px, 1.1vw, 16px)",
-              color: "rgba(243,240,234,0.58)",
-              lineHeight: 1.6,
-              maxWidth: "360px",
-              fontWeight: 300,
-            }}>
-              Transforming spaces with purpose,<br />craftsmanship and care — Bangalore.
-            </p>
+          <div className="hero-bottom hero-bottom-row" style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            gap: "clamp(24px, 4vw, 48px)",
+            flexWrap: "wrap",
+          }}>
+            <div style={{ maxWidth: "460px" }}>
+              <p className="hero-sub" style={{
+                fontSize: "clamp(13px, 1.1vw, 15px)",
+                color: "rgba(243,240,234,0.72)",
+                lineHeight: 1.65,
+                fontWeight: 300,
+                marginBottom: "16px",
+              }}>
+                Designing spaces with purpose. Building experiences with intention. Over 160+ residential and commercial projects delivered across Bangalore with engineering-led craft.
+              </p>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "clamp(20px, 3vw, 40px)" }}>
+              {/* Stats badges */}
+              <div style={{
+                display: "flex",
+                gap: "18px",
+                flexWrap: "wrap",
+                fontSize: "10px",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--bronze)",
+              }}>
+                <span>160+ Projects</span>
+                <span>&bull;</span>
+                <span>75+ Craftsmen</span>
+                <span>&bull;</span>
+                <span>Turnkey Execution</span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 2.5vw, 32px)", flexWrap: "wrap" }}>
+              {/* Highlighted Walkthrough CTA */}
+              <a
+                href="#walkthroughs"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  padding: "12px 24px",
+                  borderRadius: "999px",
+                  background: "var(--text)",
+                  color: "#0a0a09",
+                  fontSize: "11px",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                  transition: "all 0.3s ease",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.background = "var(--bronze)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.background = "var(--text)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                }}
+              >
+                <span style={{
+                  display: "inline-flex",
+                  width: "18px",
+                  height: "18px",
+                  borderRadius: "50%",
+                  background: "#0a0a09",
+                  color: "var(--text)",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "9px",
+                }}>
+                  &#9658;
+                </span>
+                <span>Watch 4K Walkthroughs</span>
+              </a>
+
               <Link href="/work" style={{
                 fontSize: "11px",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color: "var(--text)",
-                borderBottom: "1px solid rgba(243,240,234,0.25)",
-                paddingBottom: "2px",
+                borderBottom: "1px solid rgba(243,240,234,0.3)",
+                paddingBottom: "3px",
                 transition: "border-color 0.3s ease",
               }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(243,240,234,0.8)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(243,240,234,0.25)")}
+                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--text)")}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(243,240,234,0.3)")}
               >
-                View Work
+                View Portfolio
               </Link>
+
               <Link href="/contact" style={{
                 fontSize: "11px",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color: "var(--bronze)",
-                borderBottom: "1px solid rgba(177,166,150,0.3)",
-                paddingBottom: "2px",
+                borderBottom: "1px solid rgba(197,168,128,0.4)",
+                paddingBottom: "3px",
                 transition: "border-color 0.3s ease",
               }}
                 onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(177,166,150,0.3)")}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(197,168,128,0.4)")}
               >
                 Start a Project
               </Link>
             </div>
 
             <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer"
-              className="hero-instagram-link"
+              className="hero-instagram-link hidden lg:block"
               style={{
               fontSize: "9px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.35)",
+              color: "rgba(243,240,234,0.4)",
               writingMode: "vertical-rl",
               transition: "color 0.3s ease",
             }}
               onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "rgba(243,240,234,0.35)")}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "rgba(243,240,234,0.4)")}
             >
               Instagram
             </a>

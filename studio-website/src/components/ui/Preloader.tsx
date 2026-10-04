@@ -44,11 +44,28 @@ export default function Preloader() {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      gap: "24px",
+      gap: "20px",
       transition: "opacity 0.5s ease",
       opacity: fading ? 0 : 1,
       pointerEvents: fading ? "none" : "all",
     }}>
+      {/* Brand Emblem */}
+      <div style={{
+        position: "relative",
+        width: "56px",
+        height: "42px",
+        opacity: progress > 15 ? 1 : 0.1,
+        transform: `scale(${0.9 + (progress / 100) * 0.1})`,
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+        filter: "drop-shadow(0 0 16px rgba(197,168,128,0.35))",
+      }}>
+        <img
+          src="/images/logo-mark-clean.png"
+          alt="AfterBuild Studio"
+          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+        />
+      </div>
+
       {/* Brand name — character reveal */}
       <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
         {siteConfig.name.split("").map((char, i) => (

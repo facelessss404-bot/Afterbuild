@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
 import { siteConfig, getDirectionsUrl } from "@/data/site";
 
 const navLinks = [
   { label: "Work", href: "/work" },
+  { label: "Walkthroughs", href: "/#walkthroughs" },
   { label: "Services", href: "/services" },
   { label: "Studio", href: "/studio" },
-  { label: "Recognition", href: "/recognition" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -36,28 +37,25 @@ export default function Footer() {
 
           {/* Studio identity — cols 1-5 desktop, col 1 tablet */}
           <div className="footer-brand">
-            <Link href="/" style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1rem, 1.5vw, 1.3rem)",
-              fontWeight: 400,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--text)",
-              display: "block",
-              marginBottom: "clamp(16px, 2.5vw, 24px)",
-            }}>
-              {siteConfig.name}
-            </Link>
+            <div style={{ marginBottom: "clamp(18px, 2.5vw, 28px)" }}>
+              <Logo size="lg" showTagline={true} />
+            </div>
 
             <p style={{
               fontSize: "13px",
               color: "var(--muted)",
               lineHeight: 1.75,
-              maxWidth: "320px",
-              marginBottom: "clamp(24px, 3.5vw, 40px)",
+              maxWidth: "340px",
+              marginBottom: "clamp(20px, 3vw, 32px)",
+              fontWeight: 300,
             }}>
-              {siteConfig.tagline}.<br />
-              {siteConfig.location}. Since {siteConfig.founded}.
+              Designing spaces with purpose. Building experiences with intention.
+              <span style={{ display: "block", marginTop: "8px", color: "var(--bronze)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                Mohammed Farmaan Azam K &bull; Founder &amp; Director
+              </span>
+              <span style={{ display: "block", marginTop: "4px", color: "rgba(243,240,234,0.4)", fontSize: "11px" }}>
+                160+ Projects &bull; 75+ Craftsmen &bull; Indiranagar, Bangalore
+              </span>
             </p>
 
             {/* Social */}

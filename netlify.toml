@@ -7,6 +7,8 @@
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
   NEXT_TURBOPACK = "0"
+  GIT_LFS_ENABLED = "true"
+  GIT_LFS_FETCH_INCLUDE = "*.mp4"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -22,6 +24,12 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Accept-Ranges = "bytes"
 
 [[headers]]
   for = "/_next/static/*"

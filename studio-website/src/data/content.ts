@@ -24,31 +24,40 @@ export interface PhilosophyPillar {
 
 export const philosophyPillars: PhilosophyPillar[] = [
   {
-    id: "functionality",
+    id: "function",
     number: "01",
-    title: "Functionality\nFirst",
-    subtitle: "A space must work before it can inspire.",
+    title: "Function",
+    subtitle: "Every square foot planned with purpose.",
     description:
-      "Every layout is tested for ergonomic usability before decorative styling is introduced. Space must live before it can impress. We plan every square foot to improve the way a space is experienced.",
+      "Every square foot planned with purpose and intuitive ease. We believe a space must work effortlessly for everyday life before decorative styling is introduced.",
     image: "/images/projects/sbr-horizon/01.jpg",
   },
   {
-    id: "material",
+    id: "form",
     number: "02",
-    title: "Budget\nFriendly",
-    subtitle: "Quality without compromise.",
+    title: "Form",
+    subtitle: "Architectural proportion and refined silhouettes.",
     description:
-      "We offer flexible, cost-effective solutions without compromising on essential quality and design. Our strong vendor relationships allow us to deliver premium results at honest prices.",
-    image: "/images/projects/gk-gateway/03.jpg",
+      "Architectural proportion, elegant materials, and refined silhouettes. We balance geometric clarity with rich tactile finishes to shape timeless spaces.",
+    image: "/images/projects/leela-penthouse/01.jpg",
   },
   {
-    id: "light",
+    id: "comfort",
     number: "03",
-    title: "On-Time\nDelivery",
-    subtitle: "We value your time above all.",
+    title: "Comfort",
+    subtitle: "Ergonomically crafted for serenity.",
     description:
-      "We follow a planned execution process to keep projects on schedule. Timelines are respected, milestones are tracked, and clients are kept informed every step of the way.",
+      "Ergonomically crafted spaces that feel welcoming and serene. Thoughtful lighting, intuitive flow, and restorative warmth woven into every corner.",
     image: "/images/projects/prestige-avalon-park/02.jpg",
+  },
+  {
+    id: "character",
+    number: "04",
+    title: "Character",
+    subtitle: "Expressing your unique story.",
+    description:
+      "Expressing our clients' unique story and identity. Tailored materiality, bespoke joinery, and curated spatial nuance that feels deeply personal.",
+    image: "/images/projects/culinary-atelier-whitefield/01.jpg",
   },
 ];
 

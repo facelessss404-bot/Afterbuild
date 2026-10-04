@@ -91,15 +91,15 @@ export default function PhilosophySection() {
           </blockquote>
         </div>
 
-        {/* 3 pillars — staggered image heights, no cards */}
-        <div className="philo-12-grid" style={{ alignItems: "end" }}>
+        {/* 4 pillars — rhythmic staggered heights */}
+        <div className="philo-12-grid" style={{ alignItems: "start" }}>
           {philosophyPillars.map((pillar, i) => {
             return (
               <div key={pillar.id} className={`philo-pillar-${i}`}>
-                {/* Image — different heights for editorial rhythm */}
+                {/* Image — rhythmic editorial heights */}
                 <div className="philo-img img-hover" style={{
                   position: "relative",
-                  aspectRatio: i === 1 ? "3/5" : "3/4",
+                  aspectRatio: i % 2 === 1 ? "3/4.5" : "3/4",
                   overflow: "hidden",
                   marginBottom: "clamp(16px, 2.5vw, 24px)",
                   background: "var(--surface)",
@@ -110,7 +110,7 @@ export default function PhilosophySection() {
                     fill
                     style={{ objectFit: "cover" }}
                     loading="lazy"
-                    sizes="(max-width: 900px) 100vw, 33vw"
+                    sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div style={{
                     position: "absolute",
@@ -118,21 +118,34 @@ export default function PhilosophySection() {
                     left: "16px",
                     fontSize: "10px",
                     letterSpacing: "0.18em",
-                    color: "rgba(243,240,234,0.45)",
+                    color: "rgba(243,240,234,0.75)",
+                    background: "rgba(10,10,10,0.6)",
+                    padding: "3px 8px",
+                    backdropFilter: "blur(4px)",
                   }}>
                     {pillar.number}
                   </div>
                 </div>
 
+                <div style={{
+                  fontSize: "9px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "var(--bronze)",
+                  marginBottom: "6px",
+                }} className="philo-text">
+                  {pillar.subtitle}
+                </div>
+
                 <h3 className="philo-text" style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.1rem, 1.6vw, 1.4rem)",
+                  fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
                   fontWeight: 400,
                   color: "var(--text)",
                   marginBottom: "10px",
                   letterSpacing: "-0.005em",
                 }}>
-                  {pillar.title.replace("\n", " ")}
+                  {pillar.title}
                 </h3>
 
                 <p className="philo-text" style={{

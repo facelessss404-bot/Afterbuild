@@ -68,17 +68,33 @@ export default function WorkPageClient() {
               </h1>
             </div>
 
-            <div className="work-hero-desc" style={{ alignSelf: "end" }}>
+            <div className="work-hero-desc" style={{ alignSelf: "end", maxWidth: "420px" }}>
               <p style={{
                 fontSize: "var(--text-sm)",
                 color: "var(--muted)",
                 lineHeight: 1.75,
                 fontWeight: 300,
+                marginBottom: "12px",
               }}>
-                An evolving curation of bespoke residential
-                sanctuaries, architectural landmarks, and
-                tactile interiors.
+                An evolving archive of 160+ residential sanctuaries, modular kitchens,
+                and architectural interiors across Bangalore and beyond.
               </p>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "6px 12px",
+                borderRadius: "4px",
+                background: "rgba(197, 168, 128, 0.08)",
+                border: "1px solid rgba(197, 168, 128, 0.2)",
+                fontSize: "10px",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--bronze)",
+              }}>
+                <span style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", background: "#4ade80" }} />
+                <span>Google Drive Live Upload Pipeline Active</span>
+              </div>
             </div>
           </div>
 
@@ -189,15 +205,41 @@ export default function WorkPageClient() {
                       top: "16px",
                       left: "16px",
                       padding: "6px 14px",
-                      background: "rgba(10,10,9,0.7)",
+                      background: "rgba(10,10,9,0.75)",
                       backdropFilter: "blur(12px)",
                       fontSize: "9px",
                       letterSpacing: "0.2em",
                       textTransform: "uppercase",
                       color: "var(--bronze)",
+                      borderRadius: "2px",
+                      border: "1px solid rgba(197, 168, 128, 0.25)",
                     }}>
                       {project.category}
                     </div>
+
+                    {/* Walkthrough badge — top right */}
+                    {project.video?.hasVideo && (
+                      <div style={{
+                        position: "absolute",
+                        top: "16px",
+                        right: "16px",
+                        padding: "6px 12px",
+                        background: "rgba(10,10,9,0.85)",
+                        backdropFilter: "blur(12px)",
+                        fontSize: "9px",
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        color: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        borderRadius: "2px",
+                        border: "1px solid rgba(255, 255, 255, 0.2)",
+                      }}>
+                        <span style={{ color: "var(--bronze)", fontSize: "10px" }}>&#9658;</span>
+                        <span>4K Walkthrough</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Below-image metadata — editorial style */}

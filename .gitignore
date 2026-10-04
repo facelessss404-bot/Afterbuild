@@ -24,3 +24,9 @@ Thumbs.db
 # Temporary and raw asset folders
 brain/
 drive-download*/
+
+# Verification screenshots & test artifacts
+.playwright-mcp/
+*-verification*.png
+studio-brandcard-section.png
+*.pdf

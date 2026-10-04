@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
+import Logo from "@/components/ui/Logo";
 import { siteConfig } from "@/data/site";
 
 const navLinks = [
   { label: "Work", href: "/work" },
+  { label: "Walkthroughs", href: "/#walkthroughs" },
   { label: "Services", href: "/services" },
   { label: "Studio", href: "/studio" },
-  { label: "Recognition", href: "/recognition" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -91,56 +92,71 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link
-          href="/"
-          aria-label={`${siteConfig.name} Home`}
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "13px",
-            fontWeight: 400,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "var(--text)",
-            opacity: 0.9,
-            transition: "opacity 0.3s ease",
-          }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
-          onMouseLeave={e => (e.currentTarget.style.opacity = "0.9")}
-        >
-          {siteConfig.name}
-        </Link>
+        <Logo size={scrolled ? "sm" : "md"} showTagline={!scrolled} />
 
-        {/* Desktop nav */}
-        <nav
-          className="hidden md:flex items-center"
-          role="navigation"
-          aria-label="Main Navigation"
-          style={{ gap: "clamp(20px, 2.5vw, 40px)" }}
-        >
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                style={{
-                  fontSize: "11px",
-                  fontWeight: 400,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: isActive ? "var(--text)" : "var(--muted)",
-                  transition: "color 0.3s ease",
-                  paddingBottom: "2px",
-                  borderBottom: isActive ? "1px solid var(--bronze)" : "1px solid transparent",
-                }}
-                onMouseEnter={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--text)"; }}
-                onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--muted)"; }}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        {/* Desktop nav & CTA */}
+        <div className="hidden md:flex items-center" style={{ gap: "clamp(24px, 3vw, 48px)" }}>
+          <nav
+            role="navigation"
+            aria-label="Main Navigation"
+            style={{ display: "flex", alignItems: "center", gap: "clamp(20px, 2.5vw, 36px)" }}
+          >
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href + "/"));
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 400,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: isActive ? "var(--text)" : "var(--muted)",
+                    transition: "color 0.3s ease",
+                    paddingBottom: "2px",
+                    borderBottom: isActive ? "1px solid var(--bronze)" : "1px solid transparent",
+                  }}
+                  onMouseEnter={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--text)"; }}
+                  onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--muted)"; }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <Link
+            href="/contact"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "7px 16px",
+              borderRadius: "999px",
+              border: "1px solid rgba(197, 168, 128, 0.4)",
+              background: "rgba(197, 168, 128, 0.08)",
+              fontSize: "10px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--bronze)",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.background = "var(--bronze)";
+              (e.currentTarget as HTMLElement).style.color = "#0a0a09";
+              (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(197, 168, 128, 0.08)";
+              (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(197, 168, 128, 0.4)";
+            }}
+          >
+            <span>Start a Project</span>
+            <span style={{ fontSize: "11px" }}>&rarr;</span>
+          </Link>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -200,15 +216,7 @@ export default function Navbar() {
           paddingBlock: "22px",
           borderBottom: "1px solid rgba(243, 240, 234, 0.06)",
         }}>
-          <Link href="/" style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "13px",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "var(--text)",
-          }}>
-            {siteConfig.name}
-          </Link>
+          <Logo size="sm" showTagline={false} />
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Close menu"

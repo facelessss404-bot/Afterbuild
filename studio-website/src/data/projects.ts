@@ -1,6 +1,6 @@
 // ============================================================
-// PROJECTS DATA
-// Each project has a dedicated route: /work/[slug]
+// PROJECTS DATA — AfterBuild Studio
+// Single Source of Truth for Completed & Featured Projects
 // ============================================================
 
 export type ProjectCategory =
@@ -8,7 +8,7 @@ export type ProjectCategory =
   | "Interior"
   | "Commercial"
   | "Architecture"
-  | "Conceptual";
+  | "Modular";
 
 export const projectCategories: ("ALL" | ProjectCategory)[] = [
   "ALL",
@@ -16,8 +16,15 @@ export const projectCategories: ("ALL" | ProjectCategory)[] = [
   "Interior",
   "Architecture",
   "Commercial",
-  "Conceptual",
+  "Modular",
 ];
+
+export interface ProjectVideo {
+  hasVideo: boolean;
+  videoUrl?: string;
+  poster?: string;
+  duration?: string;
+}
 
 export interface Project {
   id: string;
@@ -27,28 +34,103 @@ export interface Project {
   category: ProjectCategory;
   location: string;
   year: string;
-  area?: string; // e.g. "2400 sq.ft." — optional
+  area: string;
   heroImage: string;
   thumbnailImage: string;
   images: string[];
   description: string;
-  statement?: string; // one-line design statement
+  statement: string;
   services: string[];
   materials?: string[];
-  credits?: Record<string, string>; // e.g. { "Photography": "Studio X" }
+  credits?: Record<string, string>;
   featured: boolean;
   index: number;
+  video?: ProjectVideo;
 }
 
 export const projects: Project[] = [
   {
+    id: "trifecta-retto",
+    slug: "trifecta-retto",
+    title: "Trifecta Retto",
+    subtitle: "Architecture as experience: seamless fluted woodwork & modular culinary precision.",
+    category: "Architecture",
+    location: "Bangalore",
+    year: "2025",
+    area: "2,450 sq.ft.",
+    heroImage: "/images/projects/trifecta-retto/hero.jpg",
+    thumbnailImage: "/images/projects/trifecta-retto/thumb.jpg",
+    images: [
+      "/images/projects/trifecta-retto/01.jpg",
+      "/images/projects/trifecta-retto/02.jpg",
+      "/images/projects/trifecta-retto/03.jpg",
+      "/images/projects/trifecta-retto/04.jpg",
+      "/images/projects/trifecta-retto/05.jpg",
+      "/images/projects/trifecta-retto/06.jpg",
+      "/images/projects/trifecta-retto/07.jpg",
+      "/images/projects/trifecta-retto/08.jpg",
+      "/images/projects/trifecta-retto/09.jpg",
+      "/images/projects/trifecta-retto/10.jpg",
+    ],
+    description:
+      "A complete residential execution capturing the balance between ergonomic utility and sculptural beauty. High-gloss cabinetry, warm under-cabinet strip lighting, concealed pantry storage, and an expansive living-dining expanse crafted for effortless everyday living.",
+    statement:
+      "Architecture as experience — purposeful spatial planning rendered through warm timber and restrained joinery.",
+    services: ["Architecture & Interior", "Modular Kitchen", "Lighting Design", "Turnkey Execution"],
+    materials: ["Smoked Oak", "Fluted Glass", "Italian Quartz Countertops", "Brushed Brass Trims"],
+    credits: { "Lead Architect": "Mohammed Farmaan Azam K", "Studio": "AfterBuild Studio" },
+    featured: true,
+    index: 1,
+    video: {
+      hasVideo: true,
+      videoUrl: "/videos/walkthrough-trifecta.mp4",
+      poster: "/images/projects/trifecta-retto/hero.jpg",
+      duration: "1:45 min",
+    },
+  },
+  {
+    id: "prestige-avalon-park",
+    slug: "prestige-avalon-park",
+    title: "Prestige Avalon Park",
+    subtitle: "Refined living reimagined: custom rose-gold wardrobes & Vastu-aligned master suite.",
+    category: "Residential",
+    location: "Sarjapur Road, Bangalore",
+    year: "2024",
+    area: "1,850 sq.ft.",
+    heroImage: "/images/projects/prestige-avalon-park/hero.jpg",
+    thumbnailImage: "/images/projects/prestige-avalon-park/thumb.jpg",
+    images: [
+      "/images/projects/prestige-avalon-park/01.jpg",
+      "/images/projects/prestige-avalon-park/02.jpg",
+      "/images/projects/prestige-avalon-park/03.jpg",
+      "/images/projects/prestige-avalon-park/04.jpg",
+      "/images/projects/prestige-avalon-park/05.jpg",
+    ],
+    description:
+      "A sophisticated master suite and living interior within one of Bangalore's premier residential developments. Precision-engineered sliding wardrobes with rose-gold aluminum profiles and lacquered glass panels, complemented by acoustic vertical headboard paneling.",
+    statement:
+      "Sophisticated restraint — luxury distilled into its purest spatial and functional form.",
+    services: ["Interior Design", "Wardrobes & Storage", "Vastu Planning", "Turnkey Fitout"],
+    materials: ["Lacquered Glass", "Rose-Gold Anodized Aluminum", "Suede Acoustic Paneling"],
+    credits: { "Design Direction": "Mohammed Farmaan Azam K", "Studio": "AfterBuild Studio" },
+    featured: true,
+    index: 2,
+    video: {
+      hasVideo: true,
+      videoUrl: "/videos/walkthrough-prestige.mp4",
+      poster: "/images/projects/prestige-avalon-park/hero.jpg",
+      duration: "1:20 min",
+    },
+  },
+  {
     id: "sbr-horizon",
     slug: "sbr-horizon",
     title: "SBR Horizon",
-    subtitle: "Where precision meets possibility.",
+    subtitle: "Where precision meets possibility: backlit vertical timber & bespoke credenza.",
     category: "Interior",
-    location: "Bangalore", // [PLACEHOLDER: verify]
-    year: "2025", // [PLACEHOLDER: verify]
+    location: "Old Madras Road, Bangalore",
+    year: "2025",
+    area: "3,100 sq.ft.",
     heroImage: "/images/projects/sbr-horizon/hero.jpg",
     thumbnailImage: "/images/projects/sbr-horizon/thumb.jpg",
     images: [
@@ -72,51 +154,30 @@ export const projects: Project[] = [
       "/images/projects/sbr-horizon/18.jpg",
     ],
     description:
-      "A contemporary residential interior that balances openness with intimacy. Every material was chosen for how it responds to natural light across the day.", // [PLACEHOLDER]
+      "A contemporary residential interior defined by an architectural media wall with warm concealed cove illumination, custom white-and-burgundy fluted credenza, and custom crystal sconces creating an inviting sanctuary.",
     statement:
-      "An interior where precision meets warmth — defined by considered materials and restrained elegance.", // [PLACEHOLDER]
-    services: ["Interior Design", "Material Selection", "Lighting Design"],
+      "An interior where engineering precision meets domestic warmth — defined by considered materials.",
+    services: ["Interior Design", "Custom Furniture", "Lighting Design", "Space Planning"],
+    materials: ["Fluted Walnut", "High-Gloss Lacquer", "Crystal Glass Sconces", "Vitrified Marble"],
+    credits: { "Lead Designer": "AfterBuild Studio Team", "Supervision": "Mohammed Farmaan Azam K" },
     featured: true,
-    index: 1,
-  },
-  {
-    id: "trifecta-retto",
-    slug: "trifecta-retto",
-    title: "Trifecta Retto",
-    subtitle: "Architecture as experience.",
-    category: "Architecture",
-    location: "Bangalore", // [PLACEHOLDER: verify]
-    year: "2025", // [PLACEHOLDER: verify]
-    heroImage: "/images/projects/trifecta-retto/hero.jpg",
-    thumbnailImage: "/images/projects/trifecta-retto/thumb.jpg",
-    images: [
-      "/images/projects/trifecta-retto/01.jpg",
-      "/images/projects/trifecta-retto/02.jpg",
-      "/images/projects/trifecta-retto/03.jpg",
-      "/images/projects/trifecta-retto/04.jpg",
-      "/images/projects/trifecta-retto/05.jpg",
-      "/images/projects/trifecta-retto/06.jpg",
-      "/images/projects/trifecta-retto/07.jpg",
-      "/images/projects/trifecta-retto/08.jpg",
-      "/images/projects/trifecta-retto/09.jpg",
-      "/images/projects/trifecta-retto/10.jpg",
-    ],
-    description:
-      "A high-rise architectural project that explores verticality and form. The exterior composition creates a bold presence on the city skyline.", // [PLACEHOLDER]
-    statement:
-      "Verticality meets rhythm — an architectural statement that commands the skyline.", // [PLACEHOLDER]
-    services: ["Architecture", "Facade Design", "Project Management"],
-    featured: true,
-    index: 2,
+    index: 3,
+    video: {
+      hasVideo: true,
+      videoUrl: "/videos/walkthrough-trifecta.mp4",
+      poster: "/images/projects/sbr-horizon/hero.jpg",
+      duration: "2:10 min",
+    },
   },
   {
     id: "gk-gateway",
     slug: "gk-gateway",
     title: "GK Gateway",
-    subtitle: "Spaces shaped by intention.",
+    subtitle: "Spaces shaped by intention: clean architectural lines & complete turnkey execution.",
     category: "Residential",
-    location: "Bangalore", // [PLACEHOLDER: verify]
-    year: "2024", // [PLACEHOLDER: verify]
+    location: "Bangalore",
+    year: "2024",
+    area: "2,800 sq.ft.",
     heroImage: "/images/projects/gk-gateway/hero.jpg",
     thumbnailImage: "/images/projects/gk-gateway/thumb.jpg",
     images: [
@@ -149,46 +210,30 @@ export const projects: Project[] = [
       "/images/projects/gk-gateway/27.jpg",
     ],
     description:
-      "A meticulously crafted residential interior. The design language speaks through clean lines, curated materials, and an intelligent use of natural light.", // [PLACEHOLDER]
+      "A full turnkey residential project executed with immaculate craftsmanship. The home combines smart space planning, hidden storage, warm ambient recessed profiles, and bespoke furniture built to last.",
     statement:
-      "Precision meets possibility — a residential sanctuary defined by restraint and quality.", // [PLACEHOLDER]
-    services: ["Interior Design", "Turnkey", "Furniture Design"],
+      "Precision meets durability — turnkey residential sanctuary tailored for urban comfort.",
+    services: ["Turnkey Execution", "Interior Design", "Wardrobes", "Custom Modular Units"],
+    materials: ["Marine Grade Plywood", "Anti-Scratch Acrylic", "Warm LED Lighting"],
+    credits: { "Execution Lead": "AfterBuild Studio Craftsmen Network (75+)" },
     featured: true,
-    index: 3,
-  },
-  {
-    id: "prestige-avalon-park",
-    slug: "prestige-avalon-park",
-    title: "Prestige Avalon Park",
-    subtitle: "Refined living, reimagined.",
-    category: "Residential",
-    location: "Bangalore", // [PLACEHOLDER: verify]
-    year: "2024", // [PLACEHOLDER: verify]
-    heroImage: "/images/projects/prestige-avalon-park/hero.jpg",
-    thumbnailImage: "/images/projects/prestige-avalon-park/thumb.jpg",
-    images: [
-      "/images/projects/prestige-avalon-park/01.jpg",
-      "/images/projects/prestige-avalon-park/02.jpg",
-      "/images/projects/prestige-avalon-park/03.jpg",
-      "/images/projects/prestige-avalon-park/04.jpg",
-      "/images/projects/prestige-avalon-park/05.jpg",
-    ],
-    description:
-      "An interior design project within one of Bangalore's prominent residential developments. Luxury expressed through quality rather than quantity.", // [PLACEHOLDER]
-    statement:
-      "Sophisticated restraint — luxury distilled into its purest spatial form.", // [PLACEHOLDER]
-    services: ["Interior Design", "Material Curation"],
-    featured: false,
     index: 4,
+    video: {
+      hasVideo: true,
+      videoUrl: "/videos/walkthrough-prestige.mp4",
+      poster: "/images/projects/gk-gateway/hero.jpg",
+      duration: "1:55 min",
+    },
   },
   {
     id: "bhavisha-homes",
     slug: "bhavisha-homes",
     title: "Bhavisha Homes",
-    subtitle: "Home as a state of mind.",
+    subtitle: "Home as a state of mind: calm palettes, functional elegance, and tailored spaces.",
     category: "Interior",
-    location: "Bangalore", // [PLACEHOLDER: verify]
-    year: "2024", // [PLACEHOLDER: verify]
+    location: "Bangalore",
+    year: "2024",
+    area: "2,150 sq.ft.",
     heroImage: "/images/projects/bhavisha-homes/hero.jpg",
     thumbnailImage: "/images/projects/bhavisha-homes/thumb.jpg",
     images: [
@@ -204,11 +249,117 @@ export const projects: Project[] = [
       "/images/projects/bhavisha-homes/10.jpg",
     ],
     description:
-      "A warm residential interior that balances modern aesthetics with comfort. Natural materials and considered lighting define the experience of each room.", // [PLACEHOLDER]
+      "A warm residential interior that balances budget-friendly packages with high design integrity. Every square foot was optimized for storage, ergonomics, and effortless maintenance.",
     statement:
-      "Warmth woven into every surface — a home that breathes with its inhabitants.", // [PLACEHOLDER]
-    services: ["Interior Design", "Furniture Selection", "Lighting"],
+      "Warmth woven into every surface — an accessible luxury home that breathes with its owners.",
+    services: ["Interior Design", "Modular Storage", "Color Consultation", "Turnkey Handover"],
+    materials: ["Textured Laminates", "Matte Black Hardware", "Natural Linen Textiles"],
+    credits: { "Studio": "AfterBuild Studio" },
     featured: false,
     index: 5,
+  },
+  {
+    id: "leela-penthouse",
+    slug: "leela-penthouse",
+    title: "The Leela View Penthouse",
+    subtitle: "High-altitude architectural sanctuary with panoramic terrace & double-height volume.",
+    category: "Architecture",
+    location: "Indiranagar, Bangalore",
+    year: "2025",
+    area: "4,200 sq.ft.",
+    heroImage: "/images/projects/leela-penthouse/hero.jpg",
+    thumbnailImage: "/images/projects/leela-penthouse/thumb.jpg",
+    images: [
+      "/images/projects/leela-penthouse/01.jpg",
+      "/images/projects/leela-penthouse/02.jpg",
+      "/images/projects/leela-penthouse/03.jpg",
+    ],
+    description:
+      "Overlooking the historic Leela Palace corridor in Indiranagar, this penthouse showcases double-height fluted timber paneling, bookmatched Italian travertine flooring, and custom brass lighting fixtures.",
+    statement:
+      "Monumental spatial volume balanced with intimate residential comfort.",
+    services: ["Architecture", "Interior Architecture", "Luxury Penthouse Fitout", "Landscape"],
+    materials: ["Italian Travertine", "Fluted American Walnut", "Aged Bronze", "Acoustic Glass"],
+    credits: { "Design Director": "Mohammed Farmaan Azam K", "Studio": "AfterBuild Studio" },
+    featured: true,
+    index: 6,
+  },
+  {
+    id: "zen-pavilion",
+    slug: "zen-pavilion",
+    title: "The Zen Pavilion",
+    subtitle: "Vastu-aligned contemporary villa blending indoor serenity with lush tropical landscape.",
+    category: "Residential",
+    location: "Sarjapur, Bangalore",
+    year: "2024",
+    area: "3,800 sq.ft.",
+    heroImage: "/images/projects/zen-pavilion/hero.jpg",
+    thumbnailImage: "/images/projects/zen-pavilion/thumb.jpg",
+    images: [
+      "/images/projects/zen-pavilion/01.jpg",
+      "/images/projects/zen-pavilion/02.jpg",
+      "/images/projects/zen-pavilion/03.jpg",
+    ],
+    description:
+      "Conceived around Vastu principles and natural light ingress, the villa connects internal courtyards with flowing open living spaces, minimal timber screens, and serene water reflections.",
+    statement:
+      "Harmonious alignment of ancient spatial wisdom and modern minimal living.",
+    services: ["Vastu Planning", "Architecture & Interior", "Custom Furniture", "Courtyard Landscaping"],
+    materials: ["Teak Wood", "Kota Stone", "Brushed Champagne Metal", "Hand-Textured Plaster"],
+    credits: { "Studio": "AfterBuild Studio" },
+    featured: false,
+    index: 7,
+  },
+  {
+    id: "culinary-atelier-whitefield",
+    slug: "culinary-atelier-whitefield",
+    title: "Bespoke Culinary Atelier",
+    subtitle: "Precision-engineered modular kitchen and concealed storage for culinary aficionados.",
+    category: "Modular",
+    location: "Whitefield, Bangalore",
+    year: "2025",
+    area: "2,100 sq.ft.",
+    heroImage: "/images/projects/culinary-atelier-whitefield/hero.jpg",
+    thumbnailImage: "/images/projects/culinary-atelier-whitefield/thumb.jpg",
+    images: [
+      "/images/projects/culinary-atelier-whitefield/01.jpg",
+      "/images/projects/culinary-atelier-whitefield/02.jpg",
+      "/images/projects/culinary-atelier-whitefield/03.jpg",
+    ],
+    description:
+      "A state-of-the-art modular kitchen featuring German tandem soft-close hardware, integrated quartz breakfast island, backlit glass appliance garages, and bespoke pantry pullouts.",
+    statement:
+      "The culinary heartbeat of the home — crafted with mechanical precision and visual lightness.",
+    services: ["Modular Kitchen", "Storage Solutions", "Appliance Integration", "Lighting"],
+    materials: ["Polymer Gloss Laminate", "Sintered Stone", "Tinted Glass", "Anodized Black Handles"],
+    credits: { "Modular Engineering": "AfterBuild Studio Modular Division" },
+    featured: false,
+    index: 8,
+  },
+  {
+    id: "koramangala-commercial",
+    slug: "koramangala-commercial",
+    title: "Curated Commercial Atelier",
+    subtitle: "Contemporary boutique workplace balancing productivity, acoustic comfort, and hospitality.",
+    category: "Commercial",
+    location: "Koramangala, Bangalore",
+    year: "2024",
+    area: "3,400 sq.ft.",
+    heroImage: "/images/projects/koramangala-commercial/hero.jpg",
+    thumbnailImage: "/images/projects/koramangala-commercial/thumb.jpg",
+    images: [
+      "/images/projects/koramangala-commercial/01.jpg",
+      "/images/projects/koramangala-commercial/02.jpg",
+      "/images/projects/koramangala-commercial/03.jpg",
+    ],
+    description:
+      "A collaborative office studio featuring glass acoustic meeting pods, breakout lounges with warm ambient pendants, ergonomic workstations, and an organic material palette reflecting modern enterprise culture.",
+    statement:
+      "A commercial environment designed around human interaction, focus, and brand prestige.",
+    services: ["Commercial Interior", "Workplace Spatial Design", "Acoustic Engineering", "Turnkey Fitout"],
+    materials: ["Perforated Wood Acoustic Panels", "Exposed Concrete", "Powder-Coated Steel"],
+    credits: { "Studio": "AfterBuild Studio" },
+    featured: false,
+    index: 9,
   },
 ];
