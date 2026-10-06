@@ -86,6 +86,22 @@ const walkthroughProjects: WalkthroughItem[] = [
     highlights: ["Turnkey Handover", "Curated Palette", "Smart Storage", "75+ Craftsmen Network"],
     hasVideoFile: false,
   },
+  {
+    id: "bhavisha-homes",
+    number: "05",
+    title: "Bhavisha Homes — Tailored Spatial Harmony",
+    subtitle: "Home as a state of mind: calm earthy palettes, functional elegance, and tailored modular storage.",
+    location: "Bangalore",
+    area: "2,150 sq.ft.",
+    category: "Contemporary Interior & Modular",
+    duration: "1:35 min",
+    videoSrc: "/videos/walkthrough-trifecta.mp4",
+    poster: "/images/projects/bhavisha-homes/hero.jpg",
+    description:
+      "A complete room-by-room walkthrough of a light-filled Bangalore residence featuring custom modular wardrobes, ergonomic space planning, and durable textured finishes tailored for everyday family life.",
+    highlights: ["Modular Storage", "Warm Palette", "Space Optimization", "Turnkey Delivery"],
+    hasVideoFile: false,
+  },
 ];
 
 export default function VideoWalkthroughSection() {

@@ -5,11 +5,11 @@ import Logo from "@/components/ui/Logo";
 import { siteConfig, getDirectionsUrl } from "@/data/site";
 
 const navLinks = [
-  { label: "Work", href: "/work" },
-  { label: "Walkthroughs", href: "/#walkthroughs" },
-  { label: "Services", href: "/services" },
-  { label: "Studio", href: "/studio" },
-  { label: "Contact", href: "/contact" },
+  { label: "Selected Works", href: "/work" },
+  { label: "4K Walkthroughs", href: "/#walkthroughs" },
+  { label: "Design Services", href: "/services" },
+  { label: "Our Studio", href: "/studio" },
+  { label: "Contact & Consult", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -20,96 +20,181 @@ export default function Footer() {
     <footer
       id="site-footer"
       style={{
-        background: "var(--surface)",
-        borderTop: "1px solid var(--border)",
+        background: "#0A0B0D",
+        borderTop: "1px solid rgba(212, 178, 130, 0.2)",
         position: "relative",
         overflow: "hidden",
+        color: "#F8F6F0",
       }}
     >
+      {/* Ambient background architectural glow */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: "15%",
+          width: "500px",
+          height: "350px",
+          background: "radial-gradient(circle, rgba(212, 178, 130, 0.07) 0%, transparent 70%)",
+          pointerEvents: "none",
+          filter: "blur(60px)",
+        }}
+      />
+
       {/* Main footer grid */}
       <div style={{
         maxWidth: "var(--max-w)",
         marginInline: "auto",
         paddingInline: "var(--gutter)",
-        paddingTop: "var(--space-md)",
+        paddingTop: "clamp(48px, 6vw, 72px)",
+        position: "relative",
+        zIndex: 2,
       }}>
         <div className="footer-main-grid">
 
-          {/* Studio identity — cols 1-5 desktop, col 1 tablet */}
+          {/* Studio identity — cols 1-5 desktop */}
           <div className="footer-brand">
-            <div style={{ marginBottom: "clamp(18px, 2.5vw, 28px)" }}>
-              <Logo size="lg" showTagline={true} />
+            {/* Illuminated Brand Plate */}
+            <div
+              style={{
+                display: "inline-block",
+                position: "relative",
+                padding: "8px 16px",
+                borderRadius: "6px",
+                background: "radial-gradient(ellipse at 30% 50%, rgba(212, 178, 130, 0.16) 0%, rgba(212, 178, 130, 0.04) 55%, transparent 75%)",
+                border: "1px solid rgba(212, 178, 130, 0.16)",
+                boxShadow: "0 0 25px rgba(212, 178, 130, 0.1), inset 0 0 16px rgba(212, 178, 130, 0.04)",
+                marginBottom: "clamp(20px, 2.5vw, 28px)",
+                maxWidth: "100%",
+              }}
+            >
+              <Logo size="lg" glow={true} showTagline={true} />
             </div>
 
             <p style={{
-              fontSize: "13px",
-              color: "var(--muted)",
+              fontSize: "15px",
+              color: "#F3F0EA",
               lineHeight: 1.75,
-              maxWidth: "340px",
-              marginBottom: "clamp(20px, 3vw, 32px)",
-              fontWeight: 300,
+              maxWidth: "380px",
+              marginBottom: "clamp(22px, 3vw, 32px)",
+              fontWeight: 400,
             }}>
               Designing spaces with purpose. Building experiences with intention.
-              <span style={{ display: "block", marginTop: "8px", color: "var(--bronze)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              <span style={{
+                display: "block",
+                marginTop: "12px",
+                color: "var(--bronze)",
+                fontSize: "13px",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+              }}>
                 Mohammed Farmaan Azam K &bull; Founder &amp; Director
               </span>
-              <span style={{ display: "block", marginTop: "4px", color: "rgba(243,240,234,0.4)", fontSize: "11px" }}>
+              <span style={{
+                display: "block",
+                marginTop: "6px",
+                color: "rgba(243,240,234,0.85)",
+                fontSize: "13px",
+                fontWeight: 400,
+              }}>
                 160+ Projects &bull; 75+ Craftsmen &bull; Indiranagar, Bangalore
               </span>
             </p>
 
-            {/* Social */}
-            <div style={{ display: "flex", gap: "20px" }}>
-              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer"
+            {/* Social Links */}
+            <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+              <a
+                href={siteConfig.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  fontSize: "10px",
-                  letterSpacing: "0.2em",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "var(--muted-dark)",
-                  transition: "color 0.3s ease",
+                  color: "#FFFFFF",
+                  borderBottom: "1px solid rgba(255,255,255,0.3)",
+                  paddingBottom: "2px",
+                  transition: "color 0.3s ease, border-color 0.3s ease",
+                  textDecoration: "none",
                 }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--muted-dark)")}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
+                }}
               >
                 Instagram ↗
               </a>
-              <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer"
+              <a
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  fontSize: "10px",
-                  letterSpacing: "0.2em",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "var(--muted-dark)",
-                  transition: "color 0.3s ease",
+                  color: "#FFFFFF",
+                  borderBottom: "1px solid rgba(255,255,255,0.3)",
+                  paddingBottom: "2px",
+                  transition: "color 0.3s ease, border-color 0.3s ease",
+                  textDecoration: "none",
                 }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--muted-dark)")}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
+                }}
               >
                 LinkedIn ↗
               </a>
             </div>
           </div>
 
-          {/* Navigation — cols 6-8 desktop, col 2 tablet */}
+          {/* Navigation — cols 6-8 desktop */}
           <div className="footer-nav">
             <h4 style={{
-              fontSize: "9px",
-              letterSpacing: "0.28em",
+              fontSize: "13px",
+              fontWeight: 700,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "var(--muted-dark)",
-              marginBottom: "clamp(16px, 2.5vw, 24px)",
+              color: "#FFFFFF",
+              marginBottom: "8px",
             }}>
               Navigate
             </h4>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div style={{ width: "24px", height: "2px", background: "var(--bronze)", marginBottom: "clamp(18px, 2.5vw, 24px)" }} />
+
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px", padding: 0, margin: 0 }}>
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} style={{
-                    fontSize: "13px",
-                    color: "var(--muted)",
-                    transition: "color 0.3s ease",
-                  }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--muted)")}
+                  <Link
+                    href={link.href}
+                    style={{
+                      fontSize: "15px",
+                      color: "#F3F0EA",
+                      fontWeight: 400,
+                      textDecoration: "none",
+                      transition: "color 0.25s ease, transform 0.25s ease",
+                      display: "inline-block",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateX(4px)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.color = "#F3F0EA";
+                      (e.currentTarget as HTMLElement).style.transform = "translateX(0)";
+                    }}
                   >
                     {link.label}
                   </Link>
@@ -118,116 +203,152 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Address — cols 9-10 desktop, col 1 tablet */}
+          {/* Studio Address — cols 9-10 desktop */}
           <div className="footer-address">
             <h4 style={{
-              fontSize: "9px",
-              letterSpacing: "0.28em",
+              fontSize: "13px",
+              fontWeight: 700,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "var(--muted-dark)",
-              marginBottom: "clamp(16px, 2.5vw, 24px)",
+              color: "#FFFFFF",
+              marginBottom: "8px",
             }}>
               Studio
             </h4>
+            <div style={{ width: "24px", height: "2px", background: "var(--bronze)", marginBottom: "clamp(18px, 2.5vw, 24px)" }} />
+
             <address style={{
               fontStyle: "normal",
-              fontSize: "13px",
-              color: "var(--muted)",
+              fontSize: "15px",
+              color: "#E2DFD8",
               lineHeight: 1.8,
             }}>
+              <strong style={{ color: "#FFFFFF", fontWeight: 600 }}>{siteConfig.name}</strong><br />
               {siteConfig.address.line1}<br />
               {siteConfig.address.line2}<br />
               {siteConfig.address.city}, {siteConfig.address.state}<br />
-              {siteConfig.address.pin}
+              PIN — {siteConfig.address.pin}
             </address>
+
             <a
               href={directionsLink}
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                display: "inline-block",
-                marginTop: "12px",
-                fontSize: "10px",
-                letterSpacing: "0.18em",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                marginTop: "16px",
+                fontSize: "13px",
+                fontWeight: 600,
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 color: "var(--bronze)",
-                transition: "opacity 0.3s ease",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(197, 168, 128, 0.4)",
+                paddingBottom: "3px",
+                transition: "opacity 0.3s ease, border-color 0.3s ease",
               }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.7")}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.75")}
               onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
             >
               Get Directions ↗
             </a>
           </div>
 
-          {/* Contact — cols 11-12 desktop, col 2 tablet */}
+          {/* Contact / Inquiries — cols 11-12 desktop */}
           <div className="footer-contact">
             <h4 style={{
-              fontSize: "9px",
-              letterSpacing: "0.28em",
+              fontSize: "13px",
+              fontWeight: 700,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "var(--muted-dark)",
-              marginBottom: "clamp(16px, 2.5vw, 24px)",
+              color: "#FFFFFF",
+              marginBottom: "8px",
             }}>
-              Contact
+              Inquiries
             </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={{ width: "24px", height: "2px", background: "var(--bronze)", marginBottom: "clamp(18px, 2.5vw, 24px)" }} />
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
               <div>
                 <span style={{
-                  fontSize: "9px",
+                  fontSize: "11px",
+                  fontWeight: 600,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "var(--muted-dark)",
+                  color: "var(--bronze)",
                   display: "block",
                   marginBottom: "4px",
                 }}>
-                  Email
+                  Direct Phone
                 </span>
-                <a href={`mailto:${siteConfig.email}`} style={{
-                  fontSize: "13px",
-                  color: "var(--muted)",
-                  transition: "color 0.3s ease",
-                }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--muted)")}
-                >
-                  {siteConfig.email}
-                </a>
-              </div>
-              <div>
-                <span style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "var(--muted-dark)",
-                  display: "block",
-                  marginBottom: "4px",
-                }}>
-                  Phone
-                </span>
-                <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`} style={{
-                  fontSize: "13px",
-                  color: "var(--muted)",
-                  transition: "color 0.3s ease",
-                }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--muted)")}
+                <a
+                  href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}
+                  style={{
+                    fontSize: "17px",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    textDecoration: "none",
+                    letterSpacing: "0.02em",
+                    transition: "color 0.25s ease",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--bronze)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "#FFFFFF")}
                 >
                   {siteConfig.phone}
                 </a>
               </div>
+
               <div>
                 <span style={{
-                  fontSize: "9px",
+                  fontSize: "11px",
+                  fontWeight: 600,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "var(--muted-dark)",
+                  color: "var(--bronze)",
                   display: "block",
                   marginBottom: "4px",
                 }}>
-                  Hours
+                  Studio Email
                 </span>
-                <p style={{ fontSize: "12px", color: "var(--muted-dark)", lineHeight: 1.6 }}>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 500,
+                    color: "#FFFFFF",
+                    textDecoration: "none",
+                    transition: "color 0.25s ease",
+                    wordBreak: "break-all",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--bronze)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "#FFFFFF")}
+                >
+                  {siteConfig.email}
+                </a>
+              </div>
+
+              <div>
+                <span style={{
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--bronze)",
+                  display: "block",
+                  marginBottom: "4px",
+                }}>
+                  Operating Hours
+                </span>
+                <p style={{
+                  fontSize: "14px",
+                  color: "#E2DFD8",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}>
                   {siteConfig.hours}
                 </p>
               </div>
@@ -241,21 +362,22 @@ export default function Footer() {
           overflow: "hidden",
           width: "100%",
           maxWidth: "100%",
-          paddingBlock: "clamp(20px, 4vw, 40px)",
+          paddingBlock: "clamp(24px, 4.5vw, 48px)",
         }}>
           <h2
             aria-hidden="true"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(4rem, 12vw, 13rem)",
+              fontSize: "clamp(3.5rem, 11vw, 12rem)",
               fontWeight: 700,
               textTransform: "uppercase",
-              letterSpacing: "-0.04em",
-              color: "rgba(243,240,234,0.03)",
+              letterSpacing: "-0.03em",
+              color: "rgba(243,240,234,0.065)",
               lineHeight: 1,
               userSelect: "none",
               pointerEvents: "none",
               whiteSpace: "nowrap",
+              margin: 0,
             }}
           >
             {siteConfig.name}
@@ -264,8 +386,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div style={{
-          borderTop: "1px solid var(--border)",
-          paddingBlock: "clamp(16px, 2.5vw, 24px)",
+          borderTop: "1px solid rgba(212, 178, 130, 0.2)",
+          paddingBlock: "clamp(18px, 2.5vw, 26px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -273,18 +395,19 @@ export default function Footer() {
           flexWrap: "wrap",
         }}>
           <span style={{
-            fontSize: "10px",
-            letterSpacing: "0.15em",
-            color: "var(--muted-dark)",
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            color: "rgba(243,240,234,0.75)",
           }}>
-            © {year} {siteConfig.name}. All rights reserved.
+            &copy; {year} {siteConfig.name}. All rights reserved.
           </span>
           <span style={{
-            fontSize: "10px",
-            letterSpacing: "0.15em",
-            color: "var(--muted-dark)",
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            color: "var(--bronze)",
+            fontWeight: 500,
           }}>
-            Made with precision in {siteConfig.location}.
+            Crafted with precision &bull; Indiranagar, Bangalore
           </span>
         </div>
       </div>

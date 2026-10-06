@@ -637,16 +637,15 @@ export default function StudioPage() {
             <div style={{ gridColumn: "1 / 6" }}>
               <div className="st-img-reveal" style={{
                 position: "relative",
-                borderRadius: "4px",
+                borderRadius: "6px",
                 overflow: "hidden",
-                border: "1px solid var(--border)",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
-                background: "#ffffff",
-                padding: "20px",
+                border: "1px solid rgba(197, 168, 128, 0.25)",
+                boxShadow: "0 24px 60px rgba(0, 0, 0, 0.6)",
+                background: "rgba(14, 15, 18, 0.9)",
               }}>
                 <Image
                   src="/images/logo-card.png"
-                  alt="Official AfterBuild Studio Brand Mark & Geometry"
+                  alt="Official AfterBuild Studio Brand Mark & Architectural Geometry"
                   width={640}
                   height={480}
                   style={{ width: "100%", height: "auto", display: "block" }}

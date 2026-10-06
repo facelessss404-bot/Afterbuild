@@ -39,7 +39,7 @@ export const philosophyPillars: PhilosophyPillar[] = [
     subtitle: "Architectural proportion and refined silhouettes.",
     description:
       "Architectural proportion, elegant materials, and refined silhouettes. We balance geometric clarity with rich tactile finishes to shape timeless spaces.",
-    image: "/images/projects/leela-penthouse/01.jpg",
+    image: "/images/projects/trifecta-retto/01.jpg",
   },
   {
     id: "comfort",
@@ -57,7 +57,7 @@ export const philosophyPillars: PhilosophyPillar[] = [
     subtitle: "Expressing your unique story.",
     description:
       "Expressing our clients' unique story and identity. Tailored materiality, bespoke joinery, and curated spatial nuance that feels deeply personal.",
-    image: "/images/projects/culinary-atelier-whitefield/01.jpg",
+    image: "/images/projects/bhavisha-homes/01.jpg",
   },
 ];
 

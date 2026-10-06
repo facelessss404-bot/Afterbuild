@@ -246,8 +246,8 @@ export default function IntroSection() {
                 }}
               >
                 <img
-                  src="/images/projects/gk-gateway/05.jpg"
-                  alt="Studio work"
+                  src="/images/projects/sbr-horizon/hero.jpg"
+                  alt="AfterBuild Studio luxury residential interior curation — SBR Horizon"
                   style={{
                     width: "100%",
                     height: "100%",

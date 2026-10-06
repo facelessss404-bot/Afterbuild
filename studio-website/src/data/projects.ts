@@ -6,7 +6,6 @@
 export type ProjectCategory =
   | "Residential"
   | "Interior"
-  | "Commercial"
   | "Architecture"
   | "Modular";
 
@@ -15,7 +14,6 @@ export const projectCategories: ("ALL" | ProjectCategory)[] = [
   "Residential",
   "Interior",
   "Architecture",
-  "Commercial",
   "Modular",
 ];
 
@@ -230,7 +228,7 @@ export const projects: Project[] = [
     slug: "bhavisha-homes",
     title: "Bhavisha Homes",
     subtitle: "Home as a state of mind: calm palettes, functional elegance, and tailored spaces.",
-    category: "Interior",
+    category: "Modular",
     location: "Bangalore",
     year: "2024",
     area: "2,150 sq.ft.",
@@ -255,111 +253,7 @@ export const projects: Project[] = [
     services: ["Interior Design", "Modular Storage", "Color Consultation", "Turnkey Handover"],
     materials: ["Textured Laminates", "Matte Black Hardware", "Natural Linen Textiles"],
     credits: { "Studio": "AfterBuild Studio" },
-    featured: false,
-    index: 5,
-  },
-  {
-    id: "leela-penthouse",
-    slug: "leela-penthouse",
-    title: "The Leela View Penthouse",
-    subtitle: "High-altitude architectural sanctuary with panoramic terrace & double-height volume.",
-    category: "Architecture",
-    location: "Indiranagar, Bangalore",
-    year: "2025",
-    area: "4,200 sq.ft.",
-    heroImage: "/images/projects/leela-penthouse/hero.jpg",
-    thumbnailImage: "/images/projects/leela-penthouse/thumb.jpg",
-    images: [
-      "/images/projects/leela-penthouse/01.jpg",
-      "/images/projects/leela-penthouse/02.jpg",
-      "/images/projects/leela-penthouse/03.jpg",
-    ],
-    description:
-      "Overlooking the historic Leela Palace corridor in Indiranagar, this penthouse showcases double-height fluted timber paneling, bookmatched Italian travertine flooring, and custom brass lighting fixtures.",
-    statement:
-      "Monumental spatial volume balanced with intimate residential comfort.",
-    services: ["Architecture", "Interior Architecture", "Luxury Penthouse Fitout", "Landscape"],
-    materials: ["Italian Travertine", "Fluted American Walnut", "Aged Bronze", "Acoustic Glass"],
-    credits: { "Design Director": "Mohammed Farmaan Azam K", "Studio": "AfterBuild Studio" },
     featured: true,
-    index: 6,
-  },
-  {
-    id: "zen-pavilion",
-    slug: "zen-pavilion",
-    title: "The Zen Pavilion",
-    subtitle: "Vastu-aligned contemporary villa blending indoor serenity with lush tropical landscape.",
-    category: "Residential",
-    location: "Sarjapur, Bangalore",
-    year: "2024",
-    area: "3,800 sq.ft.",
-    heroImage: "/images/projects/zen-pavilion/hero.jpg",
-    thumbnailImage: "/images/projects/zen-pavilion/thumb.jpg",
-    images: [
-      "/images/projects/zen-pavilion/01.jpg",
-      "/images/projects/zen-pavilion/02.jpg",
-      "/images/projects/zen-pavilion/03.jpg",
-    ],
-    description:
-      "Conceived around Vastu principles and natural light ingress, the villa connects internal courtyards with flowing open living spaces, minimal timber screens, and serene water reflections.",
-    statement:
-      "Harmonious alignment of ancient spatial wisdom and modern minimal living.",
-    services: ["Vastu Planning", "Architecture & Interior", "Custom Furniture", "Courtyard Landscaping"],
-    materials: ["Teak Wood", "Kota Stone", "Brushed Champagne Metal", "Hand-Textured Plaster"],
-    credits: { "Studio": "AfterBuild Studio" },
-    featured: false,
-    index: 7,
-  },
-  {
-    id: "culinary-atelier-whitefield",
-    slug: "culinary-atelier-whitefield",
-    title: "Bespoke Culinary Atelier",
-    subtitle: "Precision-engineered modular kitchen and concealed storage for culinary aficionados.",
-    category: "Modular",
-    location: "Whitefield, Bangalore",
-    year: "2025",
-    area: "2,100 sq.ft.",
-    heroImage: "/images/projects/culinary-atelier-whitefield/hero.jpg",
-    thumbnailImage: "/images/projects/culinary-atelier-whitefield/thumb.jpg",
-    images: [
-      "/images/projects/culinary-atelier-whitefield/01.jpg",
-      "/images/projects/culinary-atelier-whitefield/02.jpg",
-      "/images/projects/culinary-atelier-whitefield/03.jpg",
-    ],
-    description:
-      "A state-of-the-art modular kitchen featuring German tandem soft-close hardware, integrated quartz breakfast island, backlit glass appliance garages, and bespoke pantry pullouts.",
-    statement:
-      "The culinary heartbeat of the home — crafted with mechanical precision and visual lightness.",
-    services: ["Modular Kitchen", "Storage Solutions", "Appliance Integration", "Lighting"],
-    materials: ["Polymer Gloss Laminate", "Sintered Stone", "Tinted Glass", "Anodized Black Handles"],
-    credits: { "Modular Engineering": "AfterBuild Studio Modular Division" },
-    featured: false,
-    index: 8,
-  },
-  {
-    id: "koramangala-commercial",
-    slug: "koramangala-commercial",
-    title: "Curated Commercial Atelier",
-    subtitle: "Contemporary boutique workplace balancing productivity, acoustic comfort, and hospitality.",
-    category: "Commercial",
-    location: "Koramangala, Bangalore",
-    year: "2024",
-    area: "3,400 sq.ft.",
-    heroImage: "/images/projects/koramangala-commercial/hero.jpg",
-    thumbnailImage: "/images/projects/koramangala-commercial/thumb.jpg",
-    images: [
-      "/images/projects/koramangala-commercial/01.jpg",
-      "/images/projects/koramangala-commercial/02.jpg",
-      "/images/projects/koramangala-commercial/03.jpg",
-    ],
-    description:
-      "A collaborative office studio featuring glass acoustic meeting pods, breakout lounges with warm ambient pendants, ergonomic workstations, and an organic material palette reflecting modern enterprise culture.",
-    statement:
-      "A commercial environment designed around human interaction, focus, and brand prestige.",
-    services: ["Commercial Interior", "Workplace Spatial Design", "Acoustic Engineering", "Turnkey Fitout"],
-    materials: ["Perforated Wood Acoustic Panels", "Exposed Concrete", "Powder-Coated Steel"],
-    credits: { "Studio": "AfterBuild Studio" },
-    featured: false,
-    index: 9,
+    index: 5,
   },
 ];

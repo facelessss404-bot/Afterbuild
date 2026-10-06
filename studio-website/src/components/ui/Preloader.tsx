@@ -52,16 +52,16 @@ export default function Preloader() {
       {/* Brand Emblem */}
       <div style={{
         position: "relative",
-        width: "56px",
-        height: "42px",
+        width: "68px",
+        height: "44px",
         opacity: progress > 15 ? 1 : 0.1,
         transform: `scale(${0.9 + (progress / 100) * 0.1})`,
         transition: "opacity 0.6s ease, transform 0.6s ease",
-        filter: "drop-shadow(0 0 16px rgba(197,168,128,0.35))",
+        filter: "drop-shadow(0 0 20px rgba(197,168,128,0.4))",
       }}>
         <img
-          src="/images/logo-mark-clean.png"
-          alt="AfterBuild Studio"
+          src="/images/logo-emblem.png"
+          alt="AfterBuild Studio Emblem"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
       </div>

@@ -80,14 +80,15 @@ export default function ContactCTA() {
             </h2>
 
             <p className="cta-reveal" style={{
-              fontSize: "var(--text-base)",
-              color: "var(--muted)",
-              lineHeight: 1.8,
-              maxWidth: "440px",
+              fontSize: "clamp(16px, 1.4vw, 20px)",
+              color: "#F3F0EA",
+              lineHeight: 1.75,
+              maxWidth: "480px",
               marginBottom: "clamp(32px, 5vw, 56px)",
+              fontWeight: 400,
             }}>
-              Collaborate with our studio to bring your residential,
-              commercial, or conceptual project to life.
+              Collaborate with AfterBuild Studio to bring your bespoke residential interior,
+              turnkey architecture, or luxury modular sanctuary to life.
             </p>
 
             <div className="cta-reveal" style={{
@@ -100,16 +101,24 @@ export default function ContactCTA() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "10px",
-                padding: "14px 36px",
-                background: "var(--text)",
-                color: "var(--bg)",
-                fontSize: "11px",
-                letterSpacing: "0.2em",
+                padding: "16px 40px",
+                background: "var(--bronze)",
+                color: "#0A0A09",
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                transition: "background 0.3s ease",
+                transition: "all 0.3s ease",
+                boxShadow: "0 0 25px rgba(212, 178, 130, 0.3)",
               }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = "var(--bronze)")}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = "var(--text)")}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 30px rgba(255, 255, 255, 0.4)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = "var(--bronze)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 25px rgba(212, 178, 130, 0.3)";
+              }}
               >
                 Contact Us →
               </Link>
@@ -122,36 +131,40 @@ export default function ContactCTA() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "10px",
-                  padding: "13px 35px",
+                  padding: "15px 36px",
                   background: "transparent",
-                  color: "var(--text)",
-                  fontSize: "11px",
-                  letterSpacing: "0.2em",
+                  color: "#FFFFFF",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  border: "1px solid var(--border-light)",
-                  transition: "border-color 0.3s ease, color 0.3s ease",
+                  border: "1px solid rgba(212, 178, 130, 0.4)",
+                  transition: "border-color 0.3s ease, color 0.3s ease, background 0.3s ease",
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
                   (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(212, 178, 130, 0.08)";
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--border-light)";
-                  (e.currentTarget as HTMLElement).style.color = "var(--text)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 178, 130, 0.4)";
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.background = "transparent";
                 }}
               >
-                WhatsApp
+                WhatsApp Direct ↗
               </a>
             </div>
 
             <p className="cta-reveal" style={{
-              marginTop: "20px",
-              fontSize: "10px",
-              letterSpacing: "0.18em",
+              marginTop: "24px",
+              fontSize: "12px",
+              fontWeight: 600,
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "var(--muted-dark)",
+              color: "rgba(243,240,234,0.75)",
             }}>
-              Bangalore, India — Pan-India delivery
+              Indiranagar, Bangalore &bull; Pan-India Execution
             </p>
           </div>
 
@@ -163,11 +176,12 @@ export default function ContactCTA() {
                 position: "relative",
                 aspectRatio: "3/4",
                 overflow: "hidden",
+                border: "1px solid rgba(212, 178, 130, 0.2)",
               }}
             >
               <Image
-                src="/images/projects/gk-gateway/hero.jpg"
-                alt="Start a project with IDEASETERNAL"
+                src="/images/projects/sbr-horizon/hero.jpg"
+                alt="Start a project with AfterBuild Studio — Luxury Interior Living"
                 fill
                 style={{ objectFit: "cover" }}
                 loading="lazy"

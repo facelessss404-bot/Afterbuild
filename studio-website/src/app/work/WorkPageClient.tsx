@@ -102,17 +102,18 @@ export default function WorkPageClient() {
           <div style={{
             display: "flex",
             alignItems: "center",
-            gap: "clamp(4px, 1vw, 8px)",
+            gap: "clamp(6px, 1.2vw, 12px)",
             flexWrap: "wrap",
             borderTop: "1px solid var(--border)",
             paddingTop: "clamp(20px, 3vw, 32px)",
           }}>
             <span style={{
-              fontSize: "9px",
-              letterSpacing: "0.25em",
+              fontSize: "12px",
+              fontWeight: 600,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "var(--muted-dark)",
-              marginRight: "8px",
+              color: "var(--bronze)",
+              marginRight: "10px",
             }}>
               Filter:
             </span>
@@ -121,21 +122,23 @@ export default function WorkPageClient() {
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
                 style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.2em",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  padding: "8px 16px",
+                  padding: "10px 20px",
+                  borderRadius: "2px",
                   border: activeFilter === cat
-                    ? "1px solid var(--text)"
-                    : "1px solid var(--border)",
-                  background: activeFilter === cat ? "var(--text)" : "transparent",
-                  color: activeFilter === cat ? "var(--bg)" : "var(--muted)",
+                    ? "1px solid var(--bronze)"
+                    : "1px solid rgba(255, 255, 255, 0.15)",
+                  background: activeFilter === cat ? "var(--bronze)" : "rgba(255, 255, 255, 0.04)",
+                  color: activeFilter === cat ? "#0A0A09" : "#F3F0EA",
                   cursor: "pointer",
                   transition: "all 0.25s ease",
                 }}
               >
                 {cat}
-                <span style={{ marginLeft: "6px", opacity: 0.5 }}>
+                <span style={{ marginLeft: "6px", opacity: 0.8, fontSize: "10px" }}>
                   ({cat === "ALL" ? projects.length : projects.filter(p => p.category === cat).length})
                 </span>
               </button>
@@ -154,19 +157,21 @@ export default function WorkPageClient() {
       >
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
 
-          {/* Mixed editorial layout — alternating compositions */}
+          {/* Mixed editorial layout — alternating compositions for 5 projects */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
             gap: "var(--grid-gap)",
           }}>
             {filtered.map((project, idx) => {
-              // Alternating compositions: wide / narrow / narrow / wide
-              const pattern = idx % 4;
+              // Alternating compositions: 7-col / 5-col / 5-col / 7-col / full 12-col
+              const pattern = idx % 5;
               let colSpan = "1 / 8"; // default: 7 wide cols
-              if (pattern === 1) colSpan = "8 / 13";   // 5 cols right
-              if (pattern === 2) colSpan = "1 / 6";     // 5 cols left
-              if (pattern === 3) colSpan = "6 / 13";    // 7 cols right
+              let aspectRatio = "16/10";
+              if (pattern === 1) { colSpan = "8 / 13"; aspectRatio = "3/4"; }
+              if (pattern === 2) { colSpan = "1 / 6"; aspectRatio = "3/4"; }
+              if (pattern === 3) { colSpan = "6 / 13"; aspectRatio = "16/10"; }
+              if (pattern === 4) { colSpan = "1 / 13"; aspectRatio = "21/9"; }
 
               return (
                 <Link
@@ -177,14 +182,14 @@ export default function WorkPageClient() {
                   style={{
                     gridColumn: colSpan,
                     display: "block",
-                    marginBottom: "clamp(8px, 1.5vw, 16px)",
+                    marginBottom: "clamp(12px, 2vw, 24px)",
                   }}
                 >
                   {/* Image — no card, just image + bottom metadata */}
                   <div style={{
                     position: "relative",
                     overflow: "hidden",
-                    aspectRatio: pattern % 2 === 0 ? "16/10" : "3/4",
+                    aspectRatio: aspectRatio,
                     background: "var(--surface)",
                     marginBottom: "16px",
                   }}
