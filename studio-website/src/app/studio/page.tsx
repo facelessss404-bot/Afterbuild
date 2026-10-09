@@ -634,27 +634,31 @@ export default function StudioPage() {
         <div style={{ maxWidth: "var(--max-w)", marginInline: "auto", width: "100%" }}>
           <div className="editorial-grid" style={{ alignItems: "center" }}>
             {/* Logo Card Presentation — left 5 cols */}
-            <div style={{ gridColumn: "1 / 6" }}>
+            <div className="st-logocard-img">
               <div className="st-img-reveal" style={{
                 position: "relative",
-                borderRadius: "6px",
+                borderRadius: "10px",
                 overflow: "hidden",
-                border: "1px solid rgba(197, 168, 128, 0.25)",
-                boxShadow: "0 24px 60px rgba(0, 0, 0, 0.6)",
-                background: "rgba(14, 15, 18, 0.9)",
+                border: "1px solid rgba(197, 168, 128, 0.35)",
+                boxShadow: "0 24px 60px rgba(0, 0, 0, 0.65), 0 0 25px rgba(197, 168, 128, 0.15)",
+                background: "radial-gradient(circle at center, rgba(30, 28, 25, 0.95) 0%, rgba(12, 12, 11, 0.98) 100%)",
+                padding: "clamp(12px, 2.5vw, 24px)",
               }}>
-                <Image
-                  src="/images/logo-card.png"
-                  alt="Official AfterBuild Studio Brand Mark & Architectural Geometry"
-                  width={640}
-                  height={480}
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
+                <div style={{ position: "relative", width: "100%", aspectRatio: "1085/992", overflow: "hidden", borderRadius: "6px" }}>
+                  <Image
+                    src="/images/company_logo.png"
+                    alt="Official AfterBuild Studio Brand Mark & Architectural Identity"
+                    fill
+                    style={{ objectFit: "contain", display: "block" }}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 42vw"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Emblem Meaning — right 7 cols */}
-            <div style={{ gridColumn: "6 / 13", paddingLeft: "clamp(0px, 3vw, 40px)" }}>
+            <div className="st-logocard-content">
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
                 <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
                 <span style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--bronze)" }}>
@@ -973,6 +977,9 @@ export default function StudioPage() {
         .st-founder-img { grid-column: 1 / 6; }
         .st-founder-content { grid-column: 6 / 13; padding-left: clamp(0px, 3vw, 40px); }
 
+        .st-logocard-img { grid-column: 1 / 6; }
+        .st-logocard-content { grid-column: 6 / 13; padding-left: clamp(0px, 3vw, 40px); }
+
         .st-mission-col { grid-column: 1 / 7; }
         .st-vision-col { grid-column: 7 / 13; padding-left: clamp(0px, 3vw, 40px); border-left: 1px solid var(--border); }
 
@@ -981,18 +988,16 @@ export default function StudioPage() {
         @media (max-width: 1024px) {
           .st-pillars-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 28px !important;
+            gap: 24px !important;
           }
-        }
-
-        @media (max-width: 900px) {
           .st-hero-left, .st-hero-right,
           .st-philo-label, .st-philo-quote,
           .st-founder-img, .st-founder-content,
+          .st-logocard-img, .st-logocard-content,
           .st-mission-col, .st-vision-col {
             grid-column: 1 / -1 !important;
           }
-          .st-founder-content, .st-vision-col {
+          .st-founder-content, .st-logocard-content, .st-vision-col {
             padding-left: 0 !important;
             border-left: none !important;
           }
@@ -1001,6 +1006,9 @@ export default function StudioPage() {
           }
           .st-founder-content {
             margin-top: 24px;
+          }
+          .st-logocard-content {
+            margin-top: 28px;
           }
           .st-vision-col {
             margin-top: 32px;
@@ -1015,33 +1023,14 @@ export default function StudioPage() {
           .st-metrics-grid > div:nth-child(2) {
             border-bottom: 1px solid var(--border) !important;
           }
-        }
 
-        @media (max-width: 600px) {
-          .st-pillars-grid {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
-          }
-          .st-metrics-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .st-metrics-grid > div {
-            border-right: none !important;
-            border-bottom: 1px solid var(--border) !important;
-          }
-          .st-metrics-grid > div:last-child {
-            border-bottom: none !important;
-          }
-        }
-
-        /* Timeline mobile & tablet (Requirement 17, 49) — Keep Year visible */
-        @media (max-width: 767px) {
+          /* Timeline on iPad & Tablets (<= 1024px) */
           .st-timeline-spine { display: none !important; }
           .st-timeline-item {
             display: flex !important;
             flex-direction: column !important;
             align-items: flex-start !important;
-            gap: 10px !important;
+            gap: 12px !important;
             width: 100% !important;
           }
           .st-timeline-year {
@@ -1056,6 +1045,23 @@ export default function StudioPage() {
           .st-timeline-card {
             order: 1 !important;
             width: 100% !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .st-pillars-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          .st-metrics-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .st-metrics-grid > div {
+            border-right: none !important;
+            border-bottom: 1px solid var(--border) !important;
+          }
+          .st-metrics-grid > div:last-child {
+            border-bottom: none !important;
           }
         }
       `}</style>

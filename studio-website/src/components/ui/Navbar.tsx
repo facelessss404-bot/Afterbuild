@@ -94,12 +94,12 @@ export default function Navbar() {
         {/* Logo */}
         <Logo size={scrolled ? "sm" : "md"} showTagline={!scrolled} />
 
-        {/* Desktop nav & CTA */}
-        <div className="hidden md:flex items-center" style={{ gap: "clamp(24px, 3vw, 48px)" }}>
+        {/* Desktop nav & CTA (>= 1024px) */}
+        <div className="hidden lg:flex items-center" style={{ gap: "clamp(20px, 2.5vw, 40px)" }}>
           <nav
             role="navigation"
             aria-label="Main Navigation"
-            style={{ display: "flex", alignItems: "center", gap: "clamp(20px, 2.5vw, 36px)" }}
+            style={{ display: "flex", alignItems: "center", gap: "clamp(16px, 2vw, 32px)" }}
           >
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href + "/"));
@@ -132,7 +132,7 @@ export default function Navbar() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              padding: "7px 16px",
+              padding: "8px 18px",
               borderRadius: "999px",
               border: "1px solid rgba(197, 168, 128, 0.4)",
               background: "rgba(197, 168, 128, 0.08)",
@@ -158,35 +158,36 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile & Tablet hamburger (< 1024px) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden"
+          className="flex lg:hidden flex-col justify-center items-center"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "5px",
-            background: "none",
-            border: "none",
-            padding: "4px",
+            background: "rgba(255, 255, 255, 0.04)",
+            border: "1px solid rgba(197, 168, 128, 0.25)",
+            borderRadius: "8px",
+            width: "44px",
+            height: "44px",
+            padding: "10px",
             cursor: "pointer",
+            gap: "5px",
           }}
         >
           <span style={{
-            display: "block", height: "1px", width: "22px",
+            display: "block", height: "1.5px", width: "22px",
             background: "var(--text)",
             transition: "transform 0.3s ease, opacity 0.3s ease",
             transform: isOpen ? "rotate(45deg) translate(4px, 4px)" : "none",
           }} />
           <span style={{
-            display: "block", height: "1px", width: "16px",
-            background: "var(--muted)",
+            display: "block", height: "1.5px", width: "16px",
+            background: "var(--bronze)",
             transition: "opacity 0.3s ease",
             opacity: isOpen ? 0 : 1,
           }} />
           <span style={{
-            display: "block", height: "1px", width: "22px",
+            display: "block", height: "1.5px", width: "22px",
             background: "var(--text)",
             transition: "transform 0.3s ease, opacity 0.3s ease",
             transform: isOpen ? "rotate(-45deg) translate(4px, -4px)" : "none",

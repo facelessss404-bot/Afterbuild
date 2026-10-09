@@ -629,7 +629,7 @@ export default function ContactPage() {
             gap: clamp(16px, 3vw, 32px);
           }
 
-          @media (max-width: 900px) {
+          @media (max-width: 1024px) {
             .contact-layout-grid {
               display: flex !important;
               flex-direction: column !important;

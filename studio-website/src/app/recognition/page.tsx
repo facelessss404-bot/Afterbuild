@@ -609,7 +609,7 @@ export default function RecognitionPage() {
         .press-item-2 { grid-column: 1 / 7; aspect-ratio: 4/5; }
         .press-item-3 { grid-column: 7 / 13; aspect-ratio: 4/5; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .recog-hero-left, .recog-hero-right,
           .recog-awards-title, .recog-awards-desc,
           .recog-press-title, .recog-press-desc,

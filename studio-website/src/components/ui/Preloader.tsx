@@ -49,20 +49,25 @@ export default function Preloader() {
       opacity: fading ? 0 : 1,
       pointerEvents: fading ? "none" : "all",
     }}>
-      {/* Brand Emblem */}
+      {/* Official Brand Logo */}
       <div style={{
         position: "relative",
-        width: "68px",
-        height: "44px",
+        width: "72px",
+        height: "66px",
         opacity: progress > 15 ? 1 : 0.1,
-        transform: `scale(${0.9 + (progress / 100) * 0.1})`,
+        transform: `scale(${0.92 + (progress / 100) * 0.08})`,
         transition: "opacity 0.6s ease, transform 0.6s ease",
-        filter: "drop-shadow(0 0 20px rgba(197,168,128,0.4))",
+        borderRadius: "12px",
+        overflow: "hidden",
+        border: "1px solid rgba(197, 168, 128, 0.4)",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.6), 0 0 24px rgba(197, 168, 128, 0.3)",
+        background: "radial-gradient(circle at center, rgba(30, 28, 25, 0.95) 0%, rgba(12, 12, 11, 0.98) 100%)",
+        padding: "4px",
       }}>
         <img
-          src="/images/logo-emblem.png"
-          alt="AfterBuild Studio Emblem"
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          src="/images/company_logo.png"
+          alt="AfterBuild Studio Official Logo"
+          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
         />
       </div>
 

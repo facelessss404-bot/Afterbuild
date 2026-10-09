@@ -71,9 +71,9 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/images/logo-card.png",
-        width: 1200,
-        height: 900,
+        url: "/images/company_logo.png",
+        width: 1085,
+        height: 992,
         alt: `${siteConfig.name} — Architecture & Interior Design Studio Bangalore`,
       },
     ],
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: ["/images/logo-card.png"],
+    images: ["/images/company_logo.png"],
   },
   robots: { index: true, follow: true },
 };

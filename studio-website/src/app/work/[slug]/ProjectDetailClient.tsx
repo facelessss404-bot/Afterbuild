@@ -473,7 +473,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
           align-items: end;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .pd-info-desc, .pd-info-facts {
             grid-column: 1 / -1 !important;
           }

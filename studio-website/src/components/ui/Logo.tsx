@@ -7,9 +7,10 @@ import { siteConfig } from "@/data/site";
 interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl";
   showTagline?: boolean;
+  showWordmark?: boolean;
   theme?: "dark" | "light";
   linkToHome?: boolean;
-  variant?: "lockup" | "emblem" | "stacked";
+  variant?: "badge" | "lockup" | "card" | "raw";
   glow?: boolean;
   className?: string;
 }
@@ -17,6 +18,7 @@ interface LogoProps {
 export default function Logo({
   size = "md",
   showTagline = true,
+  showWordmark = true,
   theme = "dark",
   linkToHome = true,
   variant = "lockup",
@@ -25,171 +27,149 @@ export default function Logo({
 }: LogoProps) {
   const isLight = theme === "light";
 
-  // Sizing definitions for Vector + Emblem Lockup
-  const lockupSpecs = {
-    sm: {
-      emblemW: 38,
-      emblemH: 24,
-      gap: 10,
-      fontTitle: "13px",
-      fontStudio: "10px",
-      fontTag: "7px",
-      tagMarginTop: "2px",
-    },
-    md: {
-      emblemW: 50,
-      emblemH: 32,
-      gap: 14,
-      fontTitle: "17px",
-      fontStudio: "12.5px",
-      fontTag: "9px",
-      tagMarginTop: "3px",
-    },
-    lg: {
-      emblemW: 58,
-      emblemH: 37,
-      gap: 12,
-      fontTitle: "19px",
-      fontStudio: "14px",
-      fontTag: "10px",
-      tagMarginTop: "3px",
-    },
-    xl: {
-      emblemW: 84,
-      emblemH: 54,
-      gap: 18,
-      fontTitle: "28px",
-      fontStudio: "20px",
-      fontTag: "14px",
-      tagMarginTop: "5px",
-    },
+  // Aspect ratio of official company_logo.png: 1085 / 992 = 1.09375
+  const logoDimensions = {
+    sm: { h: 38, w: 42, fontTitle: "12px", fontStudio: "9.5px", fontTag: "7px" },
+    md: { h: 46, w: 50, fontTitle: "15px", fontStudio: "11.5px", fontTag: "8px" },
+    lg: { h: 64, w: 70, fontTitle: "19px", fontStudio: "14px", fontTag: "9.5px" },
+    xl: { h: 96, w: 105, fontTitle: "26px", fontStudio: "19px", fontTag: "12px" },
   }[size];
 
-  // Emblem-only dimensions
-  const emblemDimensions = {
-    sm: { w: 38, h: 24 },
-    md: { w: 50, h: 32 },
-    lg: { w: 72, h: 46 },
-    xl: { w: 92, h: 59 },
-  }[size];
-
-  // Stacked dimensions
-  const stackedDimensions = {
-    sm: { w: 180, h: 120 },
-    md: { w: 260, h: 175 },
-    lg: { w: 360, h: 240 },
-    xl: { w: 440, h: 295 },
-  }[size];
-
-  let logoElement: React.ReactNode = null;
-
-  if (variant === "emblem") {
-    logoElement = (
+  // 1. Raw variant (unadorned official image)
+  if (variant === "raw") {
+    const rawContent = (
       <div
-        className="afterbuild-logo-emblem-wrap"
+        className={`afterbuild-brand-raw ${className}`}
         style={{
           position: "relative",
-          width: `${emblemDimensions.w}px`,
-          height: `${emblemDimensions.h}px`,
-          flexShrink: 0,
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease",
+          width: `${logoDimensions.w}px`,
+          height: `${logoDimensions.h}px`,
+          display: "inline-block",
         }}
       >
         <Image
-          src="/images/logo-emblem.png"
-          alt="AfterBuild Studio Emblem"
-          width={emblemDimensions.w * 2}
-          height={emblemDimensions.h * 2}
+          src="/images/company_logo.png"
+          alt={`${siteConfig.name} — Luxury Architecture & Interior Design`}
+          width={logoDimensions.w * 2}
+          height={logoDimensions.h * 2}
           priority
           style={{
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            filter: isLight
-              ? "drop-shadow(0 2px 8px rgba(0,0,0,0.15))"
-              : glow
-                ? "drop-shadow(0 0 16px rgba(212,178,130,0.5)) drop-shadow(0 2px 8px rgba(0,0,0,0.6))"
-                : "drop-shadow(0 2px 8px rgba(0,0,0,0.4))",
+            display: "block",
           }}
         />
       </div>
     );
-  } else if (variant === "stacked") {
-    logoElement = (
+    if (!linkToHome) return rawContent;
+    return (
+      <Link href="/" aria-label={`${siteConfig.name} Home`} style={{ display: "inline-flex", textDecoration: "none" }}>
+        {rawContent}
+      </Link>
+    );
+  }
+
+  // 2. Card variant (for Studio page or showcase)
+  if (variant === "card") {
+    const cardContent = (
       <div
-        className="afterbuild-logo-stacked-wrap"
+        className={`afterbuild-brand-card ${className}`}
         style={{
           position: "relative",
-          width: `${stackedDimensions.w}px`,
-          height: "auto",
-          maxWidth: "100%",
+          borderRadius: "10px",
+          overflow: "hidden",
+          border: "1px solid rgba(197, 168, 128, 0.35)",
+          boxShadow: "0 24px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(197, 168, 128, 0.12)",
+          background: "radial-gradient(ellipse at center, rgba(30, 28, 26, 0.95) 0%, rgba(12, 12, 11, 0.98) 100%)",
+          padding: "clamp(12px, 2vw, 20px)",
+        }}
+      >
+        <div style={{ position: "relative", width: "100%", aspectRatio: "1085/992", overflow: "hidden", borderRadius: "6px" }}>
+          <Image
+            src="/images/company_logo.png"
+            alt="Official AfterBuild Studio Brand Mark & Architectural Geometry"
+            fill
+            priority
+            style={{
+              objectFit: "contain",
+              display: "block",
+            }}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      </div>
+    );
+    if (!linkToHome) return cardContent;
+    return (
+      <Link href="/" aria-label={`${siteConfig.name} Home`} style={{ display: "block", textDecoration: "none" }}>
+        {cardContent}
+      </Link>
+    );
+  }
+
+  // 3. Default Luxury Badge & Lockup (Used in Navbar, Footer, Drawers)
+  const content = (
+    <div
+      className={`afterbuild-brand group ${className}`}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: size === "sm" ? "10px" : "14px",
+        textDecoration: "none",
+        cursor: linkToHome ? "pointer" : "default",
+        userSelect: "none",
+      }}
+    >
+      {/* Official Logo Image Container with Decorlabs-style luxury pill finish */}
+      <div
+        className="afterbuild-logo-pill"
+        style={{
+          position: "relative",
+          width: `${logoDimensions.w}px`,
+          height: `${logoDimensions.h}px`,
+          flexShrink: 0,
+          borderRadius: size === "sm" ? "8px" : "10px",
+          overflow: "hidden",
+          border: isLight
+            ? "1px solid rgba(0, 0, 0, 0.12)"
+            : "1px solid rgba(197, 168, 128, 0.35)",
+          background: isLight
+            ? "#FFFFFF"
+            : "radial-gradient(circle at 40% 40%, rgba(35, 33, 30, 0.95) 0%, rgba(14, 14, 13, 0.98) 100%)",
+          boxShadow: isLight
+            ? "0 2px 10px rgba(0, 0, 0, 0.08)"
+            : glow
+              ? "0 4px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(197, 168, 128, 0.2)"
+              : "0 4px 14px rgba(0, 0, 0, 0.4)",
+          transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease",
+          padding: "2px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Image
-          src={isLight ? "/images/logo-stacked-light.png" : "/images/logo-stacked-dark.png"}
-          alt={`${siteConfig.name} — Architecture & Interior Design Studio`}
-          width={stackedDimensions.w}
-          height={stackedDimensions.h}
+          src="/images/company_logo.png"
+          alt={`${siteConfig.name} Official Logo`}
+          width={logoDimensions.w * 2}
+          height={logoDimensions.h * 2}
           priority
           style={{
             width: "100%",
-            height: "auto",
-            display: "block",
+            height: "100%",
             objectFit: "contain",
+            display: "block",
+            borderRadius: size === "sm" ? "6px" : "8px",
           }}
         />
       </div>
-    );
-  } else {
-    // Official Hybrid Lockup: Authentic Illuminated Emblem + Razor-Sharp Vector Typography
-    logoElement = (
-      <div
-        className="afterbuild-logo-lockup-wrap"
-        style={{
-          position: "relative",
-          display: "inline-flex",
-          alignItems: "center",
-          gap: `${lockupSpecs.gap}px`,
-          transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease",
-          userSelect: "none",
-        }}
-      >
-        {/* Authentic Radiant Emblem */}
-        <div
-          style={{
-            position: "relative",
-            width: `${lockupSpecs.emblemW}px`,
-            height: `${lockupSpecs.emblemH}px`,
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            src="/images/logo-emblem.png"
-            alt="AfterBuild Studio Mark"
-            width={lockupSpecs.emblemW * 2}
-            height={lockupSpecs.emblemH * 2}
-            priority
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              display: "block",
-              filter: isLight
-                ? "drop-shadow(0 2px 6px rgba(0,0,0,0.12))"
-                : glow
-                  ? "drop-shadow(0 0 16px rgba(212, 178, 130, 0.55)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7))"
-                  : "drop-shadow(0 2px 8px rgba(0,0,0,0.4))",
-            }}
-          />
-        </div>
 
-        {/* Crisp Vector Typography */}
+      {/* Responsive Studio Wordmark — Visible on Desktop screens, seamlessly hidden on compact mobile/tablet */}
+      {showWordmark && variant !== "badge" && (
         <div
+          className="afterbuild-logo-text hidden sm:flex"
           style={{
-            display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             lineHeight: 1,
@@ -200,14 +180,14 @@ export default function Logo({
             style={{
               display: "flex",
               alignItems: "baseline",
-              gap: `clamp(6px, 1vw, ${Math.max(8, parseInt(lockupSpecs.fontStudio) * 0.7)}px)`,
+              gap: size === "sm" ? "6px" : "8px",
               whiteSpace: "nowrap",
             }}
           >
             <span
               style={{
                 fontFamily: "var(--font-logo), 'Cinzel', 'Trajan Pro', Georgia, serif",
-                fontSize: lockupSpecs.fontTitle,
+                fontSize: logoDimensions.fontTitle,
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 color: isLight ? "#111111" : "#FFFFFF",
@@ -221,7 +201,7 @@ export default function Logo({
             <span
               style={{
                 fontFamily: "var(--font-logo), 'Cinzel', 'Trajan Pro', Georgia, serif",
-                fontSize: lockupSpecs.fontStudio,
+                fontSize: logoDimensions.fontStudio,
                 fontWeight: 600,
                 letterSpacing: "0.22em",
                 color: isLight ? "#8E6F4B" : "var(--bronze, #DFC298)",
@@ -238,41 +218,27 @@ export default function Logo({
             <span
               style={{
                 fontFamily: "var(--font-sans), -apple-system, sans-serif",
-                fontSize: lockupSpecs.fontTag,
+                fontSize: logoDimensions.fontTag,
                 fontWeight: 600,
-                letterSpacing: "0.26em",
+                letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 color: isLight ? "#666666" : "#DFC298",
-                marginTop: lockupSpecs.tagMarginTop,
+                marginTop: "3px",
                 whiteSpace: "nowrap",
-                opacity: 0.95,
+                opacity: 0.9,
               }}
             >
               DESIGN &bull; INTERIORS &bull; ARCHITECT
             </span>
           )}
         </div>
-      </div>
-    );
-  }
-
-  const content = (
-    <div
-      className={`afterbuild-brand group ${className}`}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        textDecoration: "none",
-        cursor: linkToHome ? "pointer" : "default",
-      }}
-    >
-      {logoElement}
+      )}
 
       <style jsx>{`
-        .afterbuild-brand:hover .afterbuild-logo-lockup-wrap,
-        .afterbuild-brand:hover .afterbuild-logo-emblem-wrap,
-        .afterbuild-brand:hover .afterbuild-logo-stacked-wrap {
-          transform: translateY(-1px) scale(1.02);
+        .afterbuild-brand:hover .afterbuild-logo-pill {
+          transform: translateY(-1px) scale(1.03);
+          border-color: rgba(197, 168, 128, 0.7);
+          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 24px rgba(197, 168, 128, 0.35);
         }
       `}</style>
     </div>

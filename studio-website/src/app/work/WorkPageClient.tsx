@@ -328,9 +328,9 @@ export default function WorkPageClient() {
         </div>
       </div>
 
-      {/* Mobile: single column override */}
+      {/* Mobile & Tablet: single column override */}
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .wk-item {
             grid-column: 1 / -1 !important;
           }

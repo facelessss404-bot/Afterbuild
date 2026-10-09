@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageEnhance
 from scipy import ndimage
 
-RAW_PATH = r'd:\Ideaseternal_Projects\client_2_website\studio-website\public\images\afterbuild-logo-raw.jpg'
+RAW_PATH = r'd:\Ideaseternal_Projects\client_2_website\company_logo.png'
 OUT_DIR = r'd:\Ideaseternal_Projects\client_2_website\studio-website\public\images'
 APP_DIR = r'd:\Ideaseternal_Projects\client_2_website\studio-website\src\app'
 
