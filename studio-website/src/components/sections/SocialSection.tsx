@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteConfig } from "@/data/site";
 import { projects } from "@/data/projects";
+import LuxurySocialPills from "@/components/ui/LuxurySocialPills";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,90 +95,7 @@ export default function SocialSection() {
             </h2>
           </div>
 
-          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-            <a
-              href={siteConfig.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                fontSize: "11px",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--text)",
-                border: "1px solid var(--border-light)",
-                background: "rgba(255,255,255,0.03)",
-                padding: "10px 18px",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
-                (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border-light)";
-                (e.currentTarget as HTMLElement).style.color = "var(--text)";
-              }}
-            >
-              Instagram ↗
-            </a>
-            <a
-              href={siteConfig.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                fontSize: "11px",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                border: "1px solid var(--border)",
-                padding: "10px 18px",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border-light)";
-                (e.currentTarget as HTMLElement).style.color = "var(--text)";
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-                (e.currentTarget as HTMLElement).style.color = "var(--muted)";
-              }}
-            >
-              LinkedIn ↗
-            </a>
-            <a
-              href={siteConfig.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                fontSize: "11px",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                border: "1px solid var(--border)",
-                padding: "10px 18px",
-                transition: "all 0.3s ease",
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border-light)";
-                (e.currentTarget as HTMLElement).style.color = "var(--text)";
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-                (e.currentTarget as HTMLElement).style.color = "var(--muted)";
-              }}
-            >
-              Facebook ↗
-            </a>
-          </div>
+          <LuxurySocialPills variant="pills" />
         </div>
 
         {/* Image grid — asymmetric editorial */}

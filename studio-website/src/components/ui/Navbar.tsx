@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import Logo from "@/components/ui/Logo";
+import LuxurySocialPills from "@/components/ui/LuxurySocialPills";
 import { siteConfig } from "@/data/site";
 
 const navLinks = [
@@ -317,42 +318,9 @@ export default function Navbar() {
             >
               {siteConfig.email}
             </a>
-            <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" style={{
-              fontSize: "11px",
-              letterSpacing: "0.12em",
-              color: "var(--muted)",
-              transition: "color 0.3s ease",
-              textTransform: "uppercase",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              Instagram ↗
-            </a>
-            <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" style={{
-              fontSize: "11px",
-              letterSpacing: "0.12em",
-              color: "var(--muted)",
-              transition: "color 0.3s ease",
-              textTransform: "uppercase",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              LinkedIn ↗
-            </a>
-            <a href={siteConfig.facebook} target="_blank" rel="noopener noreferrer" style={{
-              fontSize: "11px",
-              letterSpacing: "0.12em",
-              color: "var(--muted)",
-              transition: "color 0.3s ease",
-              textTransform: "uppercase",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              Facebook ↗
-            </a>
+            <div style={{ marginTop: "6px" }}>
+              <LuxurySocialPills variant="pills" />
+            </div>
           </div>
         </div>
 

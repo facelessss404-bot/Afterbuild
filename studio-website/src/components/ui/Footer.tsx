@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
+import LuxurySocialPills from "@/components/ui/LuxurySocialPills";
 import { siteConfig, getDirectionsUrl } from "@/data/site";
 
 const navLinks = [
@@ -103,86 +104,30 @@ export default function Footer() {
               </span>
             </p>
 
-            {/* Social Links */}
-            <div style={{ display: "flex", gap: "20px", alignItems: "center", flexWrap: "wrap" }}>
-              <a
-                href={siteConfig.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
+            {/* Social Links — Luxury Iconic Badges */}
+            <div style={{ marginTop: "clamp(18px, 2.5vw, 26px)", width: "100%", maxWidth: "380px" }}>
+              <div
                 style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "#FFFFFF",
-                  borderBottom: "1px solid rgba(255,255,255,0.3)",
-                  paddingBottom: "2px",
-                  transition: "color 0.3s ease, border-color 0.3s ease",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  marginBottom: "12px",
                 }}
               >
-                Instagram ↗
-              </a>
-              <a
-                href={siteConfig.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "#FFFFFF",
-                  borderBottom: "1px solid rgba(255,255,255,0.3)",
-                  paddingBottom: "2px",
-                  transition: "color 0.3s ease, border-color 0.3s ease",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
-                }}
-              >
-                LinkedIn ↗
-              </a>
-              <a
-                href={siteConfig.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "#FFFFFF",
-                  borderBottom: "1px solid rgba(255,255,255,0.3)",
-                  paddingBottom: "2px",
-                  transition: "color 0.3s ease, border-color 0.3s ease",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
-                }}
-              >
-                Facebook ↗
-              </a>
+                <span style={{ width: "18px", height: "1px", background: "var(--bronze)" }} />
+                <span
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "var(--bronze)",
+                  }}
+                >
+                  Official Channels
+                </span>
+              </div>
+              <LuxurySocialPills variant="cards" layout="stack" />
             </div>
           </div>
 
