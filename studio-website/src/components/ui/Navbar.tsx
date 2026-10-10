@@ -341,6 +341,18 @@ export default function Navbar() {
             >
               LinkedIn ↗
             </a>
+            <a href={siteConfig.facebook} target="_blank" rel="noopener noreferrer" style={{
+              fontSize: "11px",
+              letterSpacing: "0.12em",
+              color: "var(--muted)",
+              transition: "color 0.3s ease",
+              textTransform: "uppercase",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
+            onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
+            >
+              Facebook ↗
+            </a>
           </div>
         </div>
 

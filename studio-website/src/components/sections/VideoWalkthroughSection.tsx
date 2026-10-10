@@ -63,12 +63,12 @@ const walkthroughProjects: WalkthroughItem[] = [
     area: "3,100 sq.ft.",
     category: "Premium Apartment Interior",
     duration: "2:10 min",
-    videoSrc: "/videos/walkthrough-trifecta.mp4", // fallback video reel
+    videoSrc: "/videos/walkthrough-trifecta.mp4",
     poster: "/images/projects/sbr-horizon/hero.jpg",
     description:
       "A walkthrough of a panoramic Bangalore residence anchored by a bespoke fluted walnut media wall, floating marble credenza, and custom crystal wall sconces casting warm geometric shadows.",
     highlights: ["Fluted Feature Wall", "Floating Credenza", "Designer Sconces", "Open-Plan Living"],
-    hasVideoFile: false,
+    hasVideoFile: true,
   },
   {
     id: "gk-gateway",
@@ -79,12 +79,12 @@ const walkthroughProjects: WalkthroughItem[] = [
     area: "2,800 sq.ft.",
     category: "Turnkey Architecture & Interior",
     duration: "1:55 min",
-    videoSrc: "/videos/walkthrough-prestige.mp4", // fallback video reel
+    videoSrc: "/videos/walkthrough-prestige.mp4",
     poster: "/images/projects/gk-gateway/hero.jpg",
     description:
       "An end-to-end walkthrough exploring how natural light interacts with curated neutral palettes, smart storage modules, and bespoke furniture crafted by our network of 75+ artisans.",
     highlights: ["Turnkey Handover", "Curated Palette", "Smart Storage", "75+ Craftsmen Network"],
-    hasVideoFile: false,
+    hasVideoFile: true,
   },
   {
     id: "bhavisha-homes",
@@ -100,7 +100,7 @@ const walkthroughProjects: WalkthroughItem[] = [
     description:
       "A complete room-by-room walkthrough of a light-filled Bangalore residence featuring custom modular wardrobes, ergonomic space planning, and durable textured finishes tailored for everyday family life.",
     highlights: ["Modular Storage", "Warm Palette", "Space Optimization", "Turnkey Delivery"],
-    hasVideoFile: false,
+    hasVideoFile: true,
   },
 ];
 
@@ -110,35 +110,100 @@ export default function VideoWalkthroughSection() {
   const [isMuted, setIsMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isFullscreenModal, setIsFullscreenModal] = useState(false);
+  const [showCinemaControls, setShowCinemaControls] = useState(true);
+  const [cinemaActionFeedback, setCinemaActionFeedback] = useState<"play" | "pause" | null>(null);
+
+  // Card inline playback states
+  const [playingCardIndex, setPlayingCardIndex] = useState<number | null>(null);
+  const [cardMuted, setCardMuted] = useState(true);
+  const [showCardControlsIndex, setShowCardControlsIndex] = useState<number | null>(null);
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cinemaControlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const cardControlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const cardVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+
   const activeProject = walkthroughProjects[activeIndex];
 
-  // Reset playback when switching projects
+  // Reset cinema playback when switching active project
   useEffect(() => {
     setIsPlaying(false);
     setCurrentTime(0);
+    setShowCinemaControls(true);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.pause();
     }
   }, [activeIndex]);
 
-  const togglePlay = () => {
-    if (!videoRef.current) return;
+  // Cinema Auto-Hide Timer management
+  const resetCinemaControlsTimeout = () => {
+    if (cinemaControlsTimeoutRef.current) {
+      clearTimeout(cinemaControlsTimeoutRef.current);
+    }
+    setShowCinemaControls(true);
     if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      cinemaControlsTimeoutRef.current = setTimeout(() => {
+        setShowCinemaControls(false);
+      }, 2400);
     }
   };
 
-  const toggleMute = () => {
+  useEffect(() => {
+    if (isPlaying) {
+      cinemaControlsTimeoutRef.current = setTimeout(() => {
+        setShowCinemaControls(false);
+      }, 2200);
+    } else {
+      if (cinemaControlsTimeoutRef.current) {
+        clearTimeout(cinemaControlsTimeoutRef.current);
+      }
+      setShowCinemaControls(true);
+    }
+    return () => {
+      if (cinemaControlsTimeoutRef.current) clearTimeout(cinemaControlsTimeoutRef.current);
+    };
+  }, [isPlaying]);
+
+  // Play/pause toggle for Cinema player
+  const toggleCinemaPlay = () => {
+    if (!videoRef.current) return;
+    // Stop any card video playing below
+    if (playingCardIndex !== null) {
+      setPlayingCardIndex(null);
+    }
+
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+      setCinemaActionFeedback("pause");
+      setTimeout(() => setCinemaActionFeedback(null), 600);
+    } else {
+      videoRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+          setCinemaActionFeedback("play");
+          setTimeout(() => setCinemaActionFeedback(null), 600);
+        })
+        .catch(() => {});
+    }
+  };
+
+  const handleCinemaScreenClick = (e: React.MouseEvent) => {
+    // If controls are hidden while playing, first tap reveals controls cleanly
+    if (isPlaying && !showCinemaControls) {
+      resetCinemaControlsTimeout();
+      return;
+    }
+    toggleCinemaPlay();
+  };
+
+  const toggleCinemaMute = () => {
     if (!videoRef.current) return;
     videoRef.current.muted = !isMuted;
     setIsMuted(!isMuted);
+    resetCinemaControlsTimeout();
   };
 
   const handleTimeUpdate = () => {
@@ -156,12 +221,77 @@ export default function VideoWalkthroughSection() {
     const targetTime = parseFloat(e.target.value);
     videoRef.current.currentTime = targetTime;
     setCurrentTime(targetTime);
+    resetCinemaControlsTimeout();
   };
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
+  // Card Inline Playback Handlers
+  const resetCardControlsTimeout = (idx: number) => {
+    if (cardControlsTimeoutRef.current) {
+      clearTimeout(cardControlsTimeoutRef.current);
+    }
+    setShowCardControlsIndex(idx);
+    cardControlsTimeoutRef.current = setTimeout(() => {
+      setShowCardControlsIndex(null);
+    }, 2200);
+  };
+
+  const handleCardClick = (idx: number) => {
+    setActiveIndex(idx);
+
+    // If main cinema player is playing, pause it so there is no audio/video collision
+    if (videoRef.current && isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+
+    if (playingCardIndex === idx) {
+      // Toggle pause if already playing this card
+      setPlayingCardIndex(null);
+      setShowCardControlsIndex(null);
+    } else {
+      // Start playing this card
+      setPlayingCardIndex(idx);
+      resetCardControlsTimeout(idx);
+    }
+  };
+
+  // When card playback state changes, ensure video plays
+  useEffect(() => {
+    if (playingCardIndex !== null) {
+      const vid = cardVideoRefs.current[playingCardIndex];
+      if (vid) {
+        vid.muted = cardMuted;
+        vid.play().catch(() => {});
+      }
+    }
+  }, [playingCardIndex, cardMuted]);
+
+  // Smooth switch and scroll to cinema screen
+  const playInCinemaView = (idx: number) => {
+    setPlayingCardIndex(null);
+    setActiveIndex(idx);
+    setShowCinemaControls(true);
+
+    const el = document.getElementById("walkthroughs");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {});
+      }
+    }, 350);
   };
 
   return (
@@ -224,7 +354,7 @@ export default function VideoWalkthroughSection() {
               textTransform: "uppercase",
               color: "var(--bronze)",
             }}>
-              4 Featured Walkthroughs
+              {walkthroughProjects.length} Featured Walkthroughs
             </span>
           </div>
 
@@ -289,6 +419,9 @@ export default function VideoWalkthroughSection() {
         }}>
           {/* Cinema Screen Container */}
           <div
+            onMouseMove={resetCinemaControlsTimeout}
+            onTouchStart={resetCinemaControlsTimeout}
+            onMouseEnter={resetCinemaControlsTimeout}
             style={{
               position: "relative",
               width: "100%",
@@ -299,6 +432,7 @@ export default function VideoWalkthroughSection() {
               overflow: "hidden",
               border: "1px solid rgba(243, 240, 234, 0.12)",
               boxShadow: "0 24px 60px rgba(0, 0, 0, 0.6)",
+              userSelect: "none",
             }}
           >
             {/* The Video Element */}
@@ -312,21 +446,25 @@ export default function VideoWalkthroughSection() {
                 muted={isMuted}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
-                onEnded={() => setIsPlaying(false)}
-                onClick={togglePlay}
+                onEnded={() => {
+                  setIsPlaying(false);
+                  setShowCinemaControls(true);
+                }}
+                onClick={handleCinemaScreenClick}
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
                   cursor: "pointer",
+                  display: "block",
                 }}
               />
             )}
 
-            {/* Poster fallback image when paused or loading */}
+            {/* Poster fallback image when paused */}
             {!isPlaying && (
               <div
-                onClick={togglePlay}
+                onClick={toggleCinemaPlay}
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -389,24 +527,64 @@ export default function VideoWalkthroughSection() {
                     borderRadius: "999px",
                     backdropFilter: "blur(8px)",
                   }}>
-                    {activeProject.hasVideoFile ? "Play 4K Walkthrough" : "Preview Showcase Reel"}
+                    Play 4K Walkthrough
                   </span>
                 </div>
               </div>
             )}
 
-            {/* Video Badges Overlay (Top) */}
-            <div style={{
-              position: "absolute",
-              top: "20px",
-              left: "20px",
-              right: "20px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              zIndex: 10,
-              pointerEvents: "none",
-            }}>
+            {/* Visual Touch/Click Flash Feedback */}
+            {cinemaActionFeedback && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "68px",
+                  height: "68px",
+                  borderRadius: "50%",
+                  background: "rgba(10, 10, 9, 0.75)",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(197, 168, 128, 0.5)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--bronze)",
+                  pointerEvents: "none",
+                  zIndex: 15,
+                  animation: "cinemaPulse 0.5s ease-out forwards",
+                }}
+              >
+                {cinemaActionFeedback === "play" ? (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" style={{ marginLeft: "3px" }}>
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                ) : (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                  </svg>
+                )}
+              </div>
+            )}
+
+            {/* Video Badges Overlay (Top) — Auto-Hides while playing! */}
+            <div
+              style={{
+                position: "absolute",
+                top: "20px",
+                left: "20px",
+                right: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                zIndex: 10,
+                pointerEvents: showCinemaControls ? "auto" : "none",
+                opacity: showCinemaControls ? 1 : 0,
+                transform: showCinemaControls ? "translateY(0)" : "translateY(-14px)",
+                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 <span style={{
                   padding: "4px 10px",
@@ -451,7 +629,7 @@ export default function VideoWalkthroughSection() {
               </span>
             </div>
 
-            {/* Custom Control Bar (Bottom) */}
+            {/* Custom Control Bar (Bottom) — Auto-Hides while playing! */}
             <div
               style={{
                 position: "absolute",
@@ -459,12 +637,15 @@ export default function VideoWalkthroughSection() {
                 left: 0,
                 right: 0,
                 padding: "16px 20px",
-                background: "linear-gradient(to top, rgba(10,10,9,0.92) 0%, rgba(10,10,9,0.5) 70%, transparent 100%)",
+                background: "linear-gradient(to top, rgba(10,10,9,0.94) 0%, rgba(10,10,9,0.6) 70%, transparent 100%)",
                 display: "flex",
                 flexDirection: "column",
                 gap: "8px",
                 zIndex: 10,
-                transition: "opacity 0.3s ease",
+                pointerEvents: showCinemaControls ? "auto" : "none",
+                opacity: showCinemaControls ? 1 : 0,
+                transform: showCinemaControls ? "translateY(0)" : "translateY(14px)",
+                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               {/* Scrubber bar */}
@@ -484,10 +665,11 @@ export default function VideoWalkthroughSection() {
                 }}
               />
 
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                   <button
-                    onClick={togglePlay}
+                    type="button"
+                    onClick={toggleCinemaPlay}
                     aria-label={isPlaying ? "Pause video" : "Play video"}
                     style={{
                       background: "none",
@@ -508,7 +690,8 @@ export default function VideoWalkthroughSection() {
                   </button>
 
                   <button
-                    onClick={toggleMute}
+                    type="button"
+                    onClick={toggleCinemaMute}
                     aria-label={isMuted ? "Unmute audio" : "Mute audio"}
                     style={{
                       background: "none",
@@ -651,7 +834,7 @@ export default function VideoWalkthroughSection() {
           </div>
         </div>
 
-        {/* 4-Card Selector Grid Below Video */}
+        {/* 5-Card Selector Grid Below Video — Direct Playable Videos */}
         <div style={{ marginTop: "clamp(32px, 5vw, 48px)" }}>
           <div style={{
             display: "flex",
@@ -665,33 +848,35 @@ export default function VideoWalkthroughSection() {
               textTransform: "uppercase",
               color: "var(--muted)",
             }}>
-              Select Walkthrough (4 Projects)
+              Select Walkthrough ({walkthroughProjects.length} Projects)
             </span>
             <span style={{
               fontSize: "10px",
               letterSpacing: "0.15em",
               color: "var(--bronze)",
             }}>
-              Active: {activeProject.number} / 04
+              Active: {activeProject.number} / 0{walkthroughProjects.length}
             </span>
           </div>
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: "18px",
           }}>
             {walkthroughProjects.map((item, idx) => {
               const isSelected = idx === activeIndex;
+              const isCardPlaying = playingCardIndex === idx;
+              const isCardControlsVisible = showCardControlsIndex === idx;
+
               return (
                 <div
                   key={item.id}
-                  onClick={() => setActiveIndex(idx)}
+                  id={`walkthrough-card-${item.id}`}
                   style={{
                     position: "relative",
                     borderRadius: "8px",
                     overflow: "hidden",
-                    cursor: "pointer",
                     border: isSelected ? "2px solid var(--bronze)" : "1px solid rgba(243, 240, 234, 0.1)",
                     background: isSelected ? "rgba(197, 168, 128, 0.06)" : "rgba(255, 255, 255, 0.02)",
                     transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -699,76 +884,240 @@ export default function VideoWalkthroughSection() {
                   }}
                   className="walkthrough-card-item"
                 >
-                  {/* Thumbnail Banner */}
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "16/10", overflow: "hidden" }}>
-                    <Image
-                      src={item.poster}
-                      alt={item.title}
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                    <div style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: isSelected
-                        ? "linear-gradient(to top, rgba(12,12,11,0.9) 0%, rgba(12,12,11,0.1) 60%)"
-                        : "linear-gradient(to top, rgba(12,12,11,0.95) 0%, rgba(12,12,11,0.4) 60%)",
-                    }} />
+                  {/* Thumbnail Banner / Video Container */}
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      aspectRatio: "16/10",
+                      overflow: "hidden",
+                      background: "#050505",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleCardClick(idx)}
+                    onMouseMove={() => isCardPlaying && resetCardControlsTimeout(idx)}
+                    onTouchStart={() => isCardPlaying && resetCardControlsTimeout(idx)}
+                  >
+                    {/* If this card is playing, mount active video */}
+                    {isCardPlaying ? (
+                      <video
+                        ref={(el) => {
+                          cardVideoRefs.current[idx] = el;
+                        }}
+                        src={item.videoSrc}
+                        poster={item.poster}
+                        playsInline
+                        autoPlay
+                        muted={cardMuted}
+                        loop
+                        onEnded={() => setPlayingCardIndex(null)}
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                      />
+                    ) : (
+                      /* Poster image when NOT playing */
+                      <Image
+                        src={item.poster}
+                        alt={item.title}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
+                    )}
 
-                    {/* Number badge */}
-                    <div style={{
-                      position: "absolute",
-                      top: "10px",
-                      left: "10px",
-                      padding: "2px 7px",
-                      borderRadius: "3px",
-                      background: isSelected ? "var(--bronze)" : "rgba(0,0,0,0.7)",
-                      color: isSelected ? "#0a0a09" : "var(--text)",
-                      fontSize: "9px",
-                      fontWeight: 600,
-                      letterSpacing: "0.15em",
-                    }}>
+                    {/* Gradient overlay — HIDES completely while playing so video is clean */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: isSelected
+                          ? "linear-gradient(to top, rgba(12,12,11,0.9) 0%, rgba(12,12,11,0.1) 60%)"
+                          : "linear-gradient(to top, rgba(12,12,11,0.95) 0%, rgba(12,12,11,0.4) 60%)",
+                        opacity: isCardPlaying ? 0 : 1,
+                        pointerEvents: "none",
+                        transition: "opacity 0.3s ease",
+                      }}
+                    />
+
+                    {/* Number badge — HIDES while playing */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        left: "10px",
+                        padding: "2px 7px",
+                        borderRadius: "3px",
+                        background: isSelected ? "var(--bronze)" : "rgba(0,0,0,0.7)",
+                        color: isSelected ? "#0a0a09" : "var(--text)",
+                        fontSize: "9px",
+                        fontWeight: 600,
+                        letterSpacing: "0.15em",
+                        opacity: isCardPlaying ? 0 : 1,
+                        pointerEvents: "none",
+                        transition: "opacity 0.3s ease",
+                      }}
+                    >
                       {item.number}
                     </div>
 
-                    {/* Duration badge */}
-                    <div style={{
-                      position: "absolute",
-                      bottom: "10px",
-                      right: "10px",
-                      padding: "2px 6px",
-                      borderRadius: "3px",
-                      background: "rgba(0,0,0,0.8)",
-                      color: "rgba(243,240,234,0.8)",
-                      fontSize: "9px",
-                      fontFamily: "monospace",
-                    }}>
+                    {/* Duration badge — HIDES while playing */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "10px",
+                        right: "10px",
+                        padding: "2px 6px",
+                        borderRadius: "3px",
+                        background: "rgba(0,0,0,0.8)",
+                        color: "rgba(243,240,234,0.8)",
+                        fontSize: "9px",
+                        fontFamily: "monospace",
+                        opacity: isCardPlaying ? 0 : 1,
+                        pointerEvents: "none",
+                        transition: "opacity 0.3s ease",
+                      }}
+                    >
                       {item.duration}
                     </div>
 
-                    {/* Play symbol on hover */}
-                    <div style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "50%",
-                      background: isSelected ? "var(--bronze)" : "rgba(0,0,0,0.6)",
-                      color: isSelected ? "#0a0a09" : "var(--text)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "11px",
-                      opacity: isSelected ? 1 : 0.7,
-                    }}>
-                      &#9658;
-                    </div>
+                    {/* Big Center Play symbol — HIDES completely while playing! */}
+                    {!isCardPlaying && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          width: "38px",
+                          height: "38px",
+                          borderRadius: "50%",
+                          background: isSelected ? "var(--bronze)" : "rgba(12,12,11,0.75)",
+                          color: isSelected ? "#0a0a09" : "var(--text)",
+                          border: isSelected ? "none" : "1px solid rgba(197, 168, 128, 0.6)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "12px",
+                          boxShadow: "0 6px 20px rgba(0,0,0,0.6)",
+                          transition: "all 0.3s ease",
+                        }}
+                        className="play-pulse-btn"
+                      >
+                        <span style={{ marginLeft: "2px" }}>&#9658;</span>
+                      </div>
+                    )}
+
+                    {/* While playing: sleek auto-hiding micro-bar that disappears after 2s */}
+                    {isCardPlaying && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                          padding: "10px",
+                          opacity: isCardControlsVisible ? 1 : 0,
+                          pointerEvents: isCardControlsVisible ? "auto" : "none",
+                          transition: "opacity 0.35s ease",
+                          background: "linear-gradient(to bottom, rgba(10,10,9,0.55) 0%, transparent 40%, rgba(10,10,9,0.6) 100%)",
+                        }}
+                      >
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{
+                            fontSize: "9px",
+                            letterSpacing: "0.15em",
+                            textTransform: "uppercase",
+                            background: "rgba(10,10,9,0.85)",
+                            padding: "2px 8px",
+                            borderRadius: "3px",
+                            color: "var(--bronze)",
+                            border: "1px solid rgba(197,168,128,0.35)",
+                          }}>
+                            Playing Live
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCardMuted(!cardMuted);
+                              if (cardVideoRefs.current[idx]) {
+                                cardVideoRefs.current[idx]!.muted = !cardMuted;
+                              }
+                              resetCardControlsTimeout(idx);
+                            }}
+                            style={{
+                              background: "rgba(10,10,9,0.85)",
+                              border: "1px solid rgba(243,240,234,0.25)",
+                              color: "var(--text)",
+                              borderRadius: "999px",
+                              padding: "4px 8px",
+                              fontSize: "10px",
+                              cursor: "pointer",
+                            }}
+                          >
+                            {cardMuted ? "🔇 Unmute" : "🔊 Mute"}
+                          </button>
+                        </div>
+
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleCardClick(idx);
+                            }}
+                            style={{
+                              background: "rgba(10,10,9,0.85)",
+                              border: "1px solid rgba(197,168,128,0.4)",
+                              color: "var(--text)",
+                              borderRadius: "4px",
+                              padding: "4px 10px",
+                              fontSize: "10px",
+                              cursor: "pointer",
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            ❚❚ Pause
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              playInCinemaView(idx);
+                            }}
+                            style={{
+                              background: "var(--bronze)",
+                              border: "none",
+                              color: "#0a0a09",
+                              borderRadius: "4px",
+                              padding: "4px 10px",
+                              fontSize: "10px",
+                              fontWeight: 600,
+                              cursor: "pointer",
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            Cinema Screen ↑
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Text details */}
-                  <div style={{ padding: "14px 16px" }}>
+                  {/* Text details below thumbnail */}
+                  <div
+                    style={{ padding: "14px 16px" }}
+                  >
                     <div style={{
                       display: "flex",
                       justifyContent: "space-between",
@@ -806,9 +1155,65 @@ export default function VideoWalkthroughSection() {
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
+                      marginBottom: "12px",
                     }}>
                       {item.subtitle}
                     </p>
+
+                    {/* Action buttons on the card */}
+                    <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      paddingTop: "8px",
+                      borderTop: "1px solid rgba(243, 240, 234, 0.06)",
+                    }}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCardClick(idx);
+                        }}
+                        style={{
+                          background: isCardPlaying ? "rgba(197, 168, 128, 0.15)" : "transparent",
+                          border: isCardPlaying ? "1px solid var(--bronze)" : "1px solid rgba(243, 240, 234, 0.18)",
+                          color: isCardPlaying ? "var(--bronze)" : "var(--text)",
+                          fontSize: "10px",
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          padding: "5px 12px",
+                          borderRadius: "4px",
+                          cursor: "pointer",
+                          transition: "all 0.25s ease",
+                          fontWeight: 500,
+                        }}
+                      >
+                        {isCardPlaying ? "❚❚ Pause Video" : "▶ Play Video"}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          playInCinemaView(idx);
+                        }}
+                        style={{
+                          background: "none",
+                          border: "none",
+                          color: "var(--bronze)",
+                          fontSize: "10px",
+                          letterSpacing: "0.12em",
+                          textTransform: "uppercase",
+                          cursor: "pointer",
+                          padding: "4px 0",
+                          transition: "opacity 0.2s ease",
+                        }}
+                        onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.7")}
+                        onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+                      >
+                        Cinema Screen ↑
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -820,13 +1225,27 @@ export default function VideoWalkthroughSection() {
 
       <style jsx>{`
         .play-pulse-btn:hover {
-          transform: scale(1.08);
+          transform: translate(-50%, -50%) scale(1.1);
           border-color: #fff;
           background: rgba(197, 168, 128, 0.4);
         }
         .walkthrough-card-item:hover {
           border-color: rgba(197, 168, 128, 0.5);
           transform: translateY(-2px);
+        }
+        @keyframes cinemaPulse {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.7);
+          }
+          50% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.2);
+          }
         }
       `}</style>
     </section>

@@ -37,8 +37,10 @@ export const siteConfig = {
   hours: "Monday to Saturday: 9:00 AM – 6:00 PM",
   hoursNote: "Sundays: Closed",
   website: "https://afterbuilds.com",
-  instagram: "https://instagram.com/interiors_banglore_decor",
-  linkedin: "https://linkedin.com/company/afterbuildstudio",
+  instagram: "https://www.instagram.com/interiors_afterbuild_studio?dlrf=MXJpaTVuNzRpYTE4cg==",
+  instagramHandle: "interiors_afterbuild_studio",
+  linkedin: "https://www.linkedin.com/company/ocean-decorr/",
+  facebook: "https://www.facebook.com/share/1cwzKmcW26/?mibextid=wwXIfr",
   founded: "2023",
   foundedNote: "Began as Ocean Decor in May 2023",
   careers: {

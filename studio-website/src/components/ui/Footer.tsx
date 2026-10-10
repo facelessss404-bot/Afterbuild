@@ -104,7 +104,7 @@ export default function Footer() {
             </p>
 
             {/* Social Links */}
-            <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "20px", alignItems: "center", flexWrap: "wrap" }}>
               <a
                 href={siteConfig.instagram}
                 target="_blank"
@@ -156,6 +156,32 @@ export default function Footer() {
                 }}
               >
                 LinkedIn ↗
+              </a>
+              <a
+                href={siteConfig.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "#FFFFFF",
+                  borderBottom: "1px solid rgba(255,255,255,0.3)",
+                  paddingBottom: "2px",
+                  transition: "color 0.3s ease, border-color 0.3s ease",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
+                }}
+              >
+                Facebook ↗
               </a>
             </div>
           </div>
