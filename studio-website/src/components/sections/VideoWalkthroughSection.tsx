@@ -136,24 +136,10 @@ export default function VideoWalkthroughSection() {
     }
   }, [activeIndex]);
 
-  // Cinema Auto-Hide Timer management
-  const resetCinemaControlsTimeout = () => {
-    if (cinemaControlsTimeoutRef.current) {
-      clearTimeout(cinemaControlsTimeoutRef.current);
-    }
-    setShowCinemaControls(true);
-    if (isPlaying) {
-      cinemaControlsTimeoutRef.current = setTimeout(() => {
-        setShowCinemaControls(false);
-      }, 2400);
-    }
-  };
-
+  // Cinema Auto-Hide: When playing starts, hide controls immediately
   useEffect(() => {
     if (isPlaying) {
-      cinemaControlsTimeoutRef.current = setTimeout(() => {
-        setShowCinemaControls(false);
-      }, 2200);
+      setShowCinemaControls(false);
     } else {
       if (cinemaControlsTimeoutRef.current) {
         clearTimeout(cinemaControlsTimeoutRef.current);
@@ -164,6 +150,18 @@ export default function VideoWalkthroughSection() {
       if (cinemaControlsTimeoutRef.current) clearTimeout(cinemaControlsTimeoutRef.current);
     };
   }, [isPlaying]);
+
+  // Desktop hover/mouse move handler to momentarily preview controls while playing
+  const handleCinemaMouseMove = () => {
+    if (!isPlaying) return;
+    if (cinemaControlsTimeoutRef.current) {
+      clearTimeout(cinemaControlsTimeoutRef.current);
+    }
+    setShowCinemaControls(true);
+    cinemaControlsTimeoutRef.current = setTimeout(() => {
+      setShowCinemaControls(false);
+    }, 2000);
+  };
 
   // Play/pause toggle for Cinema player
   const toggleCinemaPlay = () => {
@@ -176,6 +174,7 @@ export default function VideoWalkthroughSection() {
     if (isPlaying) {
       videoRef.current.pause();
       setIsPlaying(false);
+      setShowCinemaControls(true);
       setCinemaActionFeedback("pause");
       setTimeout(() => setCinemaActionFeedback(null), 600);
     } else {
@@ -183,6 +182,7 @@ export default function VideoWalkthroughSection() {
         .play()
         .then(() => {
           setIsPlaying(true);
+          setShowCinemaControls(false);
           setCinemaActionFeedback("play");
           setTimeout(() => setCinemaActionFeedback(null), 600);
         })
@@ -191,11 +191,6 @@ export default function VideoWalkthroughSection() {
   };
 
   const handleCinemaScreenClick = (e: React.MouseEvent) => {
-    // If controls are hidden while playing, first tap reveals controls cleanly
-    if (isPlaying && !showCinemaControls) {
-      resetCinemaControlsTimeout();
-      return;
-    }
     toggleCinemaPlay();
   };
 
@@ -203,7 +198,7 @@ export default function VideoWalkthroughSection() {
     if (!videoRef.current) return;
     videoRef.current.muted = !isMuted;
     setIsMuted(!isMuted);
-    resetCinemaControlsTimeout();
+    handleCinemaMouseMove();
   };
 
   const handleTimeUpdate = () => {
@@ -221,7 +216,7 @@ export default function VideoWalkthroughSection() {
     const targetTime = parseFloat(e.target.value);
     videoRef.current.currentTime = targetTime;
     setCurrentTime(targetTime);
-    resetCinemaControlsTimeout();
+    handleCinemaMouseMove();
   };
 
   const formatTime = (seconds: number) => {
@@ -419,9 +414,8 @@ export default function VideoWalkthroughSection() {
         }}>
           {/* Cinema Screen Container */}
           <div
-            onMouseMove={resetCinemaControlsTimeout}
-            onTouchStart={resetCinemaControlsTimeout}
-            onMouseEnter={resetCinemaControlsTimeout}
+            onMouseMove={handleCinemaMouseMove}
+            onMouseLeave={() => isPlaying && setShowCinemaControls(false)}
             style={{
               position: "relative",
               width: "100%",
@@ -568,7 +562,7 @@ export default function VideoWalkthroughSection() {
               </div>
             )}
 
-            {/* Video Badges Overlay (Top) — Auto-Hides while playing! */}
+            {/* Video Badges Overlay (Top) — Completely hidden while video is PLAYING */}
             <div
               style={{
                 position: "absolute",
@@ -579,10 +573,10 @@ export default function VideoWalkthroughSection() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 zIndex: 10,
-                pointerEvents: showCinemaControls ? "auto" : "none",
-                opacity: showCinemaControls ? 1 : 0,
-                transform: showCinemaControls ? "translateY(0)" : "translateY(-14px)",
-                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: "none",
+                opacity: isPlaying ? 0 : 1,
+                transform: isPlaying ? "translateY(-14px)" : "translateY(0)",
+                transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
@@ -629,7 +623,7 @@ export default function VideoWalkthroughSection() {
               </span>
             </div>
 
-            {/* Custom Control Bar (Bottom) — Auto-Hides while playing! */}
+            {/* Custom Control Bar (Bottom) — Completely hidden while video is PLAYING */}
             <div
               style={{
                 position: "absolute",
@@ -642,10 +636,10 @@ export default function VideoWalkthroughSection() {
                 flexDirection: "column",
                 gap: "8px",
                 zIndex: 10,
-                pointerEvents: showCinemaControls ? "auto" : "none",
-                opacity: showCinemaControls ? 1 : 0,
-                transform: showCinemaControls ? "translateY(0)" : "translateY(14px)",
-                transition: "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                pointerEvents: isPlaying ? (showCinemaControls ? "auto" : "none") : "auto",
+                opacity: isPlaying ? (showCinemaControls ? 1 : 0) : 1,
+                transform: isPlaying && !showCinemaControls ? "translateY(14px)" : "translateY(0)",
+                transition: "opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               {/* Scrubber bar */}
