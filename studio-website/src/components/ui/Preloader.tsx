@@ -9,30 +9,30 @@ export default function Preloader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    // Elegant, deliberate pacing (~2.2s total to reach 100%) so brand name & details are clearly visible
+    // Deliberate 5-second luxury pacing (~4.0s progress climb + 1.0s hold at 100%)
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        // Smooth gradual stepping
-        const increment = Math.random() * 4.5 + 2.5;
+        // Smooth architectural pacing (~1.25% per 50ms = 4.0s to 100%)
+        const increment = Math.random() * 0.7 + 0.9;
         return Math.min(prev + increment, 100);
       });
-    }, 60);
+    }, 50);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (progress >= 100) {
-      // Hold at 100% for 600ms so the user can comfortably take in the studio identity
-      const t1 = setTimeout(() => setFading(true), 650);
+      // Hold at 100% for 1 full second (total ~5.0 seconds visible)
+      const t1 = setTimeout(() => setFading(true), 1000);
       const t2 = setTimeout(() => {
         setHidden(true);
         document.body.style.overflow = "";
-      }, 1300);
+      }, 1750);
       return () => {
         clearTimeout(t1);
         clearTimeout(t2);
@@ -96,9 +96,9 @@ export default function Preloader() {
               textTransform: "uppercase",
               color: "#141312",
               fontWeight: 500,
-              opacity: progress > i * 4 ? 1 : 0.08,
-              transform: `translateY(${progress > i * 4 ? 0 : 8}px)`,
-              transition: `opacity 0.4s ease ${i * 0.03}s, transform 0.4s ease ${i * 0.03}s`,
+              opacity: progress > i * 1.8 ? 1 : 0.1,
+              transform: `translateY(${progress > i * 1.8 ? 0 : 6}px)`,
+              transition: `opacity 0.4s ease ${i * 0.02}s, transform 0.4s ease ${i * 0.02}s`,
             }}
           >
             {char}
@@ -107,28 +107,28 @@ export default function Preloader() {
       </div>
 
       {/* Tagline & Identity */}
-      <div style={{ textAlign: "center", maxWidth: "360px" }}>
+      <div style={{ textAlign: "center", maxWidth: "380px" }}>
         <p
           style={{
-            fontSize: "10px",
+            fontSize: "10.5px",
             letterSpacing: "0.3em",
             textTransform: "uppercase",
             color: "#9E7948",
             fontWeight: 600,
-            opacity: progress > 30 ? 1 : 0,
+            opacity: progress > 15 ? 1 : 0,
             transition: "opacity 0.5s ease",
-            marginBottom: "4px",
+            marginBottom: "5px",
           }}
         >
           {siteConfig.tagline}
         </p>
         <p
           style={{
-            fontSize: "9px",
+            fontSize: "9.5px",
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: "#7A746C",
-            opacity: progress > 50 ? 1 : 0,
+            opacity: progress > 25 ? 1 : 0,
             transition: "opacity 0.5s ease",
           }}
         >
