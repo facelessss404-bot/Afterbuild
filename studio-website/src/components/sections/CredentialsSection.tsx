@@ -80,7 +80,7 @@ export default function CredentialsSection() {
               marginBottom: "clamp(20px, 3vw, 32px)",
             }}>
               Architecture,<br />
-              <span style={{ color: "rgba(20, 19, 18, 0.45)", fontStyle: "italic" }}>
+              <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>
                 Interiors & Beyond.
               </span>
             </h2>

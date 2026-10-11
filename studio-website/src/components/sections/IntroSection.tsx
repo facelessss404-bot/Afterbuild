@@ -152,7 +152,7 @@ export default function IntroSection() {
                 fontWeight: 400,
                 lineHeight: 1.0,
                 letterSpacing: "-0.02em",
-                color: "rgba(20, 19, 18, 0.45)",
+                color: "var(--bronze)",
                 fontStyle: "italic",
               }}>
                 Experiences.

@@ -15,20 +15,19 @@ export default function HeroSection() {
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        defaults: { ease: "power4.out" },
-        delay: 1.2,
+        defaults: { ease: "power3.out" },
+        delay: 0.15,
       });
 
-      // Image reveal from clip-path
       tl.fromTo(
         ".hero-img",
-        { clipPath: "inset(8% 8% 8% 8%)", scale: 1.08, opacity: 0.7 },
-        { clipPath: "inset(0% 0% 0% 0%)", scale: 1, opacity: 1, duration: 1.8, ease: "power4.inOut" }
+        { scale: 1.04, opacity: 0.9 },
+        { scale: 1, opacity: 1, duration: 1.0, ease: "power2.out" }
       )
-      .fromTo(".hero-eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7 }, "-=1.1")
-      .fromTo(".hero-title-line", { yPercent: 110 }, { yPercent: 0, duration: 1.0, stagger: 0.1 }, "-=0.7")
-      .fromTo(".hero-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
-      .fromTo(".hero-bottom", { opacity: 0 }, { opacity: 1, duration: 0.6 }, "-=0.3");
+      .fromTo(".hero-eyebrow", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
+      .fromTo(".hero-title-line", { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, stagger: 0.08 }, "-=0.5")
+      .fromTo(".hero-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+      .fromTo(".hero-bottom", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
     }, sectionRef);
 
     return () => { try { ctx.revert(); } catch (_) {} };
@@ -110,15 +109,15 @@ export default function HeroSection() {
           </div>
 
           {/* Large editorial heading with high-contrast text shadows */}
-          <h1 style={{ overflow: "hidden", marginBottom: "clamp(20px, 2.5vw, 36px)" }}>
+          <h1 style={{ overflow: "hidden", marginBottom: "clamp(16px, 2vw, 26px)" }}>
             <span style={{ display: "block", overflow: "hidden" }}>
               <span className="hero-title-line" style={{
                 display: "block",
                 fontFamily: "var(--font-display)",
                 fontSize: "var(--text-hero)",
                 fontWeight: 400,
-                lineHeight: 0.9,
-                letterSpacing: "-0.03em",
+                lineHeight: 0.98,
+                letterSpacing: "-0.02em",
                 color: "#FFFFFF",
                 textShadow: "0 4px 28px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.9)",
                 textTransform: "uppercase",
@@ -132,8 +131,8 @@ export default function HeroSection() {
                 fontFamily: "var(--font-display)",
                 fontSize: "var(--text-hero)",
                 fontWeight: 400,
-                lineHeight: 0.9,
-                letterSpacing: "-0.03em",
+                lineHeight: 0.98,
+                letterSpacing: "-0.02em",
                 color: "#E8D5BC",
                 textShadow: "0 4px 28px rgba(0,0,0,0.85)",
                 fontStyle: "italic",
@@ -154,11 +153,11 @@ export default function HeroSection() {
           }}>
             <div style={{ maxWidth: "520px" }}>
               <p className="hero-sub" style={{
-                fontSize: "clamp(13px, 1.15vw, 15.5px)",
+                fontSize: "clamp(13px, 1.1vw, 15px)",
                 color: "rgba(255, 255, 255, 0.92)",
                 lineHeight: 1.65,
                 fontWeight: 300,
-                marginBottom: "16px",
+                marginBottom: "14px",
                 textShadow: "0 2px 14px rgba(0,0,0,0.85)",
               }}>
                 Designing spaces with purpose. Building experiences with intention. Turnkey architectural solutions, spatial engineering, and luxury interior design delivered across Bangalore.
@@ -167,14 +166,15 @@ export default function HeroSection() {
               {/* Stats badges with 3.5+ Years Experience */}
               <div style={{
                 display: "flex",
-                gap: "14px",
+                gap: "12px",
                 flexWrap: "wrap",
                 fontSize: "10.5px",
-                letterSpacing: "0.18em",
+                letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 color: "#E5C89C",
                 fontWeight: 600,
                 textShadow: "0 2px 10px rgba(0,0,0,0.8)",
+                alignItems: "center",
               }}>
                 <span>160+ Projects</span>
                 <span>&bull;</span>
@@ -183,6 +183,49 @@ export default function HeroSection() {
                 <span>3.5+ Years Experience</span>
                 <span>&bull;</span>
                 <span>Turnkey Architecture</span>
+              </div>
+
+              {/* Scroll exploration indicator — cleanly placed below stats, zero button collision */}
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                marginTop: "16px",
+              }}>
+                <div style={{
+                  width: "16px",
+                  height: "26px",
+                  borderRadius: "999px",
+                  border: "1px solid rgba(255, 255, 255, 0.4)",
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "4px",
+                  flexShrink: 0,
+                }}>
+                  <div style={{
+                    width: "2.5px",
+                    height: "5px",
+                    borderRadius: "2px",
+                    background: "var(--bronze)",
+                    animation: "scrollDot 1.8s ease-in-out infinite",
+                  }} />
+                </div>
+                <span style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "rgba(255, 255, 255, 0.75)",
+                  fontWeight: 500,
+                }}>
+                  Scroll to explore
+                </span>
+                <span style={{
+                  color: "var(--bronze)",
+                  fontSize: "11px",
+                  transform: "translateY(1px)",
+                }}>
+                  &darr;
+                </span>
               </div>
             </div>
 
@@ -278,44 +321,6 @@ export default function HeroSection() {
             >
               Instagram
             </a>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div
-          className="hero-scroll-indicator"
-          style={{
-            position: "absolute",
-            bottom: "clamp(24px, 4vh, 44px)",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
-          }}
-        >
-          <span style={{
-            fontSize: "9px",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "rgba(243,240,234,0.3)",
-            writingMode: "vertical-rl",
-          }}>Scroll</span>
-          <div style={{
-            width: "1px",
-            height: "52px",
-            background: "rgba(243,240,234,0.12)",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-            <div style={{
-              position: "absolute",
-              inset: 0,
-              background: "var(--bronze)",
-              transformOrigin: "top",
-              animation: "scrollPulse 2.2s ease-in-out infinite 1.8s",
-            }} />
           </div>
         </div>
       </div>

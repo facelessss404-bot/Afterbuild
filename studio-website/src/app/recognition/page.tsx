@@ -113,7 +113,7 @@ export default function RecognitionPage() {
                 overflowWrap: "anywhere",
               }}>
                 Recognition<br />
-                <em style={{ color: "rgba(243,240,234,0.35)", fontStyle: "italic" }}>& Honors</em>
+                <em style={{ color: "var(--bronze)", fontStyle: "italic" }}>& Honors</em>
               </h1>
             </div>
 
@@ -341,7 +341,7 @@ export default function RecognitionPage() {
               fontSize: "clamp(11px, 1.1vw, 14px)",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.22)",
+              color: "rgba(20, 19, 18, 0.28)",
               fontFamily: "var(--font-sans)",
             }}>
               {item}
@@ -435,8 +435,8 @@ export default function RecognitionPage() {
                       fontSize: "11px",
                       letterSpacing: "0.2em",
                       textTransform: "uppercase",
-                      color: "var(--text)",
-                      border: "1px solid rgba(243,240,234,0.3)",
+                      color: "#FFFFFF",
+                      border: "1px solid rgba(255, 255, 255, 0.4)",
                       padding: "10px 24px",
                     }}>View Feature →</span>
                   </div>
@@ -461,7 +461,7 @@ export default function RecognitionPage() {
                       fontFamily: "var(--font-display)",
                       fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
                       fontStyle: "italic",
-                      color: "var(--text)",
+                      color: "#FFFFFF",
                       lineHeight: 1.3,
                       marginBottom: "12px",
                     }}>"{item.quote}"</p>
@@ -469,7 +469,7 @@ export default function RecognitionPage() {
                       fontSize: "9px",
                       letterSpacing: "0.18em",
                       textTransform: "uppercase",
-                      color: "rgba(243,240,234,0.4)",
+                      color: "rgba(255, 255, 255, 0.7)",
                     }}>Archived Feature</span>
                   </div>
 

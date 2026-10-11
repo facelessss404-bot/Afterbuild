@@ -385,7 +385,7 @@ export default function FeaturedProjects() {
               fontSize: "9px",
               letterSpacing: "0.25em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.35)",
+              color: "rgba(255, 255, 255, 0.75)",
             }}>
               Scroll or click arrows to explore
             </span>
@@ -393,7 +393,7 @@ export default function FeaturedProjects() {
               fontSize: "9px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.35)",
+              color: "rgba(255, 255, 255, 0.75)",
             }}>
               Swipe
             </span>

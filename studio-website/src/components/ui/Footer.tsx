@@ -104,8 +104,8 @@ export default function Footer() {
               </span>
             </p>
 
-            {/* Social Links — Luxury Iconic Badges */}
-            <div style={{ marginTop: "clamp(18px, 2.5vw, 26px)", width: "100%", maxWidth: "380px" }}>
+            {/* Social Links — Luxury Iconic Badges (Horizontal) */}
+            <div style={{ marginTop: "clamp(18px, 2.5vw, 26px)", width: "100%" }}>
               <div
                 style={{
                   display: "flex",
@@ -127,7 +127,7 @@ export default function Footer() {
                   Official Channels
                 </span>
               </div>
-              <LuxurySocialPills variant="cards" layout="stack" />
+              <LuxurySocialPills variant="cards" layout="row" />
             </div>
           </div>
 
@@ -343,7 +343,8 @@ export default function Footer() {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "-0.03em",
-              color: "rgba(20, 19, 18, 0.04)",
+              color: "rgba(20, 19, 18, 0.12)",
+              WebkitTextStroke: "1.5px rgba(20, 19, 18, 0.22)",
               lineHeight: 1,
               userSelect: "none",
               pointerEvents: "none",

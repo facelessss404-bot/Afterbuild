@@ -692,11 +692,11 @@ export default function VideoWalkthroughSection() {
                   borderRadius: "4px",
                   background: "rgba(10, 10, 9, 0.8)",
                   backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(243, 240, 234, 0.12)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
                   fontSize: "9px",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "var(--text)",
+                  color: "#FFFFFF",
                 }}>
                   {activeProject.location} &bull; {activeProject.area}
                 </span>
@@ -747,7 +747,7 @@ export default function VideoWalkthroughSection() {
                   width: "100%",
                   height: "3px",
                   accentColor: "var(--bronze)",
-                  background: "rgba(243,240,234,0.2)",
+                  background: "rgba(255, 255, 255, 0.25)",
                   cursor: "pointer",
                 }}
               />
@@ -1129,7 +1129,7 @@ export default function VideoWalkthroughSection() {
                           height: "38px",
                           borderRadius: "50%",
                           background: isSelected ? "var(--bronze)" : "rgba(12,12,11,0.75)",
-                          color: isSelected ? "#0a0a09" : "var(--text)",
+                          color: isSelected ? "#0a0a09" : "#FFFFFF",
                           border: isSelected ? "none" : "1px solid rgba(197, 168, 128, 0.6)",
                           display: "flex",
                           alignItems: "center",
@@ -1186,8 +1186,8 @@ export default function VideoWalkthroughSection() {
                             }}
                             style={{
                               background: "rgba(10,10,9,0.85)",
-                              border: "1px solid rgba(243,240,234,0.25)",
-                              color: "var(--text)",
+                              border: "1px solid rgba(255, 255, 255, 0.25)",
+                              color: "#FFFFFF",
                               borderRadius: "999px",
                               padding: "4px 8px",
                               fontSize: "10px",

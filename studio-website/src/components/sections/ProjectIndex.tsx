@@ -115,12 +115,13 @@ export default function ProjectIndex() {
               gap: "12px",
               marginBottom: "clamp(12px, 2vw, 20px)",
             }}>
-              <span style={{ width: "24px", height: "1px", background: "#6b6762", display: "block" }} />
+              <span style={{ width: "24px", height: "1px", background: "var(--bronze)", display: "block" }} />
               <span style={{
                 fontSize: "10px",
                 letterSpacing: "0.28em",
                 textTransform: "uppercase",
-                color: "#6b6762",
+                color: "var(--bronze)",
+                fontWeight: 600,
               }}>
                 04 / All Projects
               </span>
@@ -149,15 +150,16 @@ export default function ProjectIndex() {
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
                 style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.22em",
+                  fontSize: "9.5px",
+                  letterSpacing: "0.2em",
                   textTransform: "uppercase",
                   padding: "8px 16px",
                   border: activeFilter === cat
                     ? "1px solid #0a0a09"
-                    : "1px solid rgba(10,10,9,0.15)",
-                  background: activeFilter === cat ? "#0a0a09" : "transparent",
-                  color: activeFilter === cat ? "#f3f0ea" : "#6b6762",
+                    : "1px solid rgba(10,10,9,0.35)",
+                  background: activeFilter === cat ? "#0a0a09" : "rgba(255, 255, 255, 0.4)",
+                  color: activeFilter === cat ? "#faf8f5" : "#1f1d1b",
+                  fontWeight: 600,
                   cursor: "pointer",
                   transition: "all 0.25s ease",
                 }}
@@ -174,15 +176,15 @@ export default function ProjectIndex() {
           gridTemplateColumns: "52px 1fr 160px 64px",
           gap: "clamp(12px, 2vw, 32px)",
           padding: "0 0 12px",
-          borderBottom: "1px solid rgba(10,10,9,0.12)",
+          borderBottom: "1px solid rgba(10,10,9,0.22)",
           marginBottom: "0",
         }}
         className="hidden-mobile"
         >
-          <span style={{ fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(10,10,9,0.35)" }}>No.</span>
-          <span style={{ fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(10,10,9,0.35)" }}>Project</span>
-          <span style={{ fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(10,10,9,0.35)" }}>Category</span>
-          <span style={{ fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(10,10,9,0.35)", textAlign: "right" }}>Year</span>
+          <span style={{ fontSize: "9.5px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#48433d", fontWeight: 700 }}>No.</span>
+          <span style={{ fontSize: "9.5px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#48433d", fontWeight: 700 }}>Project</span>
+          <span style={{ fontSize: "9.5px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#48433d", fontWeight: 700 }}>Category</span>
+          <span style={{ fontSize: "9.5px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#48433d", fontWeight: 700, textAlign: "right" }}>Year</span>
         </div>
 
         {/* Project rows */}
@@ -196,7 +198,7 @@ export default function ProjectIndex() {
               onMouseEnter={(e) => {
                 setPreviewSrc(project.thumbnailImage);
                 setPreviewVisible(true);
-                (e.currentTarget as HTMLElement).style.background = "rgba(10,10,9,0.03)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(10,10,9,0.05)";
               }}
               onMouseLeave={(e) => {
                 setPreviewVisible(false);
@@ -204,7 +206,7 @@ export default function ProjectIndex() {
               }}
               style={{
                 padding: "clamp(18px, 2.5vw, 26px) clamp(8px, 1vw, 16px)",
-                borderBottom: "1px solid rgba(10,10,9,0.08)",
+                borderBottom: "1px solid rgba(10,10,9,0.12)",
                 transition: "background 0.3s ease",
               }}
             >
@@ -213,7 +215,8 @@ export default function ProjectIndex() {
                 fontFamily: "var(--font-sans)",
                 fontSize: "11px",
                 letterSpacing: "0.12em",
-                color: "rgba(10,10,9,0.25)",
+                color: "#5e5850",
+                fontWeight: 600,
               }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -232,10 +235,11 @@ export default function ProjectIndex() {
                   {project.title}
                 </span>
                 <span style={{
-                  fontSize: "9px",
+                  fontSize: "9.5px",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  color: "rgba(10,10,9,0.4)",
+                  color: "#48433d",
+                  fontWeight: 600,
                   marginTop: "4px",
                   display: "none",
                 }}
@@ -247,10 +251,11 @@ export default function ProjectIndex() {
 
               {/* Category (desktop) */}
               <span style={{
-                fontSize: "10px",
+                fontSize: "10.5px",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "rgba(10,10,9,0.45)",
+                color: "#48433d",
+                fontWeight: 600,
               }}
               className="pi-col-category hidden-mobile"
               >
@@ -262,15 +267,17 @@ export default function ProjectIndex() {
                 <span style={{
                   fontSize: "11px",
                   letterSpacing: "0.12em",
-                  color: "rgba(10,10,9,0.35)",
+                  color: "#5e5850",
+                  fontWeight: 600,
                 }}
                 className="hidden-mobile"
                 >
                   {project.year}
                 </span>
                 <span style={{
-                  fontSize: "13px",
-                  color: "rgba(10,10,9,0.4)",
+                  fontSize: "14px",
+                  color: "#141312",
+                  fontWeight: 700,
                   display: "none",
                 }}
                 className="pi-mobile-arrow"

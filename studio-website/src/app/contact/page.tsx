@@ -11,7 +11,7 @@ const fieldStyle: React.CSSProperties = {
   width: "100%",
   background: "transparent",
   border: "none",
-  borderBottom: "1px solid rgba(243,240,234,0.12)",
+  borderBottom: "1px solid rgba(20, 19, 18, 0.16)",
   padding: "12px 0",
   fontSize: "var(--text-sm)",
   color: "var(--text)",
@@ -25,7 +25,8 @@ const labelStyle: React.CSSProperties = {
   fontSize: "9px",
   letterSpacing: "0.28em",
   textTransform: "uppercase",
-  color: "rgba(243,240,234,0.35)",
+  color: "var(--muted)",
+  fontWeight: 600,
   marginBottom: "6px",
 };
 
@@ -121,7 +122,7 @@ export default function ContactPage() {
                 marginBottom: "clamp(20px, 3vw, 36px)",
               }}>
                 Let's Create<br />
-                <em style={{ color: "rgba(243,240,234,0.3)", fontStyle: "italic" }}>Together</em>
+                <em style={{ color: "var(--bronze)", fontStyle: "italic" }}>Together</em>
               </h1>
               <p style={{
                 fontSize: "var(--text-base)",
@@ -449,7 +450,7 @@ export default function ContactPage() {
                       onFocus={() => setFocused("name")}
                       onBlur={() => setFocused(null)}
                       placeholder="e.g. Anand Sharma"
-                      style={{ ...fieldStyle, borderBottomColor: focused === "name" ? "var(--bronze)" : errors.name ? "rgba(239,68,68,0.6)" : "rgba(243,240,234,0.12)" }}
+                      style={{ ...fieldStyle, borderBottomColor: focused === "name" ? "var(--bronze)" : errors.name ? "rgba(239,68,68,0.6)" : "rgba(20, 19, 18, 0.14)" }}
                     />
                     {errors.name && <p style={{ fontSize: "10px", color: "rgba(239,68,68,0.8)", marginTop: "6px", letterSpacing: "0.05em" }}>{errors.name}</p>}
                   </div>
@@ -466,7 +467,7 @@ export default function ContactPage() {
                         onFocus={() => setFocused("email")}
                         onBlur={() => setFocused(null)}
                         placeholder="e.g. anand@example.com"
-                        style={{ ...fieldStyle, borderBottomColor: focused === "email" ? "var(--bronze)" : errors.email ? "rgba(239,68,68,0.6)" : "rgba(243,240,234,0.12)" }}
+                        style={{ ...fieldStyle, borderBottomColor: focused === "email" ? "var(--bronze)" : errors.email ? "rgba(239,68,68,0.6)" : "rgba(20, 19, 18, 0.14)" }}
                       />
                       {errors.email && <p style={{ fontSize: "10px", color: "rgba(239,68,68,0.8)", marginTop: "6px" }}>{errors.email}</p>}
                     </div>
@@ -480,7 +481,7 @@ export default function ContactPage() {
                         onFocus={() => setFocused("phone")}
                         onBlur={() => setFocused(null)}
                         placeholder="e.g. +91 98765 43210"
-                        style={{ ...fieldStyle, borderBottomColor: focused === "phone" ? "var(--bronze)" : "rgba(243,240,234,0.12)" }}
+                        style={{ ...fieldStyle, borderBottomColor: focused === "phone" ? "var(--bronze)" : "rgba(20, 19, 18, 0.14)" }}
                       />
                     </div>
                   </div>
@@ -497,11 +498,11 @@ export default function ContactPage() {
                         cursor: "pointer",
                         appearance: "none",
                         WebkitAppearance: "none",
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(243,240,234,0.3)' strokeWidth='1.5' fill='none'/%3E%3C/svg%3E")`,
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(20,19,18,0.5)' strokeWidth='1.5' fill='none'/%3E%3C/svg%3E")`,
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "right 0 center",
                         paddingRight: "20px",
-                        borderBottomColor: focused === "category" ? "var(--bronze)" : "rgba(243,240,234,0.12)",
+                        borderBottomColor: focused === "category" ? "var(--bronze)" : "rgba(20, 19, 18, 0.14)",
                       }}
                       onFocus={() => setFocused("category")}
                       onBlur={() => setFocused(null)}
@@ -528,7 +529,7 @@ export default function ContactPage() {
                       style={{
                         ...fieldStyle,
                         resize: "none",
-                        borderBottomColor: focused === "details" ? "var(--bronze)" : errors.details ? "rgba(239,68,68,0.6)" : "rgba(243,240,234,0.12)",
+                        borderBottomColor: focused === "details" ? "var(--bronze)" : errors.details ? "rgba(239,68,68,0.6)" : "rgba(20, 19, 18, 0.14)",
                       }}
                     />
                     {errors.details && <p style={{ fontSize: "10px", color: "rgba(239,68,68,0.8)", marginTop: "6px" }}>{errors.details}</p>}
@@ -542,7 +543,7 @@ export default function ContactPage() {
                       style={{
                         width: "100%",
                         padding: "16px",
-                        background: state === "loading" ? "rgba(243,240,234,0.7)" : "var(--text)",
+                        background: state === "loading" ? "rgba(20, 19, 18, 0.2)" : "var(--text)",
                         color: "var(--bg)",
                         border: "none",
                         fontSize: "11px",

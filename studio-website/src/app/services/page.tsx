@@ -111,7 +111,7 @@ export default function ServicesPage() {
                 textTransform: "uppercase",
               }}>
                 Spaces<br />
-                <span style={{ color: "rgba(20, 19, 18, 0.45)", fontStyle: "italic" }}>We Create.</span>
+                <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>We Create.</span>
               </h1>
             </div>
 
@@ -198,7 +198,7 @@ export default function ServicesPage() {
                     fontSize: "9px",
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: "rgba(243,240,234,0.6)",
+                    color: "rgba(255, 255, 255, 0.85)",
                   }}>
                     {activeService.number} / {activeService.title}
                   </p>
@@ -671,7 +671,7 @@ export default function ServicesPage() {
                 marginBottom: "clamp(24px, 4vw, 40px)",
               }}>
                 Let's Shape<br />
-                <span style={{ color: "rgba(20, 19, 18, 0.45)", fontStyle: "italic" }}>Your Environment</span>
+                <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>Your Environment</span>
               </h2>
 
               <div style={{

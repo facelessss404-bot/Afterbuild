@@ -110,7 +110,7 @@ export default function StudioPage() {
                     lineHeight: 0.93,
                     letterSpacing: "-0.025em",
                     textTransform: "uppercase",
-                    color: "rgba(243,240,234,0.3)",
+                    color: "var(--bronze)",
                     fontStyle: "italic",
                   }}>
                     Story
@@ -1014,7 +1014,7 @@ export default function StudioPage() {
               marginBottom: "clamp(24px, 4vw, 40px)",
             }}>
               Let&apos;s Build<br />
-              <span style={{ color: "rgba(243,240,234,0.3)", fontStyle: "italic" }}>Something Beautiful</span>
+              <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>Something Beautiful</span>
             </h2>
 
             <p style={{

@@ -76,7 +76,7 @@ export default function ContactCTA() {
               marginBottom: "clamp(24px, 4vw, 48px)",
             }}>
               Let's Create<br />
-              <span style={{ color: "rgba(20, 19, 18, 0.45)", fontStyle: "italic" }}>Together.</span>
+              <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>Together.</span>
             </h2>
 
             <p className="cta-reveal" style={{

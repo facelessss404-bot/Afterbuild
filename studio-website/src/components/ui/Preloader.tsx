@@ -9,30 +9,47 @@ export default function Preloader() {
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    // Deliberate 5-second luxury pacing (~4.0s progress climb + 1.0s hold at 100%)
+    // Lock scrolling while preloader is active
+    document.body.style.overflow = "hidden";
+
+    // Paced luxury timing: ~3.5s to reach 100%
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        // Smooth architectural pacing (~1.25% per 50ms = 4.0s to 100%)
-        const increment = Math.random() * 0.7 + 0.9;
+        // Smooth architectural pacing (~1.4% per 50ms = ~3.5s to reach 100%)
+        const increment = Math.random() * 0.6 + 1.15;
         return Math.min(prev + increment, 100);
       });
     }, 50);
 
-    return () => clearInterval(interval);
+    // Failsafe timer so preloader can never hang in background tabs or throttled conditions
+    const safety = setTimeout(() => {
+      setProgress(100);
+      setFading(true);
+      setTimeout(() => {
+        setHidden(true);
+        document.body.style.overflow = "";
+      }, 600);
+    }, 4800);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(safety);
+      document.body.style.overflow = "";
+    };
   }, []);
 
   useEffect(() => {
     if (progress >= 100) {
-      // Hold at 100% for 1 full second (total ~5.0 seconds visible)
-      const t1 = setTimeout(() => setFading(true), 1000);
+      // Hold at 100% for 750ms, then fade out smoothly (total ~4.5 seconds)
+      const t1 = setTimeout(() => setFading(true), 750);
       const t2 = setTimeout(() => {
         setHidden(true);
         document.body.style.overflow = "";
-      }, 1750);
+      }, 1400);
       return () => {
         clearTimeout(t1);
         clearTimeout(t2);
@@ -66,12 +83,12 @@ export default function Preloader() {
           position: "relative",
           width: "78px",
           height: "72px",
-          opacity: progress > 10 ? 1 : 0.15,
-          transform: `scale(${0.92 + (progress / 100) * 0.08})`,
-          transition: "opacity 0.6s ease, transform 0.6s ease",
+          opacity: 1,
+          transform: `scale(${0.95 + (progress / 100) * 0.05})`,
+          transition: "transform 0.4s ease",
           borderRadius: "14px",
           overflow: "hidden",
-          border: "1px solid rgba(158, 121, 72, 0.35)",
+          border: "1px solid rgba(158, 121, 72, 0.4)",
           boxShadow: "0 12px 36px rgba(20, 19, 18, 0.08), 0 0 24px rgba(158, 121, 72, 0.12)",
           background: "#FFFFFF",
           padding: "5px",
@@ -94,11 +111,11 @@ export default function Preloader() {
               fontSize: "clamp(1.3rem, 2.8vw, 2.2rem)",
               letterSpacing: "0.26em",
               textTransform: "uppercase",
-              color: "#141312",
+              color: progress > i * 4 ? "#141312" : "#8C857B",
               fontWeight: 500,
-              opacity: progress > i * 1.8 ? 1 : 0.1,
-              transform: `translateY(${progress > i * 1.8 ? 0 : 6}px)`,
-              transition: `opacity 0.4s ease ${i * 0.02}s, transform 0.4s ease ${i * 0.02}s`,
+              opacity: progress > i * 4 ? 1 : 0.45,
+              transform: `translateY(${progress > i * 4 ? 0 : 3}px)`,
+              transition: `opacity 0.3s ease, color 0.3s ease, transform 0.3s ease`,
             }}
           >
             {char}

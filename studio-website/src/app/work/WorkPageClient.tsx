@@ -64,7 +64,7 @@ export default function WorkPageClient() {
                 textTransform: "uppercase",
               }}>
                 Selected<br />
-                <span style={{ color: "rgba(243,240,234,0.3)", fontStyle: "italic" }}>Works</span>
+                <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>Works</span>
               </h1>
             </div>
 
@@ -129,12 +129,25 @@ export default function WorkPageClient() {
                   padding: "10px 20px",
                   borderRadius: "2px",
                   border: activeFilter === cat
-                    ? "1px solid var(--bronze)"
-                    : "1px solid rgba(255, 255, 255, 0.15)",
-                  background: activeFilter === cat ? "var(--bronze)" : "rgba(255, 255, 255, 0.04)",
-                  color: activeFilter === cat ? "#0A0A09" : "#F3F0EA",
+                    ? "1px solid var(--text)"
+                    : "1px solid rgba(20, 19, 18, 0.14)",
+                  background: activeFilter === cat ? "var(--text)" : "var(--surface)",
+                  color: activeFilter === cat ? "var(--bg)" : "var(--text-secondary)",
                   cursor: "pointer",
                   transition: "all 0.25s ease",
+                  boxShadow: activeFilter === cat ? "0 2px 10px rgba(0,0,0,0.12)" : "0 1px 4px rgba(0,0,0,0.03)",
+                }}
+                onMouseEnter={e => {
+                  if (activeFilter !== cat) {
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
+                    (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (activeFilter !== cat) {
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(20, 19, 18, 0.14)";
+                    (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)";
+                  }
                 }}
               >
                 {cat}
@@ -318,9 +331,10 @@ export default function WorkPageClient() {
               fontSize: "11px",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.12)",
+              color: "rgba(20, 19, 18, 0.55)",
               marginRight: "48px",
               flexShrink: 0,
+              fontWeight: 600,
             }}>
               {siteConfig.name}® Architecture ✦ Interior Design ✦ Turnkey Delivery ✦
             </span>

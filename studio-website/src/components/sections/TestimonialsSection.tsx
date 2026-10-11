@@ -53,10 +53,11 @@ export default function TestimonialsSection() {
               display: "flex", alignItems: "center", gap: "12px",
               marginBottom: "12px",
             }}>
-              <span style={{ width: "24px", height: "1px", background: "#6b6762" }} />
+              <span style={{ width: "24px", height: "1px", background: "var(--bronze)" }} />
               <span style={{
                 fontSize: "10px", letterSpacing: "0.28em",
-                textTransform: "uppercase", color: "#6b6762",
+                textTransform: "uppercase", color: "var(--bronze)",
+                fontWeight: 600,
               }}>
                 Clients
               </span>
@@ -83,7 +84,7 @@ export default function TestimonialsSection() {
               fontFamily: "var(--font-display)",
               fontSize: "clamp(4rem, 10vw, 9rem)",
               lineHeight: 0.7,
-              color: "rgba(10,10,9,0.08)",
+              color: "rgba(10,10,9,0.18)",
               marginBottom: "clamp(8px, 1.5vw, 16px)",
             }}>
               "
@@ -115,7 +116,7 @@ export default function TestimonialsSection() {
               alignItems: "center",
               justifyContent: "space-between",
               paddingTop: "clamp(16px, 2.5vw, 28px)",
-              borderTop: "1px solid rgba(10,10,9,0.12)",
+              borderTop: "1px solid rgba(10,10,9,0.18)",
               flexWrap: "wrap",
               gap: "24px",
             }}>
@@ -124,32 +125,33 @@ export default function TestimonialsSection() {
                   width: "40px",
                   height: "40px",
                   borderRadius: "50%",
-                  background: "rgba(10,10,9,0.08)",
+                  background: "rgba(158, 121, 72, 0.12)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: "16px",
-                  color: "rgba(10,10,9,0.3)",
+                  color: "var(--bronze)",
                 }}>
                   ◆
                 </div>
                 <div>
                   <p style={{
-                    fontSize: "11px",
+                    fontSize: "12px",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
                     color: "#0a0a09",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     marginBottom: "2px",
                   }}>
                     {current.author}
                   </p>
                   {current.source && (
                     <p style={{
-                      fontSize: "10px",
+                      fontSize: "10.5px",
                       letterSpacing: "0.12em",
-                      color: "rgba(10,10,9,0.45)",
+                      color: "#48433d",
                       textTransform: "uppercase",
+                      fontWeight: 500,
                     }}>
                       {current.source}
                     </p>
@@ -161,9 +163,10 @@ export default function TestimonialsSection() {
               <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                 {/* Counter */}
                 <span style={{
-                  fontSize: "10px",
+                  fontSize: "11px",
                   letterSpacing: "0.15em",
-                  color: "rgba(10,10,9,0.4)",
+                  color: "#322f2b",
+                  fontWeight: 600,
                 }}>
                   {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                 </span>
@@ -171,9 +174,11 @@ export default function TestimonialsSection() {
                 {/* Progress */}
                 <div style={{
                   width: "80px",
-                  height: "1px",
-                  background: "rgba(10,10,9,0.12)",
+                  height: "2px",
+                  background: "rgba(10,10,9,0.15)",
                   position: "relative",
+                  borderRadius: "1px",
+                  overflow: "hidden",
                 }}>
                   <div style={{
                     position: "absolute",
@@ -181,7 +186,7 @@ export default function TestimonialsSection() {
                     left: 0,
                     height: "100%",
                     width: `${((active + 1) / total) * 100}%`,
-                    background: "#6b6762",
+                    background: "var(--bronze)",
                     transition: "width 0.5s ease",
                   }} />
                 </div>

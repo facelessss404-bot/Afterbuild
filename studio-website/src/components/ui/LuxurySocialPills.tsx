@@ -98,18 +98,18 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                 padding: "8px 16px",
                 borderRadius: "999px",
                 background: isHovered
-                  ? "rgba(255, 255, 255, 0.08)"
-                  : "rgba(255, 255, 255, 0.03)",
+                  ? "var(--surface)"
+                  : "rgba(20, 19, 18, 0.04)",
                 border: isHovered
                   ? `1px solid ${item.brandColor}`
-                  : "1px solid rgba(212, 178, 130, 0.28)",
+                  : "1px solid rgba(158, 121, 72, 0.28)",
                 boxShadow: isHovered
-                  ? `0 8px 24px ${item.glowColor}, inset 0 0 12px rgba(255,255,255,0.08)`
-                  : "0 4px 14px rgba(0, 0, 0, 0.35)",
-                color: isHovered ? "#FFFFFF" : "var(--text)",
+                  ? `0 6px 18px ${item.glowColor}`
+                  : "0 2px 8px rgba(20, 19, 18, 0.04)",
+                color: isHovered ? item.brandColor : "var(--text)",
                 textDecoration: "none",
-                transform: isHovered ? "translateY(-3px) scale(1.03)" : "none",
-                transition: "all 0.32s cubic-bezier(0.16, 1, 0.3, 1)",
+                transform: isHovered ? "translateY(-2px) scale(1.02)" : "none",
+                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                 backdropFilter: "blur(12px)",
                 WebkitBackdropFilter: "blur(12px)",
                 overflow: "hidden",
@@ -121,7 +121,7 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                   position: "absolute",
                   inset: 0,
                   background: isHovered ? item.gradientBg : "transparent",
-                  opacity: isHovered ? 0.16 : 0,
+                  opacity: isHovered ? 0.08 : 0,
                   transition: "opacity 0.35s ease",
                   pointerEvents: "none",
                 }}
@@ -136,11 +136,11 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                   width: "28px",
                   height: "28px",
                   borderRadius: "50%",
-                  background: isHovered ? item.gradientBg : "rgba(212, 178, 130, 0.12)",
+                  background: isHovered ? item.gradientBg : "rgba(158, 121, 72, 0.12)",
                   color: isHovered ? "#FFFFFF" : "var(--bronze)",
                   boxShadow: isHovered ? `0 0 12px ${item.glowColor}` : "none",
-                  transform: isHovered ? "rotate(8deg) scale(1.1)" : "none",
-                  transition: "all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  transform: isHovered ? "rotate(8deg) scale(1.08)" : "none",
+                  transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 }}
               >
                 {item.icon}
@@ -152,6 +152,7 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                   fontWeight: 600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
+                  color: isHovered ? item.brandColor : "var(--text)",
                 }}
               >
                 {item.name}
@@ -160,7 +161,7 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
               <span
                 style={{
                   fontSize: "12px",
-                  color: isHovered ? "var(--bronze)" : "rgba(255,255,255,0.45)",
+                  color: "var(--bronze)",
                   transform: isHovered ? "translate(2px, -2px)" : "none",
                   transition: "all 0.25s ease",
                 }}
@@ -174,17 +175,16 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
     );
   }
 
-  // "cards" variant — extraordinary luxury iconic architectural dossier badges
-  const isStack = layout === "stack" || layout === undefined;
+  // "cards" variant — luxury iconic architectural dossier badges
   const isRow = layout === "row";
+  const isStack = layout === "stack";
 
   return (
     <div
       style={{
-        display: isRow ? "flex" : isStack ? "flex" : "grid",
+        display: "flex",
         flexDirection: isStack ? "column" : "row",
-        gridTemplateColumns: !isStack && !isRow ? "repeat(auto-fit, minmax(200px, 1fr))" : undefined,
-        flexWrap: isRow ? "wrap" : undefined,
+        flexWrap: "wrap",
         gap: "10px",
         width: "100%",
         maxWidth: isStack ? "380px" : "100%",
@@ -205,28 +205,30 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
               position: "relative",
               display: "flex",
               alignItems: "center",
-              gap: "14px",
+              gap: "12px",
               padding: "10px 14px",
               borderRadius: "10px",
               background: isHovered
-                ? "rgba(255, 255, 255, 0.06)"
-                : "rgba(255, 255, 255, 0.02)",
+                ? "var(--surface)"
+                : "rgba(255, 255, 255, 0.85)",
               border: isHovered
                 ? `1px solid ${item.brandColor}`
-                : "1px solid rgba(212, 178, 130, 0.22)",
+                : "1px solid rgba(158, 121, 72, 0.24)",
               boxShadow: isHovered
-                ? `0 12px 28px ${item.glowColor}, inset 0 0 16px rgba(255,255,255,0.06)`
-                : "0 4px 16px rgba(0, 0, 0, 0.3)",
+                ? `0 10px 24px ${item.glowColor}, 0 2px 8px rgba(0, 0, 0, 0.05)`
+                : "0 2px 10px rgba(20, 19, 18, 0.04)",
               textDecoration: "none",
-              color: "#FFFFFF",
-              transform: isHovered ? "translateY(-3px) scale(1.015)" : "none",
-              transition: "all 0.32s cubic-bezier(0.16, 1, 0.3, 1)",
+              color: "var(--text)",
+              transform: isHovered ? "translateY(-2px)" : "none",
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
               overflow: "hidden",
+              flex: isRow ? "1 1 150px" : undefined,
+              minWidth: isRow ? "140px" : undefined,
             }}
           >
-            {/* Ambient backlight aura */}
+            {/* Ambient backlight aura on hover */}
             <div
               style={{
                 position: "absolute",
@@ -237,7 +239,7 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                 borderRadius: "50%",
                 background: isHovered ? item.gradientBg : "transparent",
                 filter: "blur(26px)",
-                opacity: isHovered ? 0.4 : 0,
+                opacity: isHovered ? 0.15 : 0,
                 transition: "opacity 0.35s ease",
                 pointerEvents: "none",
               }}
@@ -248,7 +250,7 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.14) 50%, transparent 80%)",
+                background: "linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.5) 50%, transparent 80%)",
                 transform: isHovered ? "translateX(100%)" : "translateX(-100%)",
                 transition: isHovered ? "transform 0.7s ease-in-out" : "none",
                 pointerEvents: "none",
@@ -268,31 +270,31 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                 borderRadius: "50%",
                 background: isHovered
                   ? item.gradientBg
-                  : "radial-gradient(circle, rgba(212, 178, 130, 0.16) 0%, rgba(20, 20, 19, 0.85) 100%)",
+                  : "rgba(158, 121, 72, 0.12)",
                 border: isHovered
-                  ? "1px solid rgba(255, 255, 255, 0.7)"
-                  : "1px solid rgba(212, 178, 130, 0.32)",
+                  ? "1px solid rgba(255, 255, 255, 0.85)"
+                  : "1px solid rgba(158, 121, 72, 0.32)",
                 color: isHovered ? "#FFFFFF" : "var(--bronze)",
                 boxShadow: isHovered
-                  ? `0 0 16px ${item.glowColor}, inset 0 0 8px rgba(255,255,255,0.4)`
-                  : "inset 0 0 10px rgba(0,0,0,0.6)",
-                transform: isHovered ? "scale(1.1) rotate(6deg)" : "none",
-                transition: "all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  ? `0 0 14px ${item.glowColor}`
+                  : "none",
+                transform: isHovered ? "scale(1.08)" : "none",
+                transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 flexShrink: 0,
               }}
             >
               {item.icon}
             </div>
 
-            {/* Typography Dossier */}
+            {/* Typography Dossier — Dark High Contrast */}
             <div style={{ position: "relative", zIndex: 2, flex: 1, minWidth: 0 }}>
               <div
                 style={{
                   fontSize: "12px",
                   fontWeight: 700,
-                  letterSpacing: "0.16em",
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: isHovered ? "#FFFFFF" : "#F3F0EA",
+                  color: isHovered ? item.brandColor : "var(--text)",
                   transition: "color 0.25s ease",
                   display: "flex",
                   alignItems: "center",
@@ -303,7 +305,7 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
                 <span
                   style={{
                     fontSize: "11px",
-                    color: isHovered ? "var(--bronze)" : "rgba(255,255,255,0.45)",
+                    color: "var(--bronze)",
                     transform: isHovered ? "translate(2px, -2px)" : "none",
                     transition: "all 0.25s ease",
                   }}
@@ -314,13 +316,14 @@ export default function LuxurySocialPills({ variant = "cards", layout }: Props) 
               <div
                 style={{
                   fontSize: "11px",
-                  color: isHovered ? "var(--bronze)" : "rgba(243, 240, 234, 0.6)",
+                  color: "var(--muted)",
                   marginTop: "2px",
                   letterSpacing: "0.02em",
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   transition: "color 0.25s ease",
+                  fontWeight: 400,
                 }}
               >
                 {item.subtitle}

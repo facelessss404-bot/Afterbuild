@@ -218,7 +218,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                 fontSize: "9px",
                 letterSpacing: "0.25em",
                 textTransform: "uppercase",
-                color: "rgba(243,240,234,0.4)",
+                color: "var(--muted)",
                 marginBottom: "4px",
               }}>
                 Year
@@ -259,7 +259,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
             <p style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(1.1rem, 2.2vw, 1.7rem)",
-              color: "rgba(243,240,234,0.85)",
+              color: "var(--text)",
               lineHeight: 1.55,
               fontWeight: 400,
             }}>
@@ -421,7 +421,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
               fontWeight: 400,
               lineHeight: 1,
               letterSpacing: "-0.02em",
-              color: "var(--text)",
+              color: "#FFFFFF",
               textTransform: "uppercase",
               marginBottom: "20px",
             }}>
@@ -431,7 +431,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
               fontSize: "11px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.5)",
+              color: "rgba(255, 255, 255, 0.85)",
               display: "flex",
               alignItems: "center",
               gap: "8px",
