@@ -3,10 +3,10 @@
 // ============================================================
 
 export const stats = [
-  { value: "160+", label: "Projects", description: "Completed across Bangalore & beyond" },
-  { value: "3+", label: "Years", description: "Of design practice since 2023" },
-  { value: "75+", label: "Craftsmen", description: "Skilled workers in our network" },
-  { value: "100%", label: "Bespoke", description: "Personalised to every client" },
+  { value: "160+", label: "Projects", description: "Residential & commercial delivered across Bangalore" },
+  { value: "75+", label: "Craftsmen", description: "Skilled dedicated artisans in our network" },
+  { value: "3.5+", label: "Years Experience", description: "Designing spaces with engineering precision" },
+  { value: "100%", label: "Turnkey Execution", description: "Single-point design, civil, modular & handover" },
 ];
 
 // ============================================================

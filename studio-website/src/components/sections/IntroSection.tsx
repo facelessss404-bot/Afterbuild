@@ -152,7 +152,7 @@ export default function IntroSection() {
                 fontWeight: 400,
                 lineHeight: 1.0,
                 letterSpacing: "-0.02em",
-                color: "rgba(243,240,234,0.4)",
+                color: "rgba(20, 19, 18, 0.45)",
                 fontStyle: "italic",
               }}>
                 Experiences.
@@ -170,19 +170,49 @@ export default function IntroSection() {
                 fontWeight: 300,
               }}
             >
-              Founded in Bangalore in May 2023, {siteConfig.name} was born from a belief
-              that great design should be purposeful, accessible and deeply personal.
-              With 160+ completed projects and a skilled workforce of 75+ craftsmen,
-              we deliver end-to-end interior and architectural solutions built around
-              the way you actually live and work.
+              Founded in Bangalore in May 2023 by Mohammed Farmaan Azam K, {siteConfig.name} was born from an engineering-led belief
+              that great spaces begin with understanding people. With 160+ completed projects, a skilled workforce of 75+ craftsmen,
+              and 3.5+ years of dedicated spatial practice, we deliver end-to-end turnkey architectural solutions and luxury interiors
+              tailored to the way you actually live and work.
             </p>
+
+            {/* Founder Note Micro-card */}
+            <div style={{
+              marginTop: "clamp(24px, 3vw, 36px)",
+              padding: "16px 20px",
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              borderRadius: "8px",
+              maxWidth: "520px",
+              boxShadow: "0 4px 16px rgba(20, 19, 18, 0.03)",
+            }}>
+              <p style={{
+                fontSize: "13px",
+                fontStyle: "italic",
+                color: "var(--text)",
+                lineHeight: 1.6,
+                marginBottom: "6px",
+                fontFamily: "var(--font-display)",
+              }}>
+                &ldquo;Designing spaces with purpose. Building experiences with intention.&rdquo;
+              </p>
+              <span style={{
+                fontSize: "10px",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--bronze)",
+                fontWeight: 600,
+              }}>
+                Mohammed Farmaan Azam K &bull; Founder &amp; Director
+              </span>
+            </div>
 
             {/* Founded + CTA */}
             <div style={{
-              marginTop: "clamp(32px, 4vw, 52px)",
+              marginTop: "clamp(28px, 3vw, 40px)",
               display: "flex",
               alignItems: "center",
-              gap: "32px",
+              gap: "28px",
               flexWrap: "wrap",
             }}>
               <span style={{
@@ -206,14 +236,15 @@ export default function IntroSection() {
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   color: "var(--bronze)",
-                  borderBottom: "1px solid rgba(177,166,150,0.35)",
+                  borderBottom: "1px solid var(--bronze)",
                   paddingBottom: "2px",
-                  transition: "border-color 0.3s ease",
+                  transition: "opacity 0.3s ease",
+                  fontWeight: 600,
                 }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(177,166,150,0.35)")}
+                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.7")}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
               >
-                About the Studio →
+                About Founder &amp; Studio →
               </a>
             </div>
           </div>
@@ -234,6 +265,7 @@ export default function IntroSection() {
                 overflow: "hidden",
                 background: "var(--surface)",
                 width: "100%",
+                borderRadius: "6px",
               }}
             >
               <div
@@ -259,29 +291,33 @@ export default function IntroSection() {
               </div>
             </div>
 
-            {/* Two counters below image */}
+            {/* Counters grid with 3.5+ years experience placed directly below craftsmen */}
             <div style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: "1px",
               background: "var(--border)",
               border: "1px solid var(--border)",
+              borderRadius: "6px",
+              overflow: "hidden",
             }}>
               {[
                 { value: "160+", label: "Projects" },
                 { value: "75+", label: "Craftsmen" },
+                { value: "100%", label: "Turnkey Accountability" },
+                { value: "3.5+", label: "Years Experience" },
               ].map((item, i) => (
                 <div
                   key={i}
                   className="intro-counter"
                   style={{
-                    background: "var(--bg)",
-                    padding: "clamp(16px, 2.5vw, 28px)",
+                    background: "var(--surface)",
+                    padding: "clamp(16px, 2.5vw, 24px)",
                   }}
                 >
                   <span style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+                    fontSize: "clamp(1.6rem, 2.6vw, 2.5rem)",
                     fontWeight: 400,
                     color: "var(--text)",
                     display: "block",
@@ -292,9 +328,10 @@ export default function IntroSection() {
                   </span>
                   <span style={{
                     fontSize: "9px",
-                    letterSpacing: "0.25em",
+                    letterSpacing: "0.22em",
                     textTransform: "uppercase",
                     color: "var(--bronze)",
+                    fontWeight: 600,
                   }}>
                     {item.label}
                   </span>

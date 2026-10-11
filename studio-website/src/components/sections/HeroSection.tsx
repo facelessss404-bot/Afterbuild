@@ -63,11 +63,17 @@ export default function HeroSection() {
           quality={95}
           sizes="100vw"
         />
-        {/* Cinematic gradient overlay */}
+        {/* Cinematic gradient overlay & localized contrast scrim */}
         <div style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to bottom, rgba(10,10,9,0.55) 0%, rgba(10,10,9,0.12) 35%, rgba(10,10,9,0.3) 65%, rgba(10,10,9,0.92) 100%)",
+          background: "linear-gradient(to bottom, rgba(8,8,7,0.72) 0%, rgba(8,8,7,0.50) 30%, rgba(8,8,7,0.76) 68%, rgba(8,8,7,0.96) 100%)",
+        }} />
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "radial-gradient(ellipse at 25% 65%, rgba(0,0,0,0.7) 0%, transparent 70%)",
+          pointerEvents: "none",
         }} />
         </div>
       </div>
@@ -92,17 +98,18 @@ export default function HeroSection() {
           }}>
             <span style={{ width: "32px", height: "1px", background: "var(--bronze)", display: "block" }} />
             <span style={{
-              fontSize: "10px",
-              fontWeight: 500,
+              fontSize: "10.5px",
+              fontWeight: 600,
               letterSpacing: "0.26em",
               textTransform: "uppercase",
-              color: "var(--bronze)",
+              color: "#E5C89C",
+              textShadow: "0 2px 10px rgba(0,0,0,0.8)",
             }}>
-              AfterBuild Studio &bull; Indiranagar, Bangalore &bull; Est. 2023
+              AfterBuild Studio &bull; Architecture &bull; Spatial Solutions &bull; Indiranagar, Bangalore
             </span>
           </div>
 
-          {/* Large editorial heading */}
+          {/* Large editorial heading with high-contrast text shadows */}
           <h1 style={{ overflow: "hidden", marginBottom: "clamp(20px, 2.5vw, 36px)" }}>
             <span style={{ display: "block", overflow: "hidden" }}>
               <span className="hero-title-line" style={{
@@ -112,7 +119,8 @@ export default function HeroSection() {
                 fontWeight: 400,
                 lineHeight: 0.9,
                 letterSpacing: "-0.03em",
-                color: "var(--text)",
+                color: "#FFFFFF",
+                textShadow: "0 4px 28px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.9)",
                 textTransform: "uppercase",
               }}>
                 Spaces With Purpose.
@@ -126,7 +134,8 @@ export default function HeroSection() {
                 fontWeight: 400,
                 lineHeight: 0.9,
                 letterSpacing: "-0.03em",
-                color: "rgba(228, 213, 190, 0.7)",
+                color: "#E8D5BC",
+                textShadow: "0 4px 28px rgba(0,0,0,0.85)",
                 fontStyle: "italic",
                 textTransform: "uppercase",
               }}>
@@ -143,32 +152,37 @@ export default function HeroSection() {
             gap: "clamp(24px, 4vw, 48px)",
             flexWrap: "wrap",
           }}>
-            <div style={{ maxWidth: "460px" }}>
+            <div style={{ maxWidth: "520px" }}>
               <p className="hero-sub" style={{
-                fontSize: "clamp(13px, 1.1vw, 15px)",
-                color: "rgba(243,240,234,0.72)",
+                fontSize: "clamp(13px, 1.15vw, 15.5px)",
+                color: "rgba(255, 255, 255, 0.92)",
                 lineHeight: 1.65,
                 fontWeight: 300,
                 marginBottom: "16px",
+                textShadow: "0 2px 14px rgba(0,0,0,0.85)",
               }}>
-                Designing spaces with purpose. Building experiences with intention. Over 160+ residential and commercial projects delivered across Bangalore with engineering-led craft.
+                Designing spaces with purpose. Building experiences with intention. Turnkey architectural solutions, spatial engineering, and luxury interior design delivered across Bangalore.
               </p>
 
-              {/* Stats badges */}
+              {/* Stats badges with 3.5+ Years Experience */}
               <div style={{
                 display: "flex",
-                gap: "18px",
+                gap: "14px",
                 flexWrap: "wrap",
-                fontSize: "10px",
+                fontSize: "10.5px",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "var(--bronze)",
+                color: "#E5C89C",
+                fontWeight: 600,
+                textShadow: "0 2px 10px rgba(0,0,0,0.8)",
               }}>
                 <span>160+ Projects</span>
                 <span>&bull;</span>
                 <span>75+ Craftsmen</span>
                 <span>&bull;</span>
-                <span>Turnkey Execution</span>
+                <span>3.5+ Years Experience</span>
+                <span>&bull;</span>
+                <span>Turnkey Architecture</span>
               </div>
             </div>
 
@@ -182,21 +196,21 @@ export default function HeroSection() {
                   gap: "10px",
                   padding: "12px 24px",
                   borderRadius: "999px",
-                  background: "var(--text)",
-                  color: "#0a0a09",
+                  background: "#FFFFFF",
+                  color: "#141312",
                   fontSize: "11px",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   fontWeight: 600,
                   transition: "all 0.3s ease",
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+                  boxShadow: "0 6px 24px rgba(0,0,0,0.5)",
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.background = "var(--bronze)";
+                  (e.currentTarget as HTMLElement).style.background = "#E5C89C";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.background = "var(--text)";
+                  (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
                   (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                 }}
               >
@@ -205,8 +219,8 @@ export default function HeroSection() {
                   width: "18px",
                   height: "18px",
                   borderRadius: "50%",
-                  background: "#0a0a09",
-                  color: "var(--text)",
+                  background: "#141312",
+                  color: "#FFFFFF",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: "9px",
@@ -220,13 +234,14 @@ export default function HeroSection() {
                 fontSize: "11px",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "var(--text)",
-                borderBottom: "1px solid rgba(243,240,234,0.3)",
+                color: "#FFFFFF",
+                textShadow: "0 2px 10px rgba(0,0,0,0.8)",
+                borderBottom: "1px solid rgba(255,255,255,0.4)",
                 paddingBottom: "3px",
-                transition: "border-color 0.3s ease",
+                transition: "border-color 0.3s ease, color 0.3s ease",
               }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--text)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(243,240,234,0.3)")}
+                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "#FFFFFF")}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.4)")}
               >
                 View Portfolio
               </Link>
@@ -235,13 +250,14 @@ export default function HeroSection() {
                 fontSize: "11px",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "var(--bronze)",
-                borderBottom: "1px solid rgba(197,168,128,0.4)",
+                color: "#E5C89C",
+                textShadow: "0 2px 10px rgba(0,0,0,0.8)",
+                borderBottom: "1px solid rgba(229,200,156,0.5)",
                 paddingBottom: "3px",
                 transition: "border-color 0.3s ease",
               }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(197,168,128,0.4)")}
+                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "#E5C89C")}
+                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(229,200,156,0.5)")}
               >
                 Start a Project
               </Link>
@@ -253,12 +269,12 @@ export default function HeroSection() {
               fontSize: "9px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.4)",
+              color: "rgba(255,255,255,0.65)",
               writingMode: "vertical-rl",
               transition: "color 0.3s ease",
             }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "rgba(243,240,234,0.4)")}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "#FFFFFF")}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.65)")}
             >
               Instagram
             </a>

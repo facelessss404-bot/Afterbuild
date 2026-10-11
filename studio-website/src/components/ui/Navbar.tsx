@@ -68,6 +68,8 @@ export default function Navbar() {
 
   useEffect(() => { setIsOpen(false); }, [pathname]);
 
+  const isDarkHero = pathname === "/" && !scrolled;
+
   return (
     <>
       {/* ── FIXED NAV ── */}
@@ -86,14 +88,14 @@ export default function Navbar() {
           justifyContent: "space-between",
           transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease, background 0.4s ease, border-color 0.4s ease",
           transform: visible ? "translateY(0)" : "translateY(-100%)",
-          background: scrolled ? "rgba(10, 10, 9, 0.88)" : "transparent",
-          backdropFilter: scrolled ? "blur(24px) saturate(140%)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(140%)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(243, 240, 234, 0.06)" : "1px solid transparent",
+          background: isDarkHero ? "transparent" : (scrolled ? "rgba(250, 248, 245, 0.94)" : "rgba(250, 248, 245, 0.85)"),
+          backdropFilter: isDarkHero ? "none" : "blur(24px) saturate(140%)",
+          WebkitBackdropFilter: isDarkHero ? "none" : "blur(24px) saturate(140%)",
+          borderBottom: isDarkHero ? "1px solid transparent" : "1px solid rgba(20, 19, 18, 0.08)",
         }}
       >
         {/* Logo */}
-        <Logo size={scrolled ? "sm" : "md"} showTagline={!scrolled} />
+        <Logo size={scrolled ? "sm" : "md"} showTagline={!scrolled} theme={isDarkHero ? "dark" : "light"} />
 
         {/* Desktop nav & CTA (>= 1024px) */}
         <div className="hidden lg:flex items-center" style={{ gap: "clamp(20px, 2.5vw, 40px)" }}>
@@ -104,22 +106,28 @@ export default function Navbar() {
           >
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href + "/"));
+              const defaultColor = isDarkHero
+                ? (isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.78)")
+                : (isActive ? "var(--text)" : "var(--muted)");
+              const hoverColor = isDarkHero ? "#FFFFFF" : "var(--text)";
+
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   style={{
                     fontSize: "11px",
-                    fontWeight: 400,
+                    fontWeight: 500,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: isActive ? "var(--text)" : "var(--muted)",
+                    color: defaultColor,
                     transition: "color 0.3s ease",
                     paddingBottom: "2px",
                     borderBottom: isActive ? "1px solid var(--bronze)" : "1px solid transparent",
+                    textShadow: isDarkHero ? "0 1px 6px rgba(0,0,0,0.5)" : "none",
                   }}
-                  onMouseEnter={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--text)"; }}
-                  onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--muted)"; }}
+                  onMouseEnter={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = hoverColor; }}
+                  onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLElement).style.color = defaultColor; }}
                 >
                   {link.label}
                 </Link>
@@ -135,23 +143,24 @@ export default function Navbar() {
               gap: "8px",
               padding: "8px 18px",
               borderRadius: "999px",
-              border: "1px solid rgba(197, 168, 128, 0.4)",
-              background: "rgba(197, 168, 128, 0.08)",
+              border: isDarkHero ? "1px solid rgba(229, 200, 156, 0.6)" : "1px solid rgba(158, 121, 72, 0.4)",
+              background: isDarkHero ? "rgba(0, 0, 0, 0.35)" : "rgba(158, 121, 72, 0.08)",
               fontSize: "10px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "var(--bronze)",
+              color: isDarkHero ? "#E5C89C" : "var(--bronze)",
+              fontWeight: 600,
               transition: "all 0.3s ease",
             }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLElement).style.background = "var(--bronze)";
-              (e.currentTarget as HTMLElement).style.color = "#0a0a09";
+              (e.currentTarget as HTMLElement).style.color = "#FAF8F5";
               (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.background = "rgba(197, 168, 128, 0.08)";
-              (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(197, 168, 128, 0.4)";
+              (e.currentTarget as HTMLElement).style.background = isDarkHero ? "rgba(0, 0, 0, 0.35)" : "rgba(158, 121, 72, 0.08)";
+              (e.currentTarget as HTMLElement).style.color = isDarkHero ? "#E5C89C" : "var(--bronze)";
+              (e.currentTarget as HTMLElement).style.borderColor = isDarkHero ? "rgba(229, 200, 156, 0.6)" : "rgba(158, 121, 72, 0.4)";
             }}
           >
             <span>Start a Project</span>
@@ -165,8 +174,8 @@ export default function Navbar() {
           className="flex lg:hidden flex-col justify-center items-center"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           style={{
-            background: "rgba(255, 255, 255, 0.04)",
-            border: "1px solid rgba(197, 168, 128, 0.25)",
+            background: isDarkHero ? "rgba(0, 0, 0, 0.45)" : "rgba(20, 19, 18, 0.04)",
+            border: isDarkHero ? "1px solid rgba(229, 200, 156, 0.4)" : "1px solid rgba(158, 121, 72, 0.35)",
             borderRadius: "8px",
             width: "44px",
             height: "44px",
@@ -177,7 +186,7 @@ export default function Navbar() {
         >
           <span style={{
             display: "block", height: "1.5px", width: "22px",
-            background: "var(--text)",
+            background: isDarkHero ? "#FFFFFF" : "var(--text)",
             transition: "transform 0.3s ease, opacity 0.3s ease",
             transform: isOpen ? "rotate(45deg) translate(4px, 4px)" : "none",
           }} />
@@ -189,7 +198,7 @@ export default function Navbar() {
           }} />
           <span style={{
             display: "block", height: "1.5px", width: "22px",
-            background: "var(--text)",
+            background: isDarkHero ? "#FFFFFF" : "var(--text)",
             transition: "transform 0.3s ease, opacity 0.3s ease",
             transform: isOpen ? "rotate(-45deg) translate(4px, -4px)" : "none",
           }} />
@@ -203,7 +212,7 @@ export default function Navbar() {
           position: "fixed",
           inset: 0,
           zIndex: 99,
-          background: "rgba(10, 10, 9, 0.97)",
+          background: "rgba(250, 248, 245, 0.98)",
           backdropFilter: "blur(40px)",
           display: "none",
           flexDirection: "column",
@@ -216,16 +225,16 @@ export default function Navbar() {
           alignItems: "center",
           justifyContent: "space-between",
           paddingBlock: "22px",
-          borderBottom: "1px solid rgba(243, 240, 234, 0.06)",
+          borderBottom: "1px solid rgba(20, 19, 18, 0.08)",
         }}>
-          <Logo size="sm" showTagline={false} />
+          <Logo size="sm" showTagline={false} theme="light" />
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Close menu"
             style={{
               background: "none",
               border: "none",
-              color: "var(--muted)",
+              color: "var(--text)",
               fontSize: "20px",
               cursor: "pointer",
               padding: "4px",
@@ -256,7 +265,7 @@ export default function Navbar() {
                   alignItems: "baseline",
                   gap: "24px",
                   paddingBlock: "clamp(10px, 1.5vw, 18px)",
-                  borderBottom: "1px solid rgba(243, 240, 234, 0.05)",
+                  borderBottom: "1px solid rgba(20, 19, 18, 0.08)",
                   color: "var(--text)",
                   transition: "color 0.3s ease",
                 }}
@@ -327,7 +336,7 @@ export default function Navbar() {
         {/* Bottom location line */}
         <div style={{
           paddingBlock: "20px",
-          borderTop: "1px solid rgba(243, 240, 234, 0.06)",
+          borderTop: "1px solid rgba(20, 19, 18, 0.08)",
           fontSize: "10px",
           letterSpacing: "0.2em",
           textTransform: "uppercase",

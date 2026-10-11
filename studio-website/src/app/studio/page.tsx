@@ -526,81 +526,196 @@ export default function StudioPage() {
 
                 {/* Beyond Interiors callout */}
                 <div className="st-text-reveal" style={{
-                  padding: "clamp(20px, 3vw, 28px)",
+                  padding: "clamp(24px, 3.5vw, 36px)",
                   background: "var(--surface)",
                   border: "1px solid var(--border)",
+                  borderRadius: "10px",
                   marginBottom: "clamp(24px, 4vw, 40px)",
                 }}>
                   <span style={{
-                    fontSize: "9px",
+                    fontSize: "10px",
                     letterSpacing: "0.22em",
                     textTransform: "uppercase",
                     color: "var(--bronze)",
                     display: "block",
-                    marginBottom: "8px",
+                    fontWeight: 700,
+                    marginBottom: "12px",
                   }}>
                     Beyond Interiors
                   </span>
                   <p style={{
-                    fontSize: "13px",
+                    fontSize: "14px",
                     color: "var(--text)",
+                    lineHeight: 1.8,
+                    marginBottom: "12px",
+                  }}>
+                    At AfterBuild Studio, design is approached as more than aesthetics. Every project begins with understanding the person, the space and the purpose behind it.
+                  </p>
+                  <p style={{
+                    fontSize: "14px",
+                    color: "var(--muted)",
+                    lineHeight: 1.8,
+                    marginBottom: "14px",
+                  }}>
+                    From the first conversation to space planning, design development, material selection and execution, the focus remains on creating environments that balance:
+                  </p>
+                  <div style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "10px",
+                    marginBottom: "16px",
+                  }}>
+                    {["Function", "Form", "Comfort", "Character"].map((val) => (
+                      <span key={val} style={{
+                        padding: "6px 14px",
+                        background: "var(--surface-2)",
+                        border: "1px solid var(--border)",
+                        borderRadius: "6px",
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                        color: "var(--bronze)",
+                      }}>
+                        {val}.
+                      </span>
+                    ))}
+                  </div>
+                  <p style={{
+                    fontSize: "13.5px",
+                    color: "var(--muted)",
                     lineHeight: 1.75,
                     margin: 0,
                   }}>
-                    Under his leadership, AfterBuild Studio operates at the intersection of architecture, interior styling and execution management &mdash; ensuring that every project moves seamlessly from conceptual sketch to tangible, beautifully finished reality.
+                    Whether it is a contemporary home, a thoughtfully planned apartment, a renovation or a commercial environment, Farmaan believes that every project deserves a design language of its own.
                   </p>
                 </div>
 
-                {/* Founder note */}
+                {/* A Note From the Founder */}
                 <div className="st-text-reveal" style={{
                   borderLeft: "2px solid var(--bronze)",
-                  paddingLeft: "clamp(16px, 2.5vw, 24px)",
-                  marginBottom: "clamp(24px, 4vw, 40px)",
+                  paddingLeft: "clamp(20px, 3vw, 28px)",
+                  marginBottom: "clamp(28px, 4.5vw, 44px)",
                 }}>
                   <p style={{
-                    fontSize: "9px",
+                    fontSize: "10px",
                     letterSpacing: "0.25em",
                     textTransform: "uppercase",
                     color: "var(--bronze)",
-                    marginBottom: "8px",
+                    fontWeight: 700,
+                    marginBottom: "10px",
                   }}>
                     A Note From the Founder
                   </p>
-                  <p style={{
+                  <blockquote style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
+                    fontSize: "clamp(1.2rem, 2vw, 1.55rem)",
                     fontWeight: 400,
                     fontStyle: "italic",
                     color: "var(--text)",
-                    lineHeight: 1.6,
-                    marginBottom: "12px",
+                    lineHeight: 1.45,
+                    marginBottom: "16px",
+                    marginInline: 0,
                   }}>
                     &ldquo;A well-designed space should feel effortless.&rdquo;
-                  </p>
+                  </blockquote>
                   <p style={{
-                    fontSize: "13px",
+                    fontSize: "13.5px",
                     color: "var(--muted)",
-                    lineHeight: 1.8,
+                    lineHeight: 1.85,
                     marginBottom: "12px",
                   }}>
-                    We believe interior design begins long before choosing colours, finishes or furniture. It begins with understanding how a space should function, flow and feel. Your home is one of the most personal spaces you will ever create. It should reflect your lifestyle, your personality and the way you want to experience everyday life.
+                    Your home is one of the most personal spaces you will ever create. It should reflect your lifestyle, your personality and the way you want to experience everyday life.
                   </p>
                   <p style={{
-                    fontSize: "13px",
+                    fontSize: "13.5px",
                     color: "var(--muted)",
-                    lineHeight: 1.8,
+                    lineHeight: 1.85,
                     marginBottom: "12px",
                   }}>
-                    Whether designing a contemporary home, a warm family sanctuary or an elevated commercial space, our approach is rooted in thoughtful space planning, practical design and uncompromising attention to detail.
+                    At AfterBuild Studio, we believe interior design begins long before choosing colours, finishes or furniture. It begins with understanding how a space should function, flow and feel.
                   </p>
                   <p style={{
-                    fontSize: "13px",
+                    fontSize: "13.5px",
+                    color: "var(--muted)",
+                    lineHeight: 1.85,
+                    marginBottom: "12px",
+                  }}>
+                    Our approach is rooted in thoughtful space planning, practical design and attention to detail. We look at every square foot as an opportunity to improve the way a space is experienced.
+                  </p>
+                  <p style={{
+                    fontSize: "13.5px",
+                    color: "var(--muted)",
+                    lineHeight: 1.85,
+                    marginBottom: "14px",
+                  }}>
+                    My vision for AfterBuild Studio is to bring together design, engineering, craftsmanship and transparency to create interiors that remain relevant beyond trends.
+                  </p>
+                  <p style={{
+                    fontSize: "14px",
                     color: "var(--text)",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     lineHeight: 1.8,
+                    marginBottom: "16px",
                   }}>
-                    Great design isn&apos;t about excess &mdash; it is about balance, harmony and intention.
+                    Because ultimately, we are not simply designing rooms. We are creating the spaces where life unfolds.
                   </p>
+                  <div style={{
+                    fontSize: "11px",
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--bronze)",
+                    fontWeight: 600,
+                  }}>
+                    &mdash; Mohammed Farmaan Azam K &bull; Founder &amp; Director, AfterBuild Studio
+                  </div>
+                </div>
+
+                {/* The AfterBuild Vision */}
+                <div className="st-text-reveal" style={{
+                  padding: "clamp(24px, 3vw, 32px)",
+                  background: "var(--surface-2)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "10px",
+                  marginBottom: "clamp(24px, 4vw, 36px)",
+                }}>
+                  <span style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.25em",
+                    textTransform: "uppercase",
+                    color: "var(--bronze)",
+                    fontWeight: 700,
+                    display: "block",
+                    marginBottom: "10px",
+                  }}>
+                    The AfterBuild Vision
+                  </span>
+                  <p style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(1.15rem, 1.8vw, 1.4rem)",
+                    color: "var(--text)",
+                    lineHeight: 1.5,
+                    marginBottom: "12px",
+                  }}>
+                    To create thoughtfully designed spaces where architecture, interiors and everyday living come together seamlessly.
+                  </p>
+                  <p style={{
+                    fontSize: "13.5px",
+                    color: "var(--muted)",
+                    lineHeight: 1.8,
+                    marginBottom: "14px",
+                  }}>
+                    Our aim is simple &mdash; to make good design more purposeful, more accessible and more personal, while maintaining uncompromising attention to quality and execution.
+                  </p>
+                  <div style={{
+                    fontSize: "11px",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "var(--bronze)",
+                    fontWeight: 700,
+                  }}>
+                    AfterBuild Studio &bull; Designing spaces. Shaping experiences.
+                  </div>
                 </div>
 
                 <div className="st-text-reveal" style={{
@@ -615,7 +730,7 @@ export default function StudioPage() {
                     textTransform: "uppercase",
                     color: "var(--muted-dark)",
                   }}>
-                    Mohammed Farmaan Azam K &bull; AfterBuild Studio
+                    Mohammed Farmaan Azam K &bull; AfterBuild Studio &bull; Indiranagar, Bangalore
                   </span>
                 </div>
               </div>

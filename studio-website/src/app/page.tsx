@@ -1,6 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import IntroSection from "@/components/sections/IntroSection";
 import VideoWalkthroughSection from "@/components/sections/VideoWalkthroughSection";
+import SpecializationsSection from "@/components/sections/SpecializationsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import StatsSection from "@/components/sections/StatsSection";
 import CredentialsSection from "@/components/sections/CredentialsSection";
@@ -20,10 +21,13 @@ export default function HomePage() {
       {/* 02. Studio Introduction — Centered scroll-reveal text */}
       <IntroSection />
 
-      {/* 03. Cinematic Walkthroughs — 4 Highlighted Completed Projects in Motion */}
+      {/* 03. Cinematic Walkthroughs — Completed Projects in Motion */}
       <VideoWalkthroughSection />
 
-      {/* 04. Services — Two-column with image + accordion */}
+      {/* 04. Specializations & Scope of Work — 8 Core Disciplines */}
+      <SpecializationsSection />
+
+      {/* 05. Services — Two-column architectural breakdown & accordion */}
       <ServicesSection />
 
       {/* 04. Stats — Animated counter numbers */}

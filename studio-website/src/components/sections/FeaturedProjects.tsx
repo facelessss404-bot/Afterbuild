@@ -191,7 +191,8 @@ export default function FeaturedProjects() {
                         fontWeight: 400,
                         lineHeight: 0.95,
                         letterSpacing: "-0.025em",
-                        color: "var(--text)",
+                        color: "#FFFFFF",
+                        textShadow: "0 2px 20px rgba(0, 0, 0, 0.75)",
                         textTransform: "uppercase",
                         marginBottom: "16px",
                       }}
@@ -201,9 +202,10 @@ export default function FeaturedProjects() {
 
                     <p style={{
                       fontSize: "13px",
-                      color: "rgba(243,240,234,0.6)",
+                      color: "rgba(243,240,234,0.75)",
                       maxWidth: "460px",
                       lineHeight: 1.6,
+                      textShadow: "0 1px 10px rgba(0,0,0,0.6)",
                     }}
                     className="fp-desc"
                     >
@@ -221,7 +223,7 @@ export default function FeaturedProjects() {
                         fontSize: "11px",
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
-                        color: "rgba(243,240,234,0.45)",
+                        color: "rgba(243,240,234,0.6)",
                       }}>
                         {project.location}
                       </span>
@@ -230,7 +232,7 @@ export default function FeaturedProjects() {
                         fontSize: "11px",
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
-                        color: "rgba(243,240,234,0.45)",
+                        color: "rgba(243,240,234,0.6)",
                       }}>
                         {project.year}
                       </span>
@@ -262,7 +264,7 @@ export default function FeaturedProjects() {
                           borderRadius: "50%",
                           border: "1px solid rgba(243,240,234,0.2)",
                           background: "rgba(10,10,9,0.4)",
-                          color: activeIndex === 0 ? "rgba(243,240,234,0.2)" : "var(--text)",
+                          color: activeIndex === 0 ? "rgba(243,240,234,0.2)" : "#FFFFFF",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
@@ -295,7 +297,7 @@ export default function FeaturedProjects() {
                           borderRadius: "50%",
                           border: "1px solid rgba(243,240,234,0.2)",
                           background: "rgba(10,10,9,0.4)",
-                          color: activeIndex === featured.length - 1 ? "rgba(243,240,234,0.2)" : "var(--text)",
+                          color: activeIndex === featured.length - 1 ? "rgba(243,240,234,0.2)" : "#FFFFFF",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",

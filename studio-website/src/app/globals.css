@@ -5,16 +5,16 @@
    ============================================================ */
 @theme {
   /* Brand Colors */
-  --color-charcoal: #0a0a09;
-  --color-surface: #111110;
-  --color-surface-2: #161614;
-  --color-ivory: #f3f0ea;
-  --color-cream: #e8e3da;
-  --color-stone: #a8a39b;
-  --color-muted: #6b6762;
-  --color-bronze: #b1a696;
-  --color-gold: #c9a84c;
-  --color-dark: #1a1917;
+  --color-charcoal: #141312;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4efe8;
+  --color-ivory: #faf8f5;
+  --color-cream: #f4efe8;
+  --color-stone: #8c857b;
+  --color-muted: #666058;
+  --color-bronze: #9e7948;
+  --color-gold: #a88238;
+  --color-dark: #1e1c1a;
 
   /* Fonts */
   --font-sans: var(--font-sans);
@@ -25,18 +25,19 @@
    CSS DESIGN TOKENS — Global Custom Properties
    ============================================================ */
 :root {
-  /* ── Colors ── */
-  --bg: #0a0a09;
-  --surface: #111110;
-  --surface-2: #161614;
-  --text: #f3f0ea;
-  --text-secondary: #c4bfb7;
-  --muted: #a8a39b;
-  --muted-dark: #6b6762;
-  --border: rgba(243, 240, 234, 0.08);
-  --border-light: rgba(243, 240, 234, 0.12);
-  --bronze: #b1a696;
-  --gold: #c9a84c;
+  /* ── Colors — Refined Architectural Alabaster, Warm Linen & Deep Charcoal ── */
+  --bg: #faf8f5;
+  --surface: #ffffff;
+  --surface-2: #f4efe8;
+  --surface-3: #ede6dc;
+  --text: #141312;
+  --text-secondary: #383430;
+  --muted: #666058;
+  --muted-dark: #8c857b;
+  --border: rgba(20, 19, 18, 0.08);
+  --border-light: rgba(20, 19, 18, 0.14);
+  --bronze: #9e7948;
+  --gold: #a88238;
 
   /* ── Spacing Scale (fluid) ── */
   --gutter: clamp(20px, 4vw, 72px);

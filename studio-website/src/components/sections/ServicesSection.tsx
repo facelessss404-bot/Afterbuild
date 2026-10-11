@@ -64,8 +64,9 @@ export default function ServicesSection() {
                 letterSpacing: "0.28em",
                 textTransform: "uppercase",
                 color: "var(--bronze)",
+                fontWeight: 600,
               }}>
-                02 / Services
+                02 / ARCHITECTURE &amp; SCOPE OF WORK
               </span>
             </div>
             <h2 style={{
@@ -76,7 +77,7 @@ export default function ServicesSection() {
               letterSpacing: "-0.01em",
               color: "var(--text)",
             }}>
-              What We Design
+              What We Specialize In
             </h2>
           </div>
 
@@ -87,8 +88,8 @@ export default function ServicesSection() {
               lineHeight: 1.75,
               fontWeight: 300,
             }}>
-              End-to-end architectural and interior spectrum —
-              from concept through to turnkey delivery.
+              Engineering-led architecture, turnkey execution, and bespoke interior craftsmanship &mdash;
+              from structural concept through to physical handover.
             </p>
           </div>
         </div>
@@ -105,6 +106,9 @@ export default function ServicesSection() {
               aspectRatio: "3/4",
               overflow: "hidden",
               background: "var(--surface)",
+              borderRadius: "8px",
+              boxShadow: "0 12px 36px rgba(20, 19, 18, 0.08)",
+              border: "1px solid var(--border)",
             }}>
               {services.map((service, i) => (
                 <div
@@ -134,15 +138,15 @@ export default function ServicesSection() {
                 left: 0,
                 right: 0,
                 padding: "24px",
-                background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)",
+                background: "linear-gradient(to top, rgba(14,13,12,0.85) 0%, transparent 100%)",
               }}>
                 {activeIndex !== null && (
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span style={{ fontSize: "10px", letterSpacing: "0.18em", color: "rgba(243,240,234,0.5)" }}>
+                    <span style={{ fontSize: "10.5px", letterSpacing: "0.18em", color: "#E5C89C", fontWeight: 600 }}>
                       {services[activeIndex]?.number}
                     </span>
-                    <span style={{ fontSize: "10px", color: "rgba(243,240,234,0.3)" }}>/</span>
-                    <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(243,240,234,0.75)" }}>
+                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.4)" }}>/</span>
+                    <span style={{ fontSize: "10.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#FFFFFF", fontWeight: 500 }}>
                       {services[activeIndex]?.title}
                     </span>
                   </div>
@@ -164,7 +168,8 @@ export default function ServicesSection() {
                     borderTop: "1px solid var(--border)",
                     cursor: "pointer",
                     transition: "background 0.3s ease",
-                    background: isActive ? "rgba(243,240,234,0.02)" : "transparent",
+                    background: isActive ? "rgba(158, 121, 72, 0.05)" : "transparent",
+                    borderRadius: "4px",
                   }}
                 >
                   {/* Row header */}

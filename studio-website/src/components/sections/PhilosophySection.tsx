@@ -81,7 +81,7 @@ export default function PhilosophySection() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(1rem, 1.5vw, 1.3rem)",
             fontStyle: "italic",
-            color: "rgba(243,240,234,0.4)",
+            color: "var(--muted)",
             lineHeight: 1.5,
             margin: 0,
             padding: 0,

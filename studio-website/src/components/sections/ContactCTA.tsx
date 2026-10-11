@@ -76,12 +76,12 @@ export default function ContactCTA() {
               marginBottom: "clamp(24px, 4vw, 48px)",
             }}>
               Let's Create<br />
-              <span style={{ color: "rgba(243,240,234,0.3)", fontStyle: "italic" }}>Together.</span>
+              <span style={{ color: "rgba(20, 19, 18, 0.45)", fontStyle: "italic" }}>Together.</span>
             </h2>
 
             <p className="cta-reveal" style={{
               fontSize: "clamp(16px, 1.4vw, 20px)",
-              color: "#F3F0EA",
+              color: "var(--muted)",
               lineHeight: 1.75,
               maxWidth: "480px",
               marginBottom: "clamp(32px, 5vw, 56px)",
@@ -103,21 +103,21 @@ export default function ContactCTA() {
                 gap: "10px",
                 padding: "16px 40px",
                 background: "var(--bronze)",
-                color: "#0A0A09",
+                color: "#FAF8F5",
                 fontSize: "13px",
                 fontWeight: 700,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
                 transition: "all 0.3s ease",
-                boxShadow: "0 0 25px rgba(212, 178, 130, 0.3)",
+                boxShadow: "0 0 25px rgba(158, 121, 72, 0.25)",
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.background = "#FFFFFF";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 30px rgba(255, 255, 255, 0.4)";
+                (e.currentTarget as HTMLElement).style.background = "#141312";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 30px rgba(0, 0, 0, 0.2)";
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLElement).style.background = "var(--bronze)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 25px rgba(212, 178, 130, 0.3)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 25px rgba(158, 121, 72, 0.25)";
               }}
               >
                 Contact Us →
@@ -133,22 +133,22 @@ export default function ContactCTA() {
                   gap: "10px",
                   padding: "15px 36px",
                   background: "transparent",
-                  color: "#FFFFFF",
+                  color: "var(--text)",
                   fontSize: "13px",
                   fontWeight: 600,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  border: "1px solid rgba(212, 178, 130, 0.4)",
+                  border: "1px solid rgba(158, 121, 72, 0.4)",
                   transition: "border-color 0.3s ease, color 0.3s ease, background 0.3s ease",
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)";
                   (e.currentTarget as HTMLElement).style.color = "var(--bronze)";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(212, 178, 130, 0.08)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(158, 121, 72, 0.08)";
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(212, 178, 130, 0.4)";
-                  (e.currentTarget as HTMLElement).style.color = "#FFFFFF";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(158, 121, 72, 0.4)";
+                  (e.currentTarget as HTMLElement).style.color = "var(--text)";
                   (e.currentTarget as HTMLElement).style.background = "transparent";
                 }}
               >
@@ -162,7 +162,7 @@ export default function ContactCTA() {
               fontWeight: 600,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "rgba(243,240,234,0.75)",
+              color: "var(--muted-dark)",
             }}>
               Indiranagar, Bangalore &bull; Pan-India Execution
             </p>

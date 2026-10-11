@@ -102,6 +102,38 @@ const walkthroughProjects: WalkthroughItem[] = [
     highlights: ["Modular Storage", "Warm Palette", "Space Optimization", "Turnkey Delivery"],
     hasVideoFile: true,
   },
+  {
+    id: "leela-penthouse",
+    number: "06",
+    title: "Leela Penthouse — Duplex Architectural Curation",
+    subtitle: "Upcoming walkthrough — spatial double-height volume, custom bronze detailing, and Italian marble surfaces.",
+    location: "Old Airport Road, Bangalore",
+    area: "4,200 sq.ft.",
+    category: "Penthouse Architecture & Interior",
+    duration: "Incoming",
+    videoSrc: "/videos/walkthrough-prestige.mp4",
+    poster: "/images/projects/leela-penthouse/hero.jpg",
+    description:
+      "A premier duplex penthouse architectural layout featuring sweeping light, custom bronze metalwork, and double-height ceiling proportions designed for expansive living.",
+    highlights: ["Double-Height Foyer", "Italian Marble", "Bronze Detailing", "Turnkey Handover"],
+    hasVideoFile: true,
+  },
+  {
+    id: "koramangala-commercial",
+    number: "07",
+    title: "Koramangala Atelier — Executive Studio Space",
+    subtitle: "Upcoming walkthrough — slimline aluminum acoustic partitions, custom executive joinery, and cove mood lighting.",
+    location: "Koramangala, Bangalore",
+    area: "3,400 sq.ft.",
+    category: "Commercial Architecture & Interior",
+    duration: "Incoming",
+    videoSrc: "/videos/walkthrough-trifecta.mp4",
+    poster: "/images/projects/koramangala-commercial/hero.jpg",
+    description:
+      "A commercial architectural transformation featuring acoustic fluted glass partitions, concealed smart conduit wiring, and custom veneer executive suites.",
+    highlights: ["Aluminum Partitions", "Acoustic Glazing", "Custom Boardroom Joinery", "Smart Lighting"],
+    hasVideoFile: true,
+  },
 ];
 
 export default function VideoWalkthroughSection() {
@@ -294,12 +326,12 @@ export default function VideoWalkthroughSection() {
       id="walkthroughs"
       style={{
         position: "relative",
-        background: "#0c0c0b",
+        background: "var(--bg)",
         color: "var(--text)",
         paddingBlock: "clamp(80px, 10vw, 140px)",
         paddingInline: "var(--gutter)",
-        borderTop: "1px solid rgba(243,240,234,0.06)",
-        borderBottom: "1px solid rgba(243,240,234,0.06)",
+        borderTop: "1px solid var(--border)",
+        borderBottom: "1px solid var(--border)",
         overflow: "hidden",
       }}
       aria-label="Recent Project Walkthroughs"
@@ -313,7 +345,7 @@ export default function VideoWalkthroughSection() {
           width: "600px",
           height: "600px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(197, 168, 128, 0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(158, 121, 72, 0.08) 0%, transparent 70%)",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -335,21 +367,22 @@ export default function VideoWalkthroughSection() {
               letterSpacing: "0.28em",
               textTransform: "uppercase",
               color: "var(--bronze)",
-              fontWeight: 500,
+              fontWeight: 600,
             }}>
               03 / SPACES IN MOTION
             </span>
             <span style={{
               padding: "2px 8px",
               borderRadius: "4px",
-              background: "rgba(197, 168, 128, 0.12)",
-              border: "1px solid rgba(197, 168, 128, 0.3)",
+              background: "rgba(158, 121, 72, 0.12)",
+              border: "1px solid rgba(158, 121, 72, 0.3)",
               fontSize: "9px",
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               color: "var(--bronze)",
+              fontWeight: 600,
             }}>
-              {walkthroughProjects.length} Featured Walkthroughs
+              {walkthroughProjects.length} Walkthrough Projects
             </span>
           </div>
 
@@ -370,7 +403,7 @@ export default function VideoWalkthroughSection() {
                 textTransform: "uppercase",
                 color: "var(--text)",
               }}>
-                Cinematic <span style={{ color: "rgba(228, 213, 190, 0.65)", fontStyle: "italic" }}>Walkthroughs</span>
+                Cinematic <span style={{ color: "var(--bronze)", fontStyle: "italic" }}>Walkthroughs</span>
               </h2>
               <p style={{
                 fontSize: "clamp(13px, 1.1vw, 15px)",
@@ -389,17 +422,18 @@ export default function VideoWalkthroughSection() {
             <div style={{
               padding: "12px 18px",
               borderRadius: "8px",
-              background: "rgba(255, 255, 255, 0.02)",
-              border: "1px solid rgba(243, 240, 234, 0.08)",
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              boxShadow: "0 2px 12px rgba(20, 19, 18, 0.04)",
               maxWidth: "340px",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-                <span style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", background: "#4ade80" }} />
-                <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text)" }}>
+                <span style={{ display: "inline-block", width: "6px", height: "6px", borderRadius: "50%", background: "#16a34a" }} />
+                <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text)", fontWeight: 600 }}>
                   Drive Walkthrough Pipeline
                 </span>
               </div>
-              <p style={{ fontSize: "11px", color: "var(--muted-dark)", lineHeight: 1.5 }}>
+              <p style={{ fontSize: "11px", color: "var(--muted)", lineHeight: 1.5 }}>
                 New completed project walkthroughs are continuously uploaded from our Google Drive repository and catalogued in high definition.
               </p>
             </div>
@@ -424,11 +458,70 @@ export default function VideoWalkthroughSection() {
               background: "#050505",
               borderRadius: "12px",
               overflow: "hidden",
-              border: "1px solid rgba(243, 240, 234, 0.12)",
-              boxShadow: "0 24px 60px rgba(0, 0, 0, 0.6)",
+              border: "1px solid rgba(20, 19, 18, 0.14)",
+              boxShadow: "0 24px 60px rgba(20, 19, 18, 0.2)",
               userSelect: "none",
             }}
           >
+            {/* Official Brand Logo Watermark Overlay (Point 3) */}
+            <div
+              style={{
+                position: "absolute",
+                top: "16px",
+                right: "16px",
+                zIndex: 20,
+                pointerEvents: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "6px 12px 6px 8px",
+                borderRadius: "8px",
+                background: "rgba(14, 13, 12, 0.72)",
+                backdropFilter: "blur(8px)",
+                border: "1px solid rgba(229, 200, 156, 0.4)",
+                boxShadow: "0 4px 16px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              <div style={{
+                position: "relative",
+                width: "24px",
+                height: "22px",
+                borderRadius: "4px",
+                overflow: "hidden",
+                background: "#FFFFFF",
+                padding: "1px",
+              }}>
+                <Image
+                  src="/images/company_logo.png"
+                  alt="AfterBuild Studio Watermark"
+                  width={48}
+                  height={44}
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+                <span style={{
+                  fontFamily: "var(--font-logo), 'Cinzel', serif",
+                  fontSize: "9px",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  color: "#FFFFFF",
+                  textTransform: "uppercase",
+                }}>
+                  AFTERBUILD
+                </span>
+                <span style={{
+                  fontSize: "7px",
+                  letterSpacing: "0.22em",
+                  color: "#E5C89C",
+                  textTransform: "uppercase",
+                  marginTop: "2px",
+                }}>
+                  STUDIO
+                </span>
+              </div>
+            </div>
+
             {/* The Video Element */}
             {activeProject.videoSrc && (
               <video
@@ -720,8 +813,9 @@ export default function VideoWalkthroughSection() {
             gap: "24px",
             padding: "24px 28px",
             borderRadius: "10px",
-            background: "rgba(255, 255, 255, 0.02)",
-            border: "1px solid rgba(243, 240, 234, 0.08)",
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
+            boxShadow: "0 4px 18px rgba(20, 19, 18, 0.04)",
             alignItems: "center",
           }}>
             <div>
@@ -732,13 +826,14 @@ export default function VideoWalkthroughSection() {
                 color: "var(--bronze)",
                 display: "block",
                 marginBottom: "4px",
+                fontWeight: 600,
               }}>
                 Featured Dossier &bull; {activeProject.category}
               </span>
               <h3 style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.2rem, 2vw, 1.8rem)",
-                fontWeight: 400,
+                fontWeight: 500,
                 color: "var(--text)",
                 marginBottom: "8px",
               }}>
@@ -759,9 +854,10 @@ export default function VideoWalkthroughSection() {
                       textTransform: "uppercase",
                       padding: "3px 8px",
                       borderRadius: "3px",
-                      background: "rgba(243,240,234,0.04)",
-                      border: "1px solid rgba(243,240,234,0.08)",
-                      color: "rgba(243,240,234,0.7)",
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      color: "var(--text-secondary)",
+                      fontWeight: 500,
                     }}
                   >
                     {tag}
@@ -772,7 +868,7 @@ export default function VideoWalkthroughSection() {
 
             {/* Inquire about this specific space */}
             <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "flex-start" }}>
-              <span style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--muted-dark)" }}>
+              <span style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--muted-dark)", fontWeight: 600 }}>
                 Inspired by this aesthetic?
               </span>
               <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
@@ -789,12 +885,13 @@ export default function VideoWalkthroughSection() {
                     padding: "10px 20px",
                     borderRadius: "999px",
                     background: "var(--bronze)",
-                    color: "#0a0a09",
+                    color: "#FFFFFF",
                     fontSize: "11px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     fontWeight: 600,
                     transition: "opacity 0.3s ease",
+                    boxShadow: "0 2px 10px rgba(158, 121, 72, 0.3)",
                   }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "0.85")}
                   onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
@@ -811,15 +908,15 @@ export default function VideoWalkthroughSection() {
                     gap: "6px",
                     padding: "9px 18px",
                     borderRadius: "999px",
-                    border: "1px solid rgba(243,240,234,0.2)",
+                    border: "1px solid var(--border)",
                     color: "var(--text)",
                     fontSize: "11px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     transition: "border-color 0.3s ease",
                   }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--text)")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(243,240,234,0.2)")}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--bronze)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = "var(--border)")}
                 >
                   Full Project Gallery
                 </Link>
@@ -828,7 +925,7 @@ export default function VideoWalkthroughSection() {
           </div>
         </div>
 
-        {/* 5-Card Selector Grid Below Video — Direct Playable Videos */}
+        {/* 7-Card Selector Grid Below Video — Direct Playable Videos with Watermark */}
         <div style={{ marginTop: "clamp(32px, 5vw, 48px)" }}>
           <div style={{
             display: "flex",
@@ -841,13 +938,15 @@ export default function VideoWalkthroughSection() {
               letterSpacing: "0.25em",
               textTransform: "uppercase",
               color: "var(--muted)",
+              fontWeight: 600,
             }}>
-              Select Walkthrough ({walkthroughProjects.length} Projects)
+              Select Walkthrough ({walkthroughProjects.length} Projects Catalogued)
             </span>
             <span style={{
               fontSize: "10px",
               letterSpacing: "0.15em",
               color: "var(--bronze)",
+              fontWeight: 600,
             }}>
               Active: {activeProject.number} / 0{walkthroughProjects.length}
             </span>
@@ -871,8 +970,9 @@ export default function VideoWalkthroughSection() {
                     position: "relative",
                     borderRadius: "8px",
                     overflow: "hidden",
-                    border: isSelected ? "2px solid var(--bronze)" : "1px solid rgba(243, 240, 234, 0.1)",
-                    background: isSelected ? "rgba(197, 168, 128, 0.06)" : "rgba(255, 255, 255, 0.02)",
+                    border: isSelected ? "2px solid var(--bronze)" : "1px solid var(--border)",
+                    background: "var(--surface)",
+                    boxShadow: isSelected ? "0 8px 24px rgba(20, 19, 18, 0.08)" : "0 2px 8px rgba(20, 19, 18, 0.03)",
                     transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
                     transform: isSelected ? "translateY(-3px)" : "none",
                   }}
@@ -892,6 +992,44 @@ export default function VideoWalkthroughSection() {
                     onMouseMove={() => isCardPlaying && resetCardControlsTimeout(idx)}
                     onTouchStart={() => isCardPlaying && resetCardControlsTimeout(idx)}
                   >
+                    {/* Watermark of Company Logo on Card */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        zIndex: 14,
+                        pointerEvents: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px",
+                        padding: "3px 8px 3px 6px",
+                        borderRadius: "5px",
+                        background: "rgba(14, 13, 12, 0.72)",
+                        backdropFilter: "blur(6px)",
+                        border: "1px solid rgba(229, 200, 156, 0.4)",
+                      }}
+                    >
+                      <div style={{ width: "14px", height: "13px", borderRadius: "2px", overflow: "hidden", background: "#FFFFFF", padding: "0.5px" }}>
+                        <Image
+                          src="/images/company_logo.png"
+                          alt="AfterBuild Logo"
+                          width={28}
+                          height={26}
+                          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        />
+                      </div>
+                      <span style={{
+                        fontFamily: "var(--font-logo), 'Cinzel', serif",
+                        fontSize: "7.5px",
+                        fontWeight: 700,
+                        letterSpacing: "0.12em",
+                        color: "#FFFFFF",
+                      }}>
+                        AB STUDIO
+                      </span>
+                    </div>
+
                     {/* If this card is playing, mount active video */}
                     {isCardPlaying ? (
                       <video
@@ -1134,8 +1272,8 @@ export default function VideoWalkthroughSection() {
                     <h4 style={{
                       fontFamily: "var(--font-display)",
                       fontSize: "15px",
-                      fontWeight: isSelected ? 500 : 400,
-                      color: isSelected ? "var(--text)" : "rgba(243,240,234,0.75)",
+                      fontWeight: isSelected ? 600 : 500,
+                      color: "var(--text)",
                       lineHeight: 1.3,
                       marginBottom: "6px",
                     }}>
@@ -1160,7 +1298,7 @@ export default function VideoWalkthroughSection() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       paddingTop: "8px",
-                      borderTop: "1px solid rgba(243, 240, 234, 0.06)",
+                      borderTop: "1px solid var(--border)",
                     }}>
                       <button
                         type="button"
@@ -1169,8 +1307,8 @@ export default function VideoWalkthroughSection() {
                           handleCardClick(idx);
                         }}
                         style={{
-                          background: isCardPlaying ? "rgba(197, 168, 128, 0.15)" : "transparent",
-                          border: isCardPlaying ? "1px solid var(--bronze)" : "1px solid rgba(243, 240, 234, 0.18)",
+                          background: isCardPlaying ? "rgba(158, 121, 72, 0.15)" : "transparent",
+                          border: isCardPlaying ? "1px solid var(--bronze)" : "1px solid var(--border)",
                           color: isCardPlaying ? "var(--bronze)" : "var(--text)",
                           fontSize: "10px",
                           letterSpacing: "0.14em",

@@ -41,7 +41,7 @@ export default function CredentialsSection() {
       ref={sectionRef}
       id="section-credentials"
       style={{
-        background: "var(--surface-2, #161614)",
+        background: "var(--surface-2)",
         paddingBlock: "var(--space-lg)",
         paddingInline: "var(--gutter)",
         borderTop: "1px solid var(--border)",
@@ -80,7 +80,7 @@ export default function CredentialsSection() {
               marginBottom: "clamp(20px, 3vw, 32px)",
             }}>
               Architecture,<br />
-              <span style={{ color: "rgba(243,240,234,0.35)", fontStyle: "italic" }}>
+              <span style={{ color: "rgba(20, 19, 18, 0.45)", fontStyle: "italic" }}>
                 Interiors & Beyond.
               </span>
             </h2>
@@ -105,7 +105,7 @@ export default function CredentialsSection() {
               borderLeft: "1px solid var(--border)",
               flexWrap: "wrap",
             }}>
-              {stats.slice(0, 3).map((stat, i) => (
+              {stats.slice(0, 4).map((stat, i) => (
                 <div key={i} style={{
                   padding: "clamp(16px, 2.5vw, 28px) clamp(16px, 2.5vw, 32px)",
                   borderRight: "1px solid var(--border)",

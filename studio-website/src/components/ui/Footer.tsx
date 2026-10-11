@@ -21,11 +21,11 @@ export default function Footer() {
     <footer
       id="site-footer"
       style={{
-        background: "#0A0B0D",
-        borderTop: "1px solid rgba(212, 178, 130, 0.2)",
+        background: "var(--surface-2)",
+        borderTop: "1px solid var(--border)",
         position: "relative",
         overflow: "hidden",
-        color: "#F8F6F0",
+        color: "var(--text)",
       }}
     >
       {/* Ambient background architectural glow */}
@@ -37,7 +37,7 @@ export default function Footer() {
           left: "15%",
           width: "500px",
           height: "350px",
-          background: "radial-gradient(circle, rgba(212, 178, 130, 0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(158, 121, 72, 0.08) 0%, transparent 70%)",
           pointerEvents: "none",
           filter: "blur(60px)",
         }}
@@ -62,20 +62,20 @@ export default function Footer() {
                 display: "inline-block",
                 position: "relative",
                 padding: "8px 16px",
-                borderRadius: "6px",
-                background: "radial-gradient(ellipse at 30% 50%, rgba(212, 178, 130, 0.16) 0%, rgba(212, 178, 130, 0.04) 55%, transparent 75%)",
-                border: "1px solid rgba(212, 178, 130, 0.16)",
-                boxShadow: "0 0 25px rgba(212, 178, 130, 0.1), inset 0 0 16px rgba(212, 178, 130, 0.04)",
+                borderRadius: "8px",
+                background: "var(--surface)",
+                border: "1px solid rgba(158, 121, 72, 0.25)",
+                boxShadow: "0 4px 18px rgba(0, 0, 0, 0.05)",
                 marginBottom: "clamp(20px, 2.5vw, 28px)",
                 maxWidth: "100%",
               }}
             >
-              <Logo size="lg" glow={true} showTagline={true} />
+              <Logo size="lg" glow={false} showTagline={true} theme="light" />
             </div>
 
             <p style={{
-              fontSize: "15px",
-              color: "#F3F0EA",
+              fontSize: "14.5px",
+              color: "var(--text)",
               lineHeight: 1.75,
               maxWidth: "380px",
               marginBottom: "clamp(22px, 3vw, 32px)",
@@ -86,7 +86,7 @@ export default function Footer() {
                 display: "block",
                 marginTop: "12px",
                 color: "var(--bronze)",
-                fontSize: "13px",
+                fontSize: "12.5px",
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -96,11 +96,11 @@ export default function Footer() {
               <span style={{
                 display: "block",
                 marginTop: "6px",
-                color: "rgba(243,240,234,0.85)",
-                fontSize: "13px",
+                color: "var(--muted)",
+                fontSize: "12.5px",
                 fontWeight: 400,
               }}>
-                160+ Projects &bull; 75+ Craftsmen &bull; Indiranagar, Bangalore
+                160+ Projects &bull; 75+ Craftsmen &bull; 3.5+ Years &bull; Indiranagar, Bangalore
               </span>
             </p>
 
@@ -134,11 +134,11 @@ export default function Footer() {
           {/* Navigation — cols 6-8 desktop */}
           <div className="footer-nav">
             <h4 style={{
-              fontSize: "13px",
+              fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#FFFFFF",
+              color: "var(--text)",
               marginBottom: "8px",
             }}>
               Navigate
@@ -151,9 +151,9 @@ export default function Footer() {
                   <Link
                     href={link.href}
                     style={{
-                      fontSize: "15px",
-                      color: "#F3F0EA",
-                      fontWeight: 400,
+                      fontSize: "14px",
+                      color: "var(--text-secondary)",
+                      fontWeight: 500,
                       textDecoration: "none",
                       transition: "color 0.25s ease, transform 0.25s ease",
                       display: "inline-block",
@@ -163,7 +163,7 @@ export default function Footer() {
                       (e.currentTarget as HTMLElement).style.transform = "translateX(4px)";
                     }}
                     onMouseLeave={e => {
-                      (e.currentTarget as HTMLElement).style.color = "#F3F0EA";
+                      (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)";
                       (e.currentTarget as HTMLElement).style.transform = "translateX(0)";
                     }}
                   >
@@ -177,11 +177,11 @@ export default function Footer() {
           {/* Studio Address — cols 9-10 desktop */}
           <div className="footer-address">
             <h4 style={{
-              fontSize: "13px",
+              fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#FFFFFF",
+              color: "var(--text)",
               marginBottom: "8px",
             }}>
               Studio
@@ -190,11 +190,11 @@ export default function Footer() {
 
             <address style={{
               fontStyle: "normal",
-              fontSize: "15px",
-              color: "#E2DFD8",
+              fontSize: "14px",
+              color: "var(--muted)",
               lineHeight: 1.8,
             }}>
-              <strong style={{ color: "#FFFFFF", fontWeight: 600 }}>{siteConfig.name}</strong><br />
+              <strong style={{ color: "var(--text)", fontWeight: 600 }}>{siteConfig.name}</strong><br />
               {siteConfig.address.line1}<br />
               {siteConfig.address.line2}<br />
               {siteConfig.address.city}, {siteConfig.address.state}<br />
@@ -210,13 +210,13 @@ export default function Footer() {
                 alignItems: "center",
                 gap: "6px",
                 marginTop: "16px",
-                fontSize: "13px",
+                fontSize: "12px",
                 fontWeight: 600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 color: "var(--bronze)",
                 textDecoration: "none",
-                borderBottom: "1px solid rgba(197, 168, 128, 0.4)",
+                borderBottom: "1px solid rgba(158, 121, 72, 0.4)",
                 paddingBottom: "3px",
                 transition: "opacity 0.3s ease, border-color 0.3s ease",
               }}
@@ -230,11 +230,11 @@ export default function Footer() {
           {/* Contact / Inquiries — cols 11-12 desktop */}
           <div className="footer-contact">
             <h4 style={{
-              fontSize: "13px",
+              fontSize: "12px",
               fontWeight: 700,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#FFFFFF",
+              color: "var(--text)",
               marginBottom: "8px",
             }}>
               Inquiries
@@ -244,7 +244,7 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
               <div>
                 <span style={{
-                  fontSize: "11px",
+                  fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
@@ -257,16 +257,16 @@ export default function Footer() {
                 <a
                   href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}
                   style={{
-                    fontSize: "17px",
-                    fontWeight: 700,
-                    color: "#FFFFFF",
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    color: "var(--text)",
                     textDecoration: "none",
                     letterSpacing: "0.02em",
                     transition: "color 0.25s ease",
                     display: "inline-block",
                   }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--bronze)")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "#FFFFFF")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
                 >
                   {siteConfig.phone}
                 </a>
@@ -274,7 +274,7 @@ export default function Footer() {
 
               <div>
                 <span style={{
-                  fontSize: "11px",
+                  fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
@@ -287,16 +287,16 @@ export default function Footer() {
                 <a
                   href={`mailto:${siteConfig.email}`}
                   style={{
-                    fontSize: "15px",
+                    fontSize: "14px",
                     fontWeight: 500,
-                    color: "#FFFFFF",
+                    color: "var(--text)",
                     textDecoration: "none",
                     transition: "color 0.25s ease",
                     wordBreak: "break-all",
                     display: "inline-block",
                   }}
                   onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "var(--bronze)")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "#FFFFFF")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "var(--text)")}
                 >
                   {siteConfig.email}
                 </a>
@@ -304,7 +304,7 @@ export default function Footer() {
 
               <div>
                 <span style={{
-                  fontSize: "11px",
+                  fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
@@ -315,8 +315,8 @@ export default function Footer() {
                   Operating Hours
                 </span>
                 <p style={{
-                  fontSize: "14px",
-                  color: "#E2DFD8",
+                  fontSize: "13px",
+                  color: "var(--muted)",
                   lineHeight: 1.6,
                   margin: 0,
                 }}>
@@ -343,7 +343,7 @@ export default function Footer() {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "-0.03em",
-              color: "rgba(243,240,234,0.065)",
+              color: "rgba(20, 19, 18, 0.04)",
               lineHeight: 1,
               userSelect: "none",
               pointerEvents: "none",
@@ -357,7 +357,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div style={{
-          borderTop: "1px solid rgba(212, 178, 130, 0.2)",
+          borderTop: "1px solid var(--border)",
           paddingBlock: "clamp(18px, 2.5vw, 26px)",
           display: "flex",
           alignItems: "center",
@@ -366,14 +366,14 @@ export default function Footer() {
           flexWrap: "wrap",
         }}>
           <span style={{
-            fontSize: "13px",
+            fontSize: "12px",
             letterSpacing: "0.08em",
-            color: "rgba(243,240,234,0.75)",
+            color: "var(--muted)",
           }}>
             &copy; {year} {siteConfig.name}. All rights reserved.
           </span>
           <span style={{
-            fontSize: "13px",
+            fontSize: "12px",
             letterSpacing: "0.08em",
             color: "var(--bronze)",
             fontWeight: 500,
