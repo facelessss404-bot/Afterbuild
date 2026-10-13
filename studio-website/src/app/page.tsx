@@ -8,7 +8,6 @@ import CredentialsSection from "@/components/sections/CredentialsSection";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import ProjectIndex from "@/components/sections/ProjectIndex";
 import PhilosophySection from "@/components/sections/PhilosophySection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import SocialSection from "@/components/sections/SocialSection";
 import ContactCTA from "@/components/sections/ContactCTA";
 
@@ -45,10 +44,7 @@ export default function HomePage() {
       {/* 08. Philosophy — Three-column pillar cards + quote */}
       <PhilosophySection />
 
-      {/* 09. Testimonials — White background with arrows */}
-      <TestimonialsSection />
-
-      {/* 10. Social — Instagram grid feed */}
+      {/* 09. Social — Instagram grid feed */}
       <SocialSection />
 
       {/* 11. CTA — Rounded container with background image */}
