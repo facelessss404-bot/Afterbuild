@@ -11,6 +11,41 @@ export interface Testimonial {
   source?: string;
 }
 
+export interface VideoTestimonial {
+  id: string;
+  project: string;
+  client: string;
+  role: string;
+  location: string;
+  duration: string;
+  rating: number;
+  videoUrl: string;
+  poster: string;
+  badge: string;
+  quoteTitle: string;
+  quote: string;
+  services: string[];
+}
+
+export const videoTestimonials: VideoTestimonial[] = [
+  {
+    id: "trifecta-feedback",
+    project: "Trifecta Retto",
+    client: "Homeowners at Trifecta Retto",
+    role: "Luxury 3BHK Turnkey Interior Handover",
+    location: "Bangalore",
+    duration: "2:02 min",
+    rating: 5,
+    videoUrl: "/videos/testimonial-feedback-trifecta.mp4",
+    poster: "/images/testimonials/trifecta_feedback_poster.jpg",
+    badge: "Verified Client Video Review",
+    quoteTitle: "“Flawless Execution, Exceptional Finishing & Transparent Handover”",
+    quote:
+      "Hear directly from our Trifecta Retto clients as they share their firsthand walkthrough experience. From bespoke high-gloss modular kitchen cabinetry and pantry detailing to concealed storage and on-schedule handover, discover how AfterBuild Studio transformed their vision into reality.",
+    services: ["Turnkey 3BHK Fitout", "Modular Kitchen", "Wardrobe Joinery", "Lighting Design"],
+  },
+];
+
 export const testimonials: Testimonial[] = [
   {
     id: "t1",

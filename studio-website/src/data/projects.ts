@@ -160,12 +160,6 @@ export const projects: Project[] = [
     credits: { "Lead Designer": "AfterBuild Studio Team", "Supervision": "Mohammed Farmaan Azam K" },
     featured: true,
     index: 3,
-    video: {
-      hasVideo: true,
-      videoUrl: "/videos/walkthrough-trifecta.mp4",
-      poster: "/images/projects/sbr-horizon/hero.jpg",
-      duration: "2:10 min",
-    },
   },
   {
     id: "gk-gateway",
@@ -218,9 +212,44 @@ export const projects: Project[] = [
     index: 4,
     video: {
       hasVideo: true,
-      videoUrl: "/videos/walkthrough-prestige.mp4",
+      videoUrl: "/videos/walkthrough-gk-gateway.mp4",
       poster: "/images/projects/gk-gateway/hero.jpg",
-      duration: "1:55 min",
+      duration: "0:53 min",
+    },
+  },
+  {
+    id: "aryan-villa",
+    slug: "aryan-villa",
+    title: "Aryan's Villa Electronic City",
+    subtitle: "Contemporary multi-tier villa architecture: modern geometric elevation & bespoke turnkey living.",
+    category: "Architecture",
+    location: "Electronic City, Bangalore",
+    year: "2025",
+    area: "3,800 sq.ft.",
+    heroImage: "/images/projects/aryan-villa/hero.jpg",
+    thumbnailImage: "/images/projects/aryan-villa/thumb.jpg",
+    images: [
+      "/images/projects/aryan-villa/frame_2s.jpg",
+      "/images/projects/aryan-villa/frame_25s.jpg",
+      "/images/projects/aryan-villa/frame_50s.jpg",
+      "/images/projects/aryan-villa/frame_5s.jpg",
+      "/images/projects/aryan-villa/frame_15s.jpg",
+      "/images/projects/aryan-villa/frame_30s.jpg",
+    ],
+    description:
+      "A signature private villa in Electronic City, Bangalore. Features a sculptural multi-level facade with textured stone cladding, custom safety louvers, bespoke puja mandir joinery, and tailored modular cabinetry engineered for contemporary family living.",
+    statement:
+      "Architectural presence in harmony with domestic serenity — an enduring Bangalore villa sanctuary.",
+    services: ["Villa Architecture", "Turnkey Construction", "Modular Joinery", "Lighting Design"],
+    materials: ["Natural Stone Cladding", "Powder-Coated Aluminum", "Teak Wood Joinery", "Textured Laminates"],
+    credits: { "Principal Architect": "Mohammed Farmaan Azam K", "Studio": "AfterBuild Studio" },
+    featured: true,
+    index: 5,
+    video: {
+      hasVideo: true,
+      videoUrl: "/videos/walkthrough-aryan-villa.mp4",
+      poster: "/images/projects/aryan-villa/hero.jpg",
+      duration: "1:02 min",
     },
   },
   {
@@ -254,6 +283,6 @@ export const projects: Project[] = [
     materials: ["Textured Laminates", "Matte Black Hardware", "Natural Linen Textiles"],
     credits: { "Studio": "AfterBuild Studio" },
     featured: true,
-    index: 5,
+    index: 6,
   },
 ];

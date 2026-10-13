@@ -369,6 +369,53 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
         </div>
       </div>
 
+      {/* ── CINEMATIC 4K WALKTHROUGH ── */}
+      {project.video?.hasVideo && project.video.videoUrl && (
+        <div style={{
+          paddingInline: "var(--gutter)",
+          paddingBottom: "var(--space-md)",
+        }}>
+          <div style={{
+            maxWidth: "var(--max-w)",
+            marginInline: "auto",
+            borderRadius: "12px",
+            overflow: "hidden",
+            background: "#080807",
+            border: "1px solid rgba(158, 121, 72, 0.35)",
+            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.4)",
+          }}>
+            <div style={{
+              padding: "16px 24px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+              background: "rgba(255, 255, 255, 0.02)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#16a34a" }} />
+                <span style={{ fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--bronze)", fontWeight: 600 }}>
+                  Cinematic 4K Walkthrough &bull; {project.title}
+                </span>
+              </div>
+              <span style={{ fontSize: "10px", color: "rgba(255, 255, 255, 0.6)", fontFamily: "monospace" }}>
+                {project.video.duration}
+              </span>
+            </div>
+            <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", maxHeight: "640px", background: "#000" }}>
+              <video
+                src={project.video.videoUrl}
+                poster={project.video.poster || project.heroImage}
+                controls
+                playsInline
+                preload="metadata"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── NEXT PROJECT ── */}
       <Link
         href={`/work/${nextProject.slug}`}
