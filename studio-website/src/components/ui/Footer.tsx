@@ -10,7 +10,7 @@ const navLinks = [
   { label: "4K Walkthroughs", href: "/#walkthroughs" },
   { label: "Design Services", href: "/services" },
   { label: "Client Testimonials", href: "/testimonials" },
-  { label: "Our Studio", href: "/studio" },
+  { label: "About Us", href: "/studio" },
   { label: "Contact & Consult", href: "/contact" },
 ];
 

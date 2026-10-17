@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Walkthroughs", href: "/#walkthroughs" },
   { label: "Services", href: "/services" },
   { label: "Testimonials", href: "/testimonials" },
-  { label: "Studio", href: "/studio" },
+  { label: "About Us", href: "/studio" },
   { label: "Contact", href: "/contact" },
 ];
 

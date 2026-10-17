@@ -338,10 +338,10 @@ export default function TestimonialsPageClient() {
               gap: "clamp(24px, 3vw, 40px)",
               alignItems: "center",
               borderRadius: "14px",
-              background: "#0c0b0a",
-              border: "1px solid rgba(158, 121, 72, 0.35)",
+              background: "#FFFFFF",
+              border: "1px solid var(--border)",
               overflow: "hidden",
-              boxShadow: "0 24px 64px rgba(10, 10, 9, 0.16)",
+              boxShadow: "0 24px 64px rgba(10, 10, 9, 0.08)",
             }}
           >
             {/* Left 7 cols: Interactive Video Player */}
@@ -565,7 +565,8 @@ export default function TestimonialsPageClient() {
               style={{
                 gridColumn: "8 / 13",
                 padding: "clamp(24px, 3.5vw, 40px)",
-                color: "#FFFFFF",
+                background: "#FFFFFF",
+                color: "#141312",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -573,7 +574,7 @@ export default function TestimonialsPageClient() {
             >
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
                 <span style={{ fontSize: "13px", color: "var(--bronze)" }}>★★★★★</span>
-                <span style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--bronze)", fontWeight: 600 }}>
+                <span style={{ fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--bronze)", fontWeight: 700 }}>
                   Turnkey Handover Review
                 </span>
               </div>
@@ -584,14 +585,14 @@ export default function TestimonialsPageClient() {
                   fontSize: "clamp(1.4rem, 2.2vw, 2rem)",
                   fontWeight: 500,
                   lineHeight: 1.2,
-                  color: "#FFFFFF",
+                  color: "#141312",
                   marginBottom: "12px",
                 }}
               >
                 {activeVideo.quoteTitle}
               </h3>
 
-              <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.78)", lineHeight: 1.7, fontWeight: 300, marginBottom: "20px" }}>
+              <p style={{ fontSize: "13px", color: "#3A3835", lineHeight: 1.7, fontWeight: 400, marginBottom: "20px" }}>
                 {activeVideo.quote}
               </p>
 
@@ -605,10 +606,11 @@ export default function TestimonialsPageClient() {
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       padding: "4px 9px",
-                      borderRadius: "3px",
-                      background: "rgba(255, 255, 255, 0.08)",
-                      border: "1px solid rgba(255, 255, 255, 0.15)",
-                      color: "rgba(255, 255, 255, 0.85)",
+                      borderRadius: "4px",
+                      background: "#F6F4F0",
+                      border: "1px solid #E5E0D8",
+                      color: "#1F1E1D",
+                      fontWeight: 600,
                     }}
                   >
                     {svc}
@@ -637,7 +639,7 @@ export default function TestimonialsPageClient() {
                     textTransform: "uppercase",
                     fontWeight: 600,
                     textDecoration: "none",
-                    boxShadow: "0 4px 14px rgba(158, 121, 72, 0.4)",
+                    boxShadow: "0 4px 14px rgba(158, 121, 72, 0.35)",
                   }}
                 >
                   <span>Inquire for Similar Handover</span>
@@ -652,12 +654,13 @@ export default function TestimonialsPageClient() {
                     gap: "6px",
                     padding: "9px 18px",
                     borderRadius: "999px",
-                    border: "1px solid rgba(255, 255, 255, 0.25)",
-                    color: "#FFFFFF",
+                    border: "1px solid var(--border)",
+                    color: "var(--text)",
                     fontSize: "11px",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
                     textDecoration: "none",
+                    fontWeight: 500,
                   }}
                 >
                   View Full Project Dossier

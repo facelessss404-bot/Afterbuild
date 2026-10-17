@@ -189,24 +189,27 @@ export default function StudioPage() {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: "clamp(16px, 2.5vw, 24px)",
-                  background: "linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%)",
+                  padding: "clamp(18px, 3vw, 28px)",
+                  background: "linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%)",
                 }}>
                   <p style={{
-                    fontSize: "9px",
+                    fontSize: "10px",
                     letterSpacing: "0.22em",
                     textTransform: "uppercase",
-                    color: "var(--bronze)",
+                    color: "#F3D8B0",
+                    fontWeight: 600,
                     marginBottom: "4px",
+                    textShadow: "0 2px 6px rgba(0, 0, 0, 0.8)",
                   }}>
                     Founder & Director
                   </p>
                   <p style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)",
-                    fontWeight: 400,
-                    color: "var(--text)",
-                    letterSpacing: "0.01em",
+                    fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
+                    fontWeight: 500,
+                    color: "#FFFFFF",
+                    letterSpacing: "0.02em",
+                    textShadow: "0 2px 10px rgba(0, 0, 0, 0.9)",
                   }}>
                     Mohammed Farmaan Azam K
                   </p>

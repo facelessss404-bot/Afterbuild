@@ -225,10 +225,10 @@ export default function TestimonialsSection() {
             <div
               style={{
                 borderRadius: "12px",
-                background: "#0d0c0b",
-                border: "1px solid rgba(158, 121, 72, 0.35)",
+                background: "#FFFFFF",
+                border: "1px solid var(--border)",
                 overflow: "hidden",
-                boxShadow: "0 16px 48px rgba(10, 10, 9, 0.14)",
+                boxShadow: "0 16px 48px rgba(10, 10, 9, 0.08)",
                 display: "flex",
                 flexDirection: "column",
               }}
@@ -456,11 +456,11 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Video Meta & Client Narrative Card */}
-              <div style={{ padding: "24px 26px", color: "#FFFFFF" }}>
+              <div style={{ padding: "24px 26px", background: "#FFFFFF", color: "#141312" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", marginBottom: "8px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                     <span style={{ fontSize: "12px", color: "var(--bronze)" }}>★★★★★</span>
-                    <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--bronze)", fontWeight: 600 }}>
+                    <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--bronze)", fontWeight: 700 }}>
                       {activeVideo.project} Handover
                     </span>
                   </div>
@@ -469,10 +469,12 @@ export default function TestimonialsSection() {
                       fontSize: "9px",
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
-                      color: "rgba(255, 255, 255, 0.6)",
-                      border: "1px solid rgba(255, 255, 255, 0.15)",
-                      padding: "2px 8px",
-                      borderRadius: "3px",
+                      color: "var(--muted-dark)",
+                      border: "1px solid var(--border)",
+                      background: "#F6F4F0",
+                      padding: "3px 8px",
+                      borderRadius: "4px",
+                      fontWeight: 600,
                     }}
                   >
                     {activeVideo.role}
@@ -485,14 +487,14 @@ export default function TestimonialsSection() {
                     fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
                     fontWeight: 500,
                     lineHeight: 1.25,
-                    color: "#FFFFFF",
+                    color: "#141312",
                     marginBottom: "10px",
                   }}
                 >
                   {activeVideo.quoteTitle}
                 </h3>
 
-                <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.75)", lineHeight: 1.65, fontWeight: 300, marginBottom: "16px" }}>
+                <p style={{ fontSize: "13px", color: "#3A3835", lineHeight: 1.65, fontWeight: 400, marginBottom: "16px" }}>
                   {activeVideo.quote}
                 </p>
 
@@ -505,11 +507,12 @@ export default function TestimonialsSection() {
                         fontSize: "9px",
                         letterSpacing: "0.12em",
                         textTransform: "uppercase",
-                        padding: "3px 8px",
-                        borderRadius: "3px",
-                        background: "rgba(255, 255, 255, 0.06)",
-                        border: "1px solid rgba(255, 255, 255, 0.12)",
-                        color: "rgba(255, 255, 255, 0.8)",
+                        padding: "4px 9px",
+                        borderRadius: "4px",
+                        background: "#F6F4F0",
+                        border: "1px solid #E5E0D8",
+                        color: "#1F1E1D",
+                        fontWeight: 600,
                       }}
                     >
                       {tag}
@@ -518,9 +521,9 @@ export default function TestimonialsSection() {
                 </div>
 
                 {/* Quick Action: Inquire for similar space */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "14px" }}>
-                  <span style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.6)" }}>
-                    Client: <strong style={{ color: "#FFFFFF" }}>{activeVideo.client}</strong>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", borderTop: "1px solid var(--border)", paddingTop: "14px" }}>
+                  <span style={{ fontSize: "11px", color: "var(--muted-dark)" }}>
+                    Client: <strong style={{ color: "#141312" }}>{activeVideo.client}</strong>
                   </span>
                   <a
                     href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(

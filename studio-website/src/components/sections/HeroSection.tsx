@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { siteConfig } from "@/data/site";
@@ -47,33 +46,41 @@ export default function HeroSection() {
       }}
       aria-label="Hero"
     >
-      {/* Full-bleed hero image */}
+      {/* Full-bleed hero background video */}
       <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 2 }}>
         <div
           className="hero-img"
           style={{ position: "absolute", inset: 0 }}
         >
-        <Image
-          src="/images/hero-luxury.jpg"
-          alt="AfterBuild Studio — Ultra-Luxury Architectural Interior Design, Bangalore"
-          fill
-          priority
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          quality={95}
-          sizes="100vw"
-        />
-        {/* Cinematic gradient overlay & localized contrast scrim */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          background: "linear-gradient(to bottom, rgba(8,8,7,0.72) 0%, rgba(8,8,7,0.50) 30%, rgba(8,8,7,0.76) 68%, rgba(8,8,7,0.96) 100%)",
-        }} />
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          background: "radial-gradient(ellipse at 25% 65%, rgba(0,0,0,0.7) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }} />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/hero-luxury.jpg"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          >
+            <source src="/videos/front_page_video.mp4" type="video/mp4" />
+          </video>
+          {/* Cinematic gradient overlay & localized contrast scrim */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, rgba(8,8,7,0.65) 0%, rgba(8,8,7,0.38) 32%, rgba(8,8,7,0.70) 68%, rgba(8,8,7,0.95) 100%)",
+          }} />
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse at 25% 65%, rgba(0,0,0,0.65) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }} />
         </div>
       </div>
 
